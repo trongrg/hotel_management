@@ -1,0 +1,15 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Application	config/application.rb	/^  class Application < Rails::Application$/;"	c	class:HotelManagement
+ApplicationController	app/controllers/application_controller.rb	/^class ApplicationController < ActionController::Base$/;"	c
+ApplicationHelper	app/helpers/application_helper.rb	/^module ApplicationHelper$/;"	m
+DeviseCreateUsers	db/migrate/20120114130158_devise_create_users.rb	/^class DeviseCreateUsers < ActiveRecord::Migration$/;"	c
+HotelManagement	config/application.rb	/^module HotelManagement$/;"	m
+Settings	lib/settings.rb	/^class Settings < Settingslogic$/;"	c
+User	app/models/user.rb	/^class User < ActiveRecord::Base$/;"	c
+about	public/index.html	/^      function about() {$/;"	f
+change	db/migrate/20120114130158_devise_create_users.rb	/^  def change$/;"	f	class:DeviseCreateUsers
