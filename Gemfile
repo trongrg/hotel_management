@@ -2,11 +2,12 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.3'
 
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
-
 gem 'mysql2'
-
+gem "devise"
+gem "haml", ">= 3.0.0"
+gem "haml-rails"
+gem "settingslogic"
+gem "coffee-filter"
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -18,22 +19,14 @@ end
 
 gem 'jquery-rails'
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+group :development, :test do
+  gem "cucumber-rails"
+  gem "capybara"
+  gem "rspec-rails", ">= 2.0.1"
+end
 
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
-
-gem "cucumber-rails", :group => [:development, :test]
-gem "capybara", :group => [:development, :test]
-gem "devise"
-gem "haml", ">= 3.0.0"
-gem "haml-rails"
-gem "rspec-rails", ">= 2.0.1", :group => [:development, :test]
-gem "settingslogic"
+group :debug do
+  gem 'ruby-debug-base19', '~> 0.11.26'
+  gem 'linecache19', '~> 0.5.13'
+  gem 'ruby-debug19', :require => 'ruby-debug'
+end
