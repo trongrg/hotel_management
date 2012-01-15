@@ -8,6 +8,8 @@ gem "haml", ">= 3.0.0"
 gem "haml-rails"
 gem "settingslogic"
 gem "coffee-filter"
+gem "formtastic"
+gem "carmen"
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -20,13 +22,23 @@ end
 gem 'jquery-rails'
 
 group :development, :test do
-  gem "cucumber-rails"
-  gem "capybara"
-  gem "rspec-rails", ">= 2.0.1"
-end
-
-group :debug do
   gem 'ruby-debug-base19', '~> 0.11.26'
   gem 'linecache19', '~> 0.5.13'
   gem 'ruby-debug19', :require => 'ruby-debug'
+  gem "rspec-rails", ">= 2.0.1"
+end
+
+group :test do
+  gem "cucumber-rails"
+  gem "capybara"
+  gem 'simplecov', :require => false
+  gem 'database_cleaner'
+  gem 'machinist'
+  gem 'shoulda', '>= 3.0.0.beta'
+  gem 'spork', :git => "git://github.com/sporkrb/spork.git"
+  gem 'guard'
+  gem 'guard-spork'
+  gem 'guard-rspec'
+  gem 'guard-cucumber'
+  gem 'webmock'
 end
