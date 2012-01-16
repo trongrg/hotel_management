@@ -34,6 +34,7 @@ group :test do
   gem 'simplecov', :require => false
   gem 'database_cleaner'
   gem 'machinist'
+  gem 'faker'
   gem 'shoulda', '>= 3.0.0.beta'
   gem 'spork', :git => "git://github.com/sporkrb/spork.git"
   gem 'guard'

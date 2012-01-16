@@ -1,0 +1,8 @@
+%h2 Sign_in
+
+= semantic_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+  = f.inputs do
+    = f.input :username
+    = f.input :password, :as => :password
+  = f.buttons do
+    = f.commit_button

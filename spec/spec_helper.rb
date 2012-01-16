@@ -20,6 +20,7 @@ Spork.each_run do
   ActiveRecord::Base.establish_connection
   # This code will be run each time you run your specs.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+  Dir[Rails.root.join("spec/blueprints/**/*.rb")].each { |f| require f }
 
   RSpec.configure do |config|
     config.mock_with :rspec

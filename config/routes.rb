@@ -1,5 +1,9 @@
 HotelManagement::Application.routes.draw do
-  devise_for :users
+  devise_for :users do
+    get '/sign_in' => "devise/sessions#new"
+    get '/sign_out' => "devise/sessions#destroy"
+    get '/sign_up' => "devise/registrations#new"
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

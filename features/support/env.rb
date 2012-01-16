@@ -3,12 +3,12 @@ require 'spork'
 
 Spork.prefork do
   ENV["RAILS_ENV"] ||= 'test'
-  require 'simplecov'
-  require 'rails/application'
   require 'cucumber/rails'
-  require 'cucumber/rspec/doubles'
+  require 'capybara/rails'
+  require 'capybara/cucumber'
+  require 'capybara/session'
 
-  #Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
+  Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
 
   begin
     DatabaseCleaner.strategy = :transaction
@@ -28,12 +28,11 @@ Spork.prefork do
 end
 
 Spork.each_run do
-  #Dir["#{Rails.root}/app/models/*.rb"].each { |f| load f }
-  require 'capybara'
+  Dir[Rails.root.join("app/models/**/*.rb")].each { |f| load f }
   Dir["#{Rails.root}/spec/support/blueprints/**/*.rb"].each { |f| require f }
   require "#{Rails.root}/spec/support/reload_lib"
   require "#{Rails.root}/spec/support/i18n"
   #require 'pickle'
-  #DatabaseCleaner.clean_with(:truncation)
+  DatabaseCleaner.clean_with(:truncation)
 end
 
