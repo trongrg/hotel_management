@@ -1,3 +1,4 @@
+@javascript
 Feature: anonymous user sign up
   In order to become a hotel owner,
   As an anonymous user,

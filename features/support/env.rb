@@ -3,36 +3,42 @@ require 'spork'
 
 Spork.prefork do
   ENV["RAILS_ENV"] ||= 'test'
-  require 'cucumber/rails'
-  require 'capybara/rails'
-  require 'capybara/cucumber'
-  require 'capybara/session'
 
+  if RUBY_VERSION > "1.9"
+    require 'simplecov'
+    SimpleCov.start 'rails' if ENV["COVERAGE"]
+    SimpleCov.coverage_dir 'coverage/cucumber'
+  end
+
+  require "rails/application"
   Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
+  require File.dirname(__FILE__) + "/../../config/environment.rb"
 
-  begin
+  require 'cucumber/rails'
+  require 'cucumber/rails/world'
+
+  DatabaseCleaner.strategy = :transaction
+
+  Before '@javascript', '@selenium', '@no-txn' do
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean_with :truncation
+  end
+
+  Before '~@javascript', '~@selenium', '~@no-txn' do
     DatabaseCleaner.strategy = :transaction
-  rescue NameError
-    raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
+    DatabaseCleaner.start
   end
 
-  Before('@no-txn,@selenium,@javascript') do
-    DatabaseCleaner.strategy = :truncation, {:except => %w[widgets]}
+  After '~@javascript', '~@selenium', '~@no-txn' do
+    DatabaseCleaner.clean
   end
 
-  Before('~@no-txn', '~@selenium', '~@javascript') do
-    DatabaseCleaner.strategy = :transaction
-  end
-
-  Capybara.default_selector = :css
+  ActiveRecord::Base.connection.disconnect!
 end
 
 Spork.each_run do
+  ActiveRecord::Base.establish_connection
   Dir[Rails.root.join("app/models/**/*.rb")].each { |f| load f }
-  Dir["#{Rails.root}/spec/support/blueprints/**/*.rb"].each { |f| require f }
-  require "#{Rails.root}/spec/support/reload_lib"
-  require "#{Rails.root}/spec/support/i18n"
-  #require 'pickle'
-  DatabaseCleaner.clean_with(:truncation)
+  Dir[Rails.root.join("spec/blueprints/**/*.rb")].each { |f| require f }
+  I18n.backend.reload!
 end
-
