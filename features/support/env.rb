@@ -19,7 +19,7 @@ Spork.prefork do
 
   DatabaseCleaner.strategy = :transaction
 
-  Before '@javascript', '@selenium', '@no-txn' do
+  Before '@javascript, @selenium, @no-txn' do
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.clean_with :truncation
   end
