@@ -5,6 +5,8 @@ HotelManagement::Application.routes.draw do
     get '/sign_up' => "devise/registrations#new"
   end
 
+  resource :dashboard, :only => :show, :controller => "dashboard"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -54,7 +56,7 @@ HotelManagement::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'dashboard#index'
+  root :to => 'welcome#show'
 
   # See how all your routes lay out with "rake routes"
 
