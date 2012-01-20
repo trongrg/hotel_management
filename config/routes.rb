@@ -1,7 +1,8 @@
 HotelManagement::Application.routes.draw do
-  devise_for :users do
-    get '/sign_in' => "devise/sessions#new"
-    get '/sign_out' => "devise/sessions#destroy"
+  devise_for :users, :skip => :sessions, :controller => {:sessions => "sessions"} do
+    get '/sign_in' => "sessions#new"
+    post '/sign_in' => "sessions#create", :as => :user_session
+    get '/sign_out' => "sessions#destroy"
     get '/sign_up' => "devise/registrations#new"
   end
 

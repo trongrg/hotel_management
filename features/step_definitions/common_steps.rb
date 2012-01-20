@@ -13,3 +13,7 @@ end
 Then /^I should see "([^"]*)" link$/ do |link|
   page.should have_link(link)
 end
+
+Then /^I should be on (.+)$/ do |page_name|
+  current_path.should == path_to(page_name)
+end

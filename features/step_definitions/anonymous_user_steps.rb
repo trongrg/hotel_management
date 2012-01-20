@@ -28,7 +28,7 @@ end
 
 def sign_in user
   visit '/sign_in'
-  fill_in "Email", :with => user[:username]
+  fill_in "Username", :with => user[:username]
   fill_in "Password", :with => user[:password]
   click_button "Sign in"
 end
