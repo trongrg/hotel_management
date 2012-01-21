@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
-  before_filter :require_signed_in
+  before_filter :authenticate_user!
 
   def show
   end
