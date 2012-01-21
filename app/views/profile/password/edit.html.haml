@@ -1,0 +1,8 @@
+%h2 Change password
+
+= semantic_form_for(@user, :as => @user, :url => profile_password_path, :html => { :method => :put }) do |f|
+  = f.input :current_password, :as => :password
+  = f.input :password, :as => :password
+  = f.input :password_confirmation, :as => :password
+  = f.buttons do
+    = f.commit_button "Change password"

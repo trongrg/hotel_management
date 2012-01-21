@@ -12,6 +12,9 @@ HotelManagement::Application.routes.draw do
 
   resource :dashboard, :only => :show, :controller => "dashboard"
 
+  namespace :profile do
+    resource :password, :only => [:edit, :update], :controller => "password"
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

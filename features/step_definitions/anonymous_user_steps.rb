@@ -161,11 +161,6 @@ Then /^I see a successful sign in message$/ do
   page.should have_content "Signed in successfully."
 end
 
-Then /^I should see an account edited message$/ do
-  page.should have_content "You updated your account successfully."
-end
-
 Then /^I should see my name$/ do
   page.should have_content valid_user[:name]
 end
-

@@ -4,3 +4,43 @@ When /^I edit my account details$/ do
   click_button "Update profile"
 end
 
+Then /^I should see an account edited message$/ do
+  page.should have_content "You updated your account successfully."
+end
+
+When /^I edit my password$/ do
+  visit "/profile"
+  click_link "Change password"
+  fill_in "Current password", :with => "please"
+  fill_in "Password", :with => "newpass"
+  fill_in "Password confirmation", :with => "newpass"
+  click_button "Change password"
+end
+
+Then /^I should see a password edited message$/ do
+  page.should have_content "You updated your password successfully."
+end
+
+When /^I edit my password with mismatched password and confirmation$/ do
+  visit "/profile"
+  click_link "Change password"
+  fill_in "Current password", :with => "please"
+  fill_in "Password", :with => "newpass"
+  fill_in "Password confirmation", :with => "notmatch"
+  click_button "Change password"
+end
+
+When /^I edit my password with invalid current password$/ do
+  visit "/profile"
+  click_link "Change password"
+  fill_in "Current password", :with => "invalidpass"
+  fill_in "Password", :with => "newpass"
+  fill_in "Password confirmation", :with => "newpass"
+  click_button "Change password"
+end
+
+Then /^I should see an invalid current password message$/ do
+  within "#user_current_password_input" do
+    page.should have_content "is invalid"
+  end
+end
