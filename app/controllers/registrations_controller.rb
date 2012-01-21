@@ -20,10 +20,14 @@ class RegistrationsController < Devise::RegistrationsController
       set_flash_message :notice, :updated if is_navigational_format?
       sign_in resource_name, resource, :bypass => true
       respond_with resource, :location => after_update_path_for(resource)
-      #redirect_to after_update_path_for(resource), :notice => "#{resource_name.to_s.humanize} has been updated successfully"
     else
       clean_up_passwords(resource)
       respond_with_navigational(resource){ render_with_scope :edit }
     end
+  end
+
+  protected
+  def after_update_path_for(resource)
+    dashboard_path
   end
 end

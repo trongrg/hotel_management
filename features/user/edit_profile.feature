@@ -7,3 +7,4 @@ Feature: edit profile
     Given I am signed in
     When I edit my account details
     Then I should see an account edited message
+    And I should be on the dashboard page
