@@ -4,7 +4,7 @@ Feature: anonymous user sign up
   I should be able to register
 
   Background:
-    Given I am not logged in
+    Given I am not signed in
 
   Scenario: User signs up with valid data
     When I sign up with valid user data

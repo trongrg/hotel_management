@@ -4,7 +4,7 @@ Feature: correct layout
   I should see correct application layout
 
   Scenario: correct 'Sign out' link
-    Given I am logged in
+    Given I am signed in
     When I go to the dashboard page
     Then I should see "Sign out" link
     When I follow "Sign out"

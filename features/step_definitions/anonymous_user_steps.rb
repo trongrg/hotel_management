@@ -34,11 +34,11 @@ def sign_in user
 end
 
 ### GIVEN ###
-Given /^I am not logged in$/ do
+Given /^I am not signed in$/ do
   visit '/sign_out'
 end
 
-Given /^I am logged in$/ do
+Given /^I am signed in$/ do
   sign_up valid_user
 end
 
@@ -49,12 +49,12 @@ end
 
 Given /^I do not exist as a user$/ do
   User.find(:first, :conditions => { :email => valid_user[:email] }).should be_nil
-  visit '/users/sign_out'
+  visit '/sign_out'
 end
 
 ### WHEN ###
 When /^I sign out$/ do
-  visit '/users/sign_out'
+  visit '/sign_out'
 end
 
 When /^I sign up with valid user data$/ do
@@ -160,7 +160,7 @@ Then /^I should see a signed out message$/ do
   page.should have_content "Signed out"
 end
 
-Then /^I see an invalid login message$/ do
+Then /^I see an invalid sign in message$/ do
   page.should have_content "Invalid email or password."
 end
 

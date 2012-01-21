@@ -41,4 +41,5 @@ Spork.each_run do
   Dir[Rails.root.join("app/models/**/*.rb")].each { |f| load f }
   Dir[Rails.root.join("spec/blueprints/**/*.rb")].each { |f| require f }
   I18n.backend.reload!
+  DatabaseCleaner.clean_with :truncation
 end
