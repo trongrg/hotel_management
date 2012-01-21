@@ -10,5 +10,5 @@ class User < ActiveRecord::Base
     :phone_number, :address1, :address2, :state, :country, :zip, :dob
 
   validates :username, :dob, :presence => true
-  validates :username, :format => { :with => /^\w+$/, :message => "is invalid. Only letters, digits and underscores are allowed." }
+  validates :username, :format => { :with => /^[\w\.]+$/, :message => "is invalid. Only letters, digits, periods and underscores are allowed." }
 end
