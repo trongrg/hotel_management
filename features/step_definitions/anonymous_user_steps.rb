@@ -134,7 +134,7 @@ end
 
 Then /^I should see an invalid username message$/ do
   within "#user_username_input" do
-    page.should have_content "is invalid. Only letters, digits and underscores are allowed"
+    page.should have_content "is invalid. Only letters, digits, periods and underscores are allowed"
   end
 end
 
