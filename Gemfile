@@ -9,6 +9,7 @@ gem "settingslogic"
 gem "coffee-filter"
 gem "formtastic"
 gem "carmen"
+gem "cancan"
 group :production do
   gem 'pg'
 end
