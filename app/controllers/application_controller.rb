@@ -9,4 +9,8 @@ class ApplicationController < ActionController::Base
   def after_sign_out_path(resource)
     stored_location_for(resource) || dashboard_path
   end
+
+  def require_signed_in
+    redirect_to sign_in_path unless user_signed_in?
+  end
 end
