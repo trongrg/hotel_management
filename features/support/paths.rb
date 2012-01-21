@@ -3,6 +3,10 @@ module NavigationHelpers
     case page_name
     when /^the home\s?page$/
       "/"
+    when /^the sign in page$/
+      "/sign_in"
+    when /^the profile page$/
+      "/profile"
     else
       begin
         page_name =~ /^the (.*) page$/

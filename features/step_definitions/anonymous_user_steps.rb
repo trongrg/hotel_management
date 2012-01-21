@@ -98,13 +98,6 @@ When /^I sign in with valid credentials$/ do
   sign_in valid_user
 end
 
-When /^I edit my account details$/ do
-  click_link "Edit account"
-  fill_in "Name", :with => "newname"
-  fill_in "Current password", :with => valid_user[:password]
-  click_button "Update"
-end
-
 When /^I look at the list of users$/ do
   visit '/'
 end

@@ -1,9 +1,13 @@
 HotelManagement::Application.routes.draw do
-  devise_for :users, :skip => :sessions, :controller => {:sessions => "sessions"} do
-    get '/sign_in' => "sessions#new"
+  devise_for :users, :skip => [:sessions, :registrations],
+    :controller => {:sessions => "sessions", :registrations => "registrations"} do
+    get '/sign_in' => "sessions#new", :as => :new_user_session
     post '/sign_in' => "sessions#create", :as => :user_session
-    get '/sign_out' => "sessions#destroy"
-    get '/sign_up' => "devise/registrations#new"
+    get '/sign_out' => "sessions#destroy", :as => :destroy_user_session
+    get '/sign_up' => "registrations#new", :as => :new_user_registration
+    post '/sign_up' => "registrations#create", :as => :user_registration
+    get '/profile' => "registrations#edit", :as => :edit_user_registration
+    put '/sign_up' => "registrations#update"
   end
 
   resource :dashboard, :only => :show, :controller => "dashboard"

@@ -25,7 +25,7 @@ describe DashboardController do
       it "redirects to sign in page" do
         get :show
         response.should be_redirect
-        response.should redirect_to sign_in_path
+        response.should redirect_to new_user_session_path
       end
     end
   end

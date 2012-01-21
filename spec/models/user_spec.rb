@@ -29,7 +29,7 @@ describe User do
             subject.username = username
             subject.save.should be_false
             subject.errors.should include :username
-            subject.errors[:username].should include "is invalid. Only letters, digits and underscores are allowed."
+            subject.errors[:username].should include "is invalid. Only letters, digits, periods and underscores are allowed."
           end
         end
     end

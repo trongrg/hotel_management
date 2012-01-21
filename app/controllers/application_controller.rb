@@ -10,7 +10,11 @@ class ApplicationController < ActionController::Base
     stored_location_for(resource) || dashboard_path
   end
 
+  def after_update_path_for(resource)
+    stored_location_for(resource) || dashboard_path
+  end
+
   def require_signed_in
-    redirect_to sign_in_path unless user_signed_in?
+    redirect_to new_user_session_path unless user_signed_in?
   end
 end
