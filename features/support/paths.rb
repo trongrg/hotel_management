@@ -7,6 +7,16 @@ module NavigationHelpers
       "/sign_in"
     when /^the profile page$/
       "/profile"
+    when /^the (.+) page of "([^"]+)"$/
+      path_components = $1.split(" ")
+      model = path_components.last.singularize
+      keyword = $2
+      find_method = case model
+                    when 'user'
+                      'find_by_username'
+                    end
+      object = model.humanize.constantize.send(find_method, keyword)
+      self.send(path_components.push('path').join('_').to_sym, object)
     else
       begin
         page_name =~ /^the (.*) page$/

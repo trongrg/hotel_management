@@ -17,3 +17,21 @@ end
 Then /^I should be on (.+)$/ do |page_name|
   current_path.should == path_to(page_name)
 end
+
+When /^I (accept|dismiss) the confirm box$/ do |action|
+  if Capybara.current_driver != :rack_test
+    page.driver.browser.switch_to.alert.send(:action)
+  end
+end
+
+Then /^I should (not |)see "([^"]+)"$/ do |neg, text|
+  if neg.present?
+    page.should have_no_content(text)
+  else
+    page.should have_content(text)
+  end
+end
+
+When /^I sign in as "([^"]*)\/([^"]*)"$/ do |username, password|
+  sign_in({:username => username, :password => password})
+end

@@ -39,12 +39,6 @@ When /^I edit my password with invalid current password$/ do
   click_button "Change password"
 end
 
-Then /^I should see an invalid current password message$/ do
-  within "#user_current_password_input" do
-    page.should have_content "is invalid"
-  end
-end
-
 When /^I edit my account details with invalid (.+)$/ do |field|
   click_link "Profile"
   fill_in field.humanize, :with => "#%"

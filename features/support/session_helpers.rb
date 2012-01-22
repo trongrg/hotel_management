@@ -10,6 +10,17 @@ module SessionHelpers
 
   def sign_up user
     visit '/sign_up'
+    fill_fields user
+    click_button "Sign up"
+  end
+
+  def create user
+    visit '/users/new'
+    fill_fields user
+    click_button "Create User"
+  end
+
+  def fill_fields user
     user.each do |field, value|
       field = field.to_s.humanize
       case field
@@ -23,7 +34,6 @@ module SessionHelpers
         fill_in field, :with => value
       end
     end
-    click_button "Sign up"
   end
 
   def sign_in user

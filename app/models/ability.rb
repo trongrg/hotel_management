@@ -29,6 +29,9 @@ class Ability
       can :manage, :all
     elsif user.role? :hotel_owner
     elsif user.role? :staff
+      can :show, User do |u|
+        u == user
+      end
     end
   end
 end

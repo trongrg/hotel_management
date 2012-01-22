@@ -1,0 +1,27 @@
+%h2= "User #{@user.username}"
+
+.field_row
+  %span.field Username
+  %span.value= @user.username
+.field_row
+  %span.field Email
+  %span.value= @user.email
+.field_row
+  %span.field First name
+  %span.value= @user.first_name
+.field_row
+  %span.field Last name
+  %span.value= @user.last_name
+.field_row
+  %span.field Phone number
+  %span.value= @user.phone_number
+.field_row
+  %span.field Dob
+  %span.value= @user.dob
+.field_row
+  %span.field Address
+  %span.value= @user.address
+
+= link_to_if(can?(:index, User), "User list", users_path)
+= link_to_if(can?(:update, @user), "Edit", edit_user_path(@user))
+= link_to_if(can?(:destroy, @user), "Delete", user_path(@user), :confirm => "Are you sure?", :method => :delete)

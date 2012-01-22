@@ -1,0 +1,30 @@
+%h2 Users
+
+%table#users
+  %thead
+    %tr
+      %th Username
+      %th Email
+      %th First name
+      %th Last name
+      %th Phone number
+      %th Dob
+      %th Address
+      %th{ :colspan => 3 } Action
+  %tbody
+    - @users.each do |user|
+      %tr{ :id => "user_#{user.id}" }
+        %td= user.username
+        %td= user.email
+        %td= user.first_name
+        %td= user.last_name
+        %td= user.phone_number
+        %td= user.dob
+        %td= user.address
+        %td= link_to_if(can?(:show, user), "Show", user_path(user))
+        %td= link_to_if(can?(:update, user), "Edit", edit_user_path(user))
+        %td= link_to_if(can?(:destroy, user), "Delete", user_path(user), :confirm => "Are you sure?", :method => :delete)
+
+= paginate @users
+
+= link_to_if(can?(:create, User), "Create user", new_user_path)

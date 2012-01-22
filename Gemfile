@@ -10,6 +10,7 @@ gem "coffee-filter"
 gem "formtastic"
 gem "carmen"
 gem "cancan"
+gem "kaminari"
 group :production do
   gem 'pg'
 end

@@ -35,4 +35,10 @@ describe User do
         end
     end
   end
+
+  describe "#address" do
+    it "returns the address of user" do
+      subject.address.should == [subject.address1, subject.address2, subject.city, subject.state, subject.country, subject.zip_code].join(" ")
+    end
+  end
 end

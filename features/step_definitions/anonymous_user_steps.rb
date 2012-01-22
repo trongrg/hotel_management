@@ -80,18 +80,6 @@ Then /^I should see a successful sign up message$/ do
   page.should have_content "Welcome! You have signed up successfully."
 end
 
-Then /^I should see an invalid email message$/ do
-  within "#user_email_input" do
-    page.should have_content "is invalid"
-  end
-end
-
-Then /^I should see an invalid username message$/ do
-  within "#user_username_input" do
-    page.should have_content "is invalid. Only letters, digits, periods and underscores are allowed"
-  end
-end
-
 Then /^I should see a missing ([^\s]+) message$/ do |field|
   within "#user_#{field}_input" do
     page.should have_content"can't be blank"

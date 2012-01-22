@@ -1,0 +1,27 @@
+%h2 Create user
+
+= semantic_form_for @user do |f|
+  = f.inputs :name => "Credentials" do
+    = f.input :username
+    = f.input :password
+    = f.input :password_confirmation
+
+  = f.inputs :name => "Personal Info" do
+    = f.input :email, :as => :email
+    = f.input :first_name
+    = f.input :last_name
+    = f.input :phone_number
+    = f.input :dob, :as => :date, :start_year => 100.year.ago.year, :end_year => Time.now.year, :include_blank => false
+
+  = f.inputs :name => "Contact" do
+    = f.input :address1
+    = f.input :address2
+    = f.input :city
+    = f.input :state
+    = f.input :country
+    = f.input :zip_code
+
+  = f.buttons do
+    = f.commit_button
+
+= link_to_if(can?(:index, User), "User list", users_path)

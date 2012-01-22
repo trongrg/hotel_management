@@ -10,6 +10,8 @@ HotelManagement::Application.routes.draw do
     put '/sign_up' => "registrations#update"
   end
 
+  resources :users
+
   resource :dashboard, :only => :show, :controller => "dashboard"
 
   namespace :profile do

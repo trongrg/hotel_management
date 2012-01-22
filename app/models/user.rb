@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation,
     :remember_me, :username, :first_name, :last_name,
-    :phone_number, :address1, :address2, :state, :country, :zip_code, :dob, :city
+    :phone_number, :address1, :address2, :state, :country, :zip_code, :dob, :city,
+    :roles
 
   validates :username, :dob, :presence => true
   validates :username, :format => { :with => /^[\w\.]+$/, :message => "is invalid. Only letters, digits, periods and underscores are allowed." }
@@ -16,5 +17,9 @@ class User < ActiveRecord::Base
 
   def role?(role)
     !!self.roles.find_by_name(role.to_s.camelize)
+  end
+
+  def address
+    [address1, address2, city, state, country, zip_code].join(" ")
   end
 end
