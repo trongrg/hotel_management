@@ -1,50 +1,15 @@
-### UTILITY METHODS ###
-def valid_user
-  @user ||= { :first_name => "Trong", :last_name => "Tran", :username => "trongtran",
-    :email => "trongrg@gmail.com", :password => "please", :password_confirmation => "please",
-    :dob => {:"1i" => "1988", :"2i" => "December", :"3i" => "15"},
-    :phone_number => "01694622095", :address1 => "702 Nguyen Van Linh", :address2 => "District 7",
-    :state => "Ho Chi Minh City", :country => "Viet Nam", :zip_code => "12345"
-  }
-end
-
-def sign_up user
-  visit '/sign_up'
-  user.each do |field, value|
-    field = field.to_s.humanize
-    case field
-    when "Country"
-      select value, :from => field
-    when "Dob"
-      value.each do |k, v|
-        select v, :from => "user_dob_#{k}"
-      end
-    else
-      fill_in field, :with => value
-    end
-  end
-  click_button "Sign up"
-end
-
-def sign_in user
-  visit '/sign_in'
-  fill_in "Username", :with => user[:username]
-  fill_in "Password", :with => user[:password]
-  click_button "Sign in"
-end
-
 ### GIVEN ###
 Given /^I am not signed in$/ do
   visit '/sign_out'
 end
 
 Given /^I am signed in$/ do
-  sign_up valid_user
+  User.make!(valid_user.merge(:dob => "1988/10/15"))
+  sign_in valid_user
 end
 
 Given /^I exist as a user$/ do
-  sign_up valid_user
-  visit '/sign_out'
+  User.make!(valid_user)
 end
 
 Given /^I do not exist as a user$/ do
@@ -75,7 +40,7 @@ When /^I sign up with a short password$/ do
   sign_up user
 end
 
-When /^I sign up without a (.+)$/ do |field|
+When /^I sign up without an? (.+)$/ do |field|
   user = valid_user.merge(field.to_sym => "")
   sign_up user
 end
@@ -98,10 +63,6 @@ When /^I sign in with valid credentials$/ do
   sign_in valid_user
 end
 
-When /^I look at the list of users$/ do
-  visit '/'
-end
-
 ### THEN ###
 Then /^I should be signed in$/ do
   page.should have_content "Sign out"
@@ -115,7 +76,7 @@ Then /^I should be signed out$/ do
   page.should_not have_content "Sign out"
 end
 
-Then /^I should see a succesfull sign up message$/ do
+Then /^I should see a successful sign up message$/ do
   page.should have_content "Welcome! You have signed up successfully."
 end
 
@@ -159,8 +120,4 @@ end
 
 Then /^I see a successful sign in message$/ do
   page.should have_content "Signed in successfully."
-end
-
-Then /^I should see my name$/ do
-  page.should have_content valid_user[:name]
 end

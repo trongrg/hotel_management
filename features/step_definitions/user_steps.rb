@@ -44,3 +44,15 @@ Then /^I should see an invalid current password message$/ do
     page.should have_content "is invalid"
   end
 end
+
+When /^I edit my account details with invalid (.+)$/ do |field|
+  click_link "Profile"
+  fill_in field.humanize, :with => "#%"
+  click_button "Update profile"
+end
+
+When /^I edit my account details without an? (.+)/ do |field|
+  click_link "Profile"
+  fill_in field.humanize, :with => ""
+  click_button "Update profile"
+end

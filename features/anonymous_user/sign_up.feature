@@ -8,7 +8,7 @@ Feature: anonymous user sign up
 
   Scenario: User signs up with valid data
     When I sign up with valid user data
-    Then I should see a succesfull sign up message
+    Then I should see a successful sign up message
 
   Scenario: User signs up with invalid email
     When I sign up with an invalid email
@@ -33,3 +33,7 @@ Feature: anonymous user sign up
   Scenario: User signs up with invalid username
     When I sign up with an invalid username
     Then I should see an invalid username message
+
+  Scenario: User signs up without an email
+    When I sign up without an email
+    Then I should see a missing email message
