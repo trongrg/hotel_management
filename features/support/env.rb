@@ -17,10 +17,11 @@ Spork.prefork do
   require 'cucumber/rails'
   require 'cucumber/rails/world'
 
-  DatabaseCleaner.strategy = :transaction
-
   Before '@javascript, @selenium, @no-txn' do
     DatabaseCleaner.strategy = :truncation
+  end
+
+  After '@javascript, @selenium, @no-txn' do
     DatabaseCleaner.clean_with :truncation
   end
 
@@ -39,7 +40,7 @@ end
 Spork.each_run do
   ActiveRecord::Base.establish_connection
   Dir[Rails.root.join("app/models/**/*.rb")].each { |f| load f }
-  Dir[Rails.root.join("spec/blueprints/**/*.rb")].each { |f| require f }
+  Dir[Rails.root.join("spec/support/blueprints/**/*.rb")].each { |f| require f }
   I18n.backend.reload!
   DatabaseCleaner.clean_with :truncation
 end
