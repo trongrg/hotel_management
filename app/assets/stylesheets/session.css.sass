@@ -1,0 +1,45 @@
+@import sassy-buttons
+#sign_in_box
+  font: 15px Arial,Helvetica, sans-serif
+  background: #313131
+  width: 333px
+  padding: 30px 50px
+  border-radius: 15px
+  box-shadow: 0 0 25px 5px #313131
+  margin: auto
+  color: #9a9a9a
+  li
+    position: relative
+    input[type="text"], input[type="password"]
+      background: #2b2b2b
+      border: solid 1px #474747
+      box-shadow: inset 0 0 2px 2px #222
+      padding: 8px 0 9px 11px
+      border-radius: 5px
+      color: white
+      position: static
+      width: 100%
+    input[type="text"]
+      margin-top: 2px
+    label[for="user_username"], label[for="user_password"]
+      position: absolute
+      right: 15px
+      top: 14px
+      opacity: 1
+      text-transform: uppercase
+      abbr
+        display: none
+    label[for="user_remember_me"]
+      padding-left: 5%
+  li.commit.button
+    float: right
+    margin-top: -40px
+    input[type="submit"]
+      +sassy-button('shiny', 5px, 100%, #009bc8, #009bc8, #fff)
+  a
+    color: #487d92
+    text-decoration: none
+  h2
+    color: white
+    text-shadow: 0 -1px #bbb, -1px 0 #bbb, 1px 0 #bbb, 0 1px #bbb, 4px 4px black
+    font-size: 30px

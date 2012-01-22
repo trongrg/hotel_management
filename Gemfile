@@ -11,6 +11,8 @@ gem "formtastic"
 gem "carmen"
 gem "cancan"
 gem "kaminari"
+gem "compass"
+gem "sassy-buttons"
 group :production do
   gem 'pg'
 end
