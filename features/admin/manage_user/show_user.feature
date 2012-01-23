@@ -15,19 +15,19 @@ Feature: admin show user
     Then I should see the info of user "user1"
 
   Scenario: see 'User list' link
-    When I go to the user page of "user1"
+    When I go to the user page of user "user1"
     Then I should see "User list" link
     When I follow "User list"
     Then I should be on the users page
 
   Scenario: see 'Edit user' link
-    When I go to the user page of "user1"
+    When I go to the user page of user "user1"
     Then I should see "Edit" link
     When I follow "Edit"
-    Then I should be on the edit user page of "user1"
+    Then I should be on the edit user page of user "user1"
 
   Scenario: see 'Delete user' link
-    When I go to the user page of "user1"
+    When I go to the user page of user "user1"
     Then I should see "Delete" link
     When I follow "Delete"
     And I accept the confirm box

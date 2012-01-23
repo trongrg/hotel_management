@@ -41,17 +41,17 @@ When /^I edit the user with valid info$/ do
   click_button "Update User"
 end
 
-Then /^I should see a successful edit user message$/ do
-  page.should have_content "User has been updated successfully."
+Then /^I should see a successful edit (.+) message$/ do |model|
+  page.should have_content "#{model.titleize} has been updated successfully."
 end
 
 Then /^I should see a successful delete user message$/ do
   page.should have_content "User has been deleted successfully."
 end
 
-When /^I edit the user with invalid (.+)$/ do |field|
+When /^I edit the (.+) with invalid (.+)$/ do |model, field|
   fill_in field.humanize, :with => "*&#"
-  click_button "Update User"
+  click_button "Update #{model.titleize}"
 end
 
 Then /^I should see an invalid (.+) message$/ do |field|
@@ -66,18 +66,18 @@ When /^I edit the user with new password$/ do
   click_button "Update User"
 end
 
-When /^I create a new user$/ do
-  create valid_user
+When /^I create a new ([^\s]+)$/ do |model|
+  send("create_#{model}", send("valid_#{model}".to_sym))
 end
 
-When /^I create a new user without (.+)$/ do |field|
-  create valid_user.merge(field.to_sym => "")
+When /^I create a new (.+) without (.+)$/ do |model, field|
+  send("create_#{model}", send("valid_#{model}".to_sym).merge(field.to_sym => ""))
 end
 
-When /^I create a new user with invalid (.+)$/ do |field|
-  create valid_user.merge(field.to_sym => "&^#")
+When /^I create a new (.+) with invalid (.+)$/ do |model, field|
+  send("create_#{model}", send("valid_#{model}".to_sym).merge(field.to_sym => "*#&"))
 end
 
-Then /^I should see a successful create user message$/ do
-  page.should have_content "User has been created successfully."
+Then /^I should see a successful create (.+) message$/ do |model|
+  page.should have_content "#{model.humanize} has been created successfully."
 end

@@ -80,8 +80,8 @@ Then /^I should see a successful sign up message$/ do
   page.should have_content "Welcome! You have signed up successfully."
 end
 
-Then /^I should see a missing ([^\s]+) message$/ do |field|
-  within "#user_#{field}_input" do
+Then /^I should see a missing ([^']+)'s (.+) message$/ do |model, field|
+  within "##{model}_#{field.gsub(" ", "_")}_input" do
     page.should have_content"can't be blank"
   end
 end

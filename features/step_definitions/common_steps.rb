@@ -20,7 +20,7 @@ end
 
 When /^I (accept|dismiss) the confirm box$/ do |action|
   if Capybara.current_driver != :rack_test
-    page.driver.browser.switch_to.alert.send(:action)
+    page.driver.browser.switch_to.alert.send(action)
   end
 end
 

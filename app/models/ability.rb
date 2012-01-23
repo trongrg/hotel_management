@@ -28,6 +28,7 @@ class Ability
     if user.role? :admin
       can :manage, :all
     elsif user.role? :hotel_owner
+      can :manage, Hotel, :owner_id => user.id
     elsif user.role? :staff
       can :show, User do |u|
         u == user

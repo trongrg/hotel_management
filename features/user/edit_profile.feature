@@ -17,4 +17,4 @@ Feature: edit profile
 
   Scenario: I sign in and edit my account without an email
     When I edit my account details without an email
-    Then I should see a missing email message
+    Then I should see a missing user's email message

@@ -14,7 +14,7 @@ module SessionHelpers
     click_button "Sign up"
   end
 
-  def create user
+  def create_user user
     visit '/users/new'
     fill_fields user
     click_button "Create User"

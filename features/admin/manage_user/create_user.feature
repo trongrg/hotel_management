@@ -24,11 +24,11 @@ Feature: admin edit user
 
   Scenario: create a user without password
     When I create a new user without password
-    Then I should see a missing password message
+    Then I should see a missing user's password message
 
   Scenario: create a user without username
     When I create a new user without username
-    Then I should see a missing username message
+    Then I should see a missing user's username message
 
   Scenario: create a user with invalid username
     When I create a new user with invalid username

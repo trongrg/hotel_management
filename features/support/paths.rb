@@ -7,16 +7,20 @@ module NavigationHelpers
       "/sign_in"
     when /^the profile page$/
       "/profile"
-    when /^the (.+) page of "([^"]+)"$/
-      path_components = $1.split(" ")
-      model = path_components.last.singularize
-      keyword = $2
-      find_method = case model
-                    when 'user'
-                      'find_by_username'
-                    end
-      object = model.humanize.constantize.send(find_method, keyword)
-      self.send(path_components.push('path').join('_').to_sym, object)
+    when /^the (.+) page of (.+)$/
+      path_components = $1.split(" ").push("path")
+      model_objects = $2.split(", ")
+      objects = model_objects.map do |model_object|
+        model, object_name = model_object.split("\"").map { |e| e.gsub("\"", "").strip }
+        find_method = case model
+                      when 'user'
+                        'find_by_username'
+                      when 'hotel'
+                        'find_by_name'
+                      end
+        model.titleize.constantize.send(find_method, object_name)
+      end
+      self.send(path_components.join("_").to_sym, *objects)
     else
       begin
         page_name =~ /^the (.*) page$/

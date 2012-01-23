@@ -1,0 +1,41 @@
+%h1 Listing hotels
+
+%table#hotels
+  %thead
+    %tr
+      %th Name
+      %th Address1
+      %th Address2
+      %th City
+      %th State
+      %th Country
+      %th Zip code
+      %th Phone number
+      %th Lat
+      %th Lng
+      %th
+      %th
+      %th
+
+  %tbody
+    - @hotels.each do |hotel|
+      %tr{ :id => "hotel_#{hotel.id}" }
+        %td= hotel.name
+        %td= hotel.address1
+        %td= hotel.address2
+        %td= hotel.city
+        %td= hotel.state
+        %td= hotel.country
+        %td= hotel.zip_code
+        %td= hotel.phone_number
+        %td= hotel.lat
+        %td= hotel.lng
+        %td= link_to 'Show', user_hotel_path(@owner, hotel)
+        %td= link_to 'Edit', edit_user_hotel_path(@owner, hotel)
+        %td= link_to 'Delete', user_hotel_path(@owner, hotel), :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= paginate @hotels
+
+= link_to_if can?(:create, Hotel), 'New Hotel', new_user_hotel_path

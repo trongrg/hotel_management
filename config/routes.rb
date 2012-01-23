@@ -1,4 +1,5 @@
 HotelManagement::Application.routes.draw do
+
   devise_for :users, :skip => [:sessions, :registrations],
     :controller => {:sessions => "sessions", :registrations => "registrations"} do
     get '/sign_in' => "sessions#new", :as => :new_user_session
@@ -10,7 +11,9 @@ HotelManagement::Application.routes.draw do
     put '/sign_up' => "registrations#update"
   end
 
-  resources :users
+  resources :users do
+    resources :hotels
+  end
 
   resource :dashboard, :only => :show, :controller => "dashboard"
 

@@ -1,0 +1,37 @@
+%h2= "Hotel #{@hotel.name}"
+%p
+  %b Name:
+  = @hotel.name
+%p
+  %b Address1:
+  = @hotel.address1
+%p
+  %b Address2:
+  = @hotel.address2
+%p
+  %b City:
+  = @hotel.city
+%p
+  %b State:
+  = @hotel.state
+%p
+  %b Country:
+  = @hotel.country
+%p
+  %b Zip code:
+  = @hotel.zip_code
+%p
+  %b Phone number:
+  = @hotel.phone_number
+%p
+  %b Lat:
+  = @hotel.lat
+%p
+  %b Lng:
+  = @hotel.lng
+
+= link_to 'Edit', edit_user_hotel_path(@owner, @hotel)
+\|
+= link_to 'Delete', user_hotel_path(@owner, @hotel), :confirm => "Are you sure?", :method => :delete
+\|
+= link_to 'Back', user_hotels_path

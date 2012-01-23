@@ -16,7 +16,7 @@ Feature: anonymous user sign up
 
   Scenario: User signs up without password
     When I sign up without a password
-    Then I should see a missing password message
+    Then I should see a missing user's password message
 
   Scenario: User signs up with short password
     When I sign up with a short password
@@ -28,7 +28,7 @@ Feature: anonymous user sign up
 
   Scenario: User signs up without a username
     When I sign up without a username
-    Then I should see a missing username message
+    Then I should see a missing user's username message
 
   Scenario: User signs up with invalid username
     When I sign up with an invalid username
@@ -36,4 +36,4 @@ Feature: anonymous user sign up
 
   Scenario: User signs up without an email
     When I sign up without an email
-    Then I should see a missing email message
+    Then I should see a missing user's email message

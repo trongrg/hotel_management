@@ -14,9 +14,10 @@ class User < ActiveRecord::Base
   validates :username, :format => { :with => /^[\w\.]+$/, :message => "is invalid. Only letters, digits, periods and underscores are allowed." }
 
   has_and_belongs_to_many :roles
+  has_many :hotels, :foreign_key => :owner_id
 
   def role?(role)
-    !!self.roles.find_by_name(role.to_s.camelize)
+    !!self.roles.find_by_name(role.to_s.titleize)
   end
 
   def address
