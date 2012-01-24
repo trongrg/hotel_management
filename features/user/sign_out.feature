@@ -7,5 +7,5 @@ Feature: user sign out
     Given I am signed in
     When I sign out
     Then I should see a signed out message
-    When I return to the site
+    When I go to the homepage
     Then I should be signed out

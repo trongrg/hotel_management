@@ -9,7 +9,7 @@ class Profile::PasswordController < ApplicationController
 
     if @user.update_with_password(params[:user])
       sign_in(@user, :bypass => true)
-      redirect_to dashboard_path, :notice => "You updated your password successfully."
+      redirect_to dashboard_path, :notice => "Password has been updated successfully."
     else
       render :edit
     end

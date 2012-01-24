@@ -13,5 +13,5 @@ Feature: user creates hotel
 
   Scenario: create hotel without name
     When I go to the new user hotel page of user "trongrg"
-    And I create a new hotel without name
+    And I create a new hotel without a name
     Then I should see a missing hotel's name message

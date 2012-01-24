@@ -8,7 +8,7 @@ Feature: edit profile
 
   Scenario: I sign in and edit my account
     When I edit my account details
-    Then I should see an account edited message
+    Then I should see a successful update account message
     And I should be on the dashboard page
 
   Scenario: I sign in and edit my account with invalid email

@@ -8,7 +8,7 @@ Feature: User edits password
 
   Scenario: update password with valid credentials
     When I edit my password
-    Then I should see a password edited message
+    Then I should see a successful update password message
     And I should be on the dashboard page
 
   Scenario: update password with invalid current password

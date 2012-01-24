@@ -14,7 +14,7 @@ Feature: admin edit user
     And I follow "Edit" link of user "user1"
     Then I should be on the edit user page of user "user1"
     When I edit the user with valid info
-    Then I should see a successful edit user message
+    Then I should see a successful update user message
 
   Scenario: edit a user with invalid email
     When I go to the edit user page of user "user1"
@@ -24,7 +24,7 @@ Feature: admin edit user
   Scenario: edit user with new password
     When I go to the edit user page of user "user1"
     And I edit the user with new password
-    Then I should see a successful edit user message
+    Then I should see a successful update user message
     When I sign out
     And I sign in as "user1/newpass"
     Then I should be signed in

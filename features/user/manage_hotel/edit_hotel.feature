@@ -15,7 +15,7 @@ Feature: user edits hotel
 	Scenario: Edit hotel with valid info
 		When I go to the edit user hotel page of user "trongrg", hotel "Thien An"
 		And I edit the hotel with valid info
-		Then I should see a successful edit hotel message
+		Then I should see a successful update hotel message
 
 	Scenario: Edit hotel without name
 		When I go to the edit user hotel page of user "trongrg", hotel "Thien An"

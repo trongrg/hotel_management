@@ -7,12 +7,12 @@ Feature: user view hotel list
     Given I am signed in as a hotel owner with username: "trongrg"
 
   Scenario: list hotel without pagination
-    And there are 3 hotels which belong to user "trongrg"
+    And user "trongrg" owns 3 hotels
     When I go to the user hotels page of user "trongrg"
     Then I should see 3 hotels
 
   Scenario: list hotel with pagination
-    And there are 30 hotels which belong to user "trongrg"
+    And user "trongrg" owns 30 hotels
     When I go to the user hotels page of user "trongrg"
     Then I should see 25 hotels
     And I should see "Next" link
