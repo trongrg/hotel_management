@@ -40,7 +40,7 @@ describe Profile::PasswordController do
         end
 
         it "shows successful message" do
-          flash[:notice].should == "You updated your password successfully."
+          flash[:notice].should == "Password has been updated successfully."
         end
       end
 
