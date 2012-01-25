@@ -4,13 +4,14 @@ Feature: user view hotel list
   I should be able to view the hotel list
 
   Background:
-    Given I am signed in as a hotel owner with username: "trongrg"
+    Given I am signed in as a admin with username: "trongrg"
 
   Scenario: list hotel without pagination
     And user "trongrg" owns 3 hotels
     When I go to the user hotels page of user "trongrg"
     Then I should see 3 hotels
 
+    @javascript
   Scenario: list hotel with pagination
     And user "trongrg" owns 30 hotels
     When I go to the user hotels page of user "trongrg"

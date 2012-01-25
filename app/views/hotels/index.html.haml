@@ -38,4 +38,4 @@
 
 = paginate @hotels
 
-= link_to_if can?(:create, Hotel), 'New Hotel', new_user_hotel_path
+= link_to_if can?(:create, Hotel), 'New Hotel', new_user_hotel_path(@owner)
