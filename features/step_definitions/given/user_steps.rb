@@ -33,6 +33,17 @@ Given /^user "([^"]+)" owns (\d+) hotels?$/ do |username, number|
   end
 end
 
-Given /^user "([^"]+)" has a hotel with name: "([^"]+)"$/ do |username, hotel_name|
-  Hotel.make!(:name => hotel_name, :owner => User.find_by_username(username))
+Given /^(#{model_names.join('|')}) "([^"]+)" has a (#{model_names.join('|')}) with (.+): "([^"]+)"$/ do |parent, parent_name, child, attr, value|
+  parent.gsub!(' ', '_')
+  child.gsub!(' ', '_')
+  parent_object = parent.titleize.constantize.send(find_method_for(parent), parent_name)
+  child_attrs = {:"#{attr}" => value}
+  parent_object.send("#{child.pluralize}=", [child.titleize.gsub(' ', '').constantize.make(child_attrs)])
+  parent_object.save
+end
+
+Given /^hotel "([^"]*)" has (\d+) room types$/ do |hotel_name, number|
+  number.to_i.times do
+    RoomType.make!(:hotel => Hotel.find_by_name(hotel_name))
+  end
 end

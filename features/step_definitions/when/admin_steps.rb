@@ -1,18 +1,18 @@
 When /^I follow "([^"]*)" link of (.+) "([^"]*)"$/ do |link, model, name|
-  object = model.titleize.constantize.send(find_method_for(model), name)
-  within "tr##{model}_#{object.id}" do
+  object = model.titleize.gsub(' ', '').constantize.send(find_method_for(model), name)
+  within "tr##{model.gsub(' ', '_')}_#{object.id}" do
     click_link link
   end
 end
 
-When /^I edit the user with valid info$/ do
-  fill_in "First name", :with => "New First name"
-  click_button "Update User"
+When /^I edit the (#{model_names.join('|')}) with valid info$/ do |model|
+  fill_fields send("valid_#{model.gsub(' ', '_')}")
+  click_button "Update #{model.humanize}"
 end
 
-When /^I edit the (.+) with invalid (.+)$/ do |model, field|
+When /^I edit the (#{model_names.join('|')}) with invalid (.+)$/ do |model, field|
   fill_in field.humanize, :with => "*&#"
-  click_button "Update #{model.titleize}"
+  click_button "Update #{model.humanize}"
 end
 
 When /^I edit the user with new password$/ do
@@ -21,11 +21,13 @@ When /^I edit the user with new password$/ do
   click_button "Update User"
 end
 
-When /^I create a new ([^\s]+)$/ do |model|
+When /^I create a new (#{model_names.join("|")})$/ do |model|
+  model.gsub!(" ", "_")
   send("create_#{model}", send("valid_#{model}".to_sym))
 end
 
-When /^I create a new (.+) without an? (.+)$/ do |model, field|
+When /^I create a new (#{model_names.join("|")}) without an? (.+)$/ do |model, field|
+  model.gsub!(" ", "_")
   send("create_#{model}", send("valid_#{model}".to_sym).merge(field.to_sym => ""))
 end
 

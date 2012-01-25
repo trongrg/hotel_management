@@ -29,10 +29,11 @@ class Ability
       can :manage, :all
     elsif user.role? :hotel_owner
       can :manage, Hotel, :owner_id => user.id
-    elsif user.role? :staff
-      can :show, User do |u|
-        u == user
+      can :manage, RoomType do |room_type|
+        user.hotels.include?(room_type.hotel) || room_type.hotel.nil?
       end
+    elsif user.role? :staff
+      can :show, User, :id => user.id
     end
   end
 end

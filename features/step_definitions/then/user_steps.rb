@@ -44,12 +44,12 @@ Then /^I see an invalid sign in message$/ do
   page.should have_content "Invalid email or password."
 end
 
-Then /^I should see a successful ([^\s]+) (user|hotel|password|account) message$/ do |action, object|
-  page.should have_content "#{object.titleize} has been #{action}d successfully."
+Then /^I should see a successful ([^\s]+) (#{model_names.join("|")}|password|account) message$/ do |action, object|
+  page.should have_content "#{object.humanize} has been #{action}d successfully."
 end
 
 Then /^I should see (\d+) (.+)$/ do |number, model|
-  within "table##{model.pluralize} tbody" do
+  within "table##{model.pluralize.gsub(' ', '_')} tbody" do
     page.all("tr").count.should == number.to_i
   end
 end

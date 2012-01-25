@@ -2,4 +2,14 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  record:
+    updated: "%{record} has been updated successfully."
+    created: "%{record} has been created successfully."
+    deleted: "%{record} has been deleted successfully."
+  model:
+    hotel: "Hotel"
+    user: "User"
+    room_type: "Room type"
+    password: "Password"
+    account: "Account"
+

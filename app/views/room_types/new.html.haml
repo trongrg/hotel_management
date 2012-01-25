@@ -1,0 +1,6 @@
+%h1 New room_type
+
+= semantic_form_for @room_type, :url => hotel_room_types_path(@hotel) do |f|
+  = render :partial => 'form', :locals => {:f => f}
+
+= link_to 'Back', hotel_room_types_path

@@ -12,13 +12,7 @@ module NavigationHelpers
       model_objects = $2.split(", ")
       objects = model_objects.map do |model_object|
         model, object_name = model_object.split("\"").map { |e| e.gsub("\"", "").strip }
-        find_method = case model
-                      when 'user'
-                        'find_by_username'
-                      when 'hotel'
-                        'find_by_name'
-                      end
-        model.titleize.constantize.send(find_method, object_name)
+        model.titleize.gsub(' ', '').constantize.send(find_method_for(model), object_name)
       end
       self.send(path_components.join("_").to_sym, *objects)
     else

@@ -20,11 +20,11 @@ module CapybaraStepHelper
     click_button "Create User"
   end
 
-  def fill_fields user
-    user.each do |field, value|
+  def fill_fields attrs
+    attrs.each do |field, value|
       field = field.to_s.humanize
       case field
-      when "Country"
+      when "Country", "Currency"
         select value, :from => field
       when "Dob"
         year, month, day= DateTime.parse(value).strftime("%Y %B %d").split(" ")
@@ -66,9 +66,27 @@ module CapybaraStepHelper
       'find_by_username'
     when 'hotel'
       'find_by_name'
+    when 'room type'
+      'find_by_name'
     else
       'find'
     end
+  end
+
+  def valid_room_type
+    { :name => "Deluxe", :price => 199, :currency => "USD" }
+  end
+
+  def create_room_type room_type
+    room_type.each do |field, value|
+      field = field.to_s.humanize
+      if field == "Currency"
+        select value, :from => field
+      else
+        fill_in field, :with => value
+      end
+    end
+    click_button "Create Room type"
   end
 end
 

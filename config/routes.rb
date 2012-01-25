@@ -1,5 +1,9 @@
 HotelManagement::Application.routes.draw do
 
+  resources :hotels do
+    resources :room_types
+  end
+
   devise_for :users, :skip => [:sessions, :registrations],
     :controller => {:sessions => "sessions", :registrations => "registrations"} do
     get '/sign_in' => "sessions#new", :as => :new_user_session

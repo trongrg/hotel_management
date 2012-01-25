@@ -11,7 +11,6 @@ Feature: user view hotel list
     When I go to the user hotels page of user "trongrg"
     Then I should see 3 hotels
 
-    @javascript
   Scenario: list hotel with pagination
     And user "trongrg" owns 30 hotels
     When I go to the user hotels page of user "trongrg"

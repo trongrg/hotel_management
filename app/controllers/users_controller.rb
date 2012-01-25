@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
 
     if @user.save
-      redirect_to users_path, :notice => "User has been created successfully."
+      redirect_to users_path, :notice => t('record.created', :record => t('model.user'))
     else
       render :new, :status => :unprocessable_entity
     end
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     update_method = any_passwords ? :update_attributes : :update_without_password
 
     if @user.send(update_method, params[:user])
-      redirect_to users_path, :notice => "User has been updated successfully."
+      redirect_to users_path, :notice => t('record.updated', :record => t('model.user'))
     else
       render :edit
     end
@@ -49,6 +49,6 @@ class UsersController < ApplicationController
 
     @user.destroy
 
-    redirect_to users_path, :notice => "User has been deleted successfully."
+    redirect_to users_path, :notice => t('record.deleted', :record => t('model.user'))
   end
 end

@@ -80,15 +80,15 @@ When /^I edit my account details without an? (.+)/ do |field|
   click_button "Update profile"
 end
 
-When /^I edit the (.+) without a (.+)$/ do |model, field|
+When /^I edit the (.+) without an? (.+)$/ do |model, field|
   fill_in field.humanize, :with => ""
-  click_button "Update #{model.titleize}"
+  click_button "Update #{model.humanize}"
 end
 
-When /^I edit the hotel with valid info$/ do
-  fill_in "Name", :with => "New Name"
-  click_button "Update Hotel"
-end
+#When /^I edit the hotel with valid info$/ do
+  #fill_in "Name", :with => "New Name"
+  #click_button "Update Hotel"
+#end
 
 When /^I click and drag the google map marker to the right$/ do
   lat = page.evaluate_script("GoogleMap.marker.getPosition().lat()")

@@ -1,0 +1,23 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @room_type.name
+%p
+  %b Price:
+  = @room_type.price
+%p
+  %b Currency:
+  = @room_type.currency
+%p
+  %b Description:
+  = @room_type.description
+%p
+  %b Image:
+  = @room_type.image
+
+= link_to 'Edit', edit_hotel_room_type_path(@hotel, @room_type)
+\|
+= link_to 'Delete', hotel_room_type_path(@hotel, @room_type), :confirm => 'Are you sure?', :method => :delete
+\|
+= link_to 'Back', hotel_room_types_path(@hotel)

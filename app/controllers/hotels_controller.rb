@@ -47,7 +47,7 @@ class HotelsController < ApplicationController
 
     respond_to do |format|
       if @hotel.save
-        format.html { redirect_to user_hotel_path(@owner, @hotel), notice: 'Hotel has been created successfully.' }
+        format.html { redirect_to user_hotel_path(@owner, @hotel), notice: t('record.created', :record => t('model.hotel')) }
         format.json { render json: @hotel, status: :created, location: @hotel }
       else
         format.html { render action: "new" }
@@ -63,7 +63,7 @@ class HotelsController < ApplicationController
 
     respond_to do |format|
       if @hotel.update_attributes(params[:hotel])
-        format.html { redirect_to user_hotel_path(@owner, @hotel), notice: 'Hotel has been updated successfully.' }
+        format.html { redirect_to user_hotel_path(@owner, @hotel), notice: t('record.updated', :record => t('model.hotel')) }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -79,7 +79,7 @@ class HotelsController < ApplicationController
     @hotel.destroy
 
     respond_to do |format|
-      format.html { redirect_to user_hotels_url(@owner), notice: "Hotel has been deleted successfully." }
+      format.html { redirect_to user_hotels_url(@owner), notice: t('record.deleted', :record => t('model.hotel')) }
       format.json { head :ok }
     end
   end
