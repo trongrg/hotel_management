@@ -1,7 +1,7 @@
 @GoogleMap = ()->
-GoogleMap.init_google_map = () ->
+GoogleMap.init_google_map = (lat = 10.781135, lng = 106.698457) ->
   myOptions =
-    center: new google.maps.LatLng(10.781135,106.698457)
+    center: new google.maps.LatLng(lat, lng)
     zoom: 15
     mapTypeId: google.maps.MapTypeId.ROADMAP
 
@@ -58,7 +58,10 @@ GoogleMap.getAddress = () ->
   )
 
 $(document).ready ->
-  GoogleMap.init_google_map()
+  if (typeof lat == 'undefined' && typeof lng == 'undefined')
+    GoogleMap.init_google_map()
+  else
+    GoogleMap.init_google_map(lat, lng)
   $('#search_google_map_link').click (e)->
     e.preventDefault()
     GoogleMap.getLocationFromAddress()

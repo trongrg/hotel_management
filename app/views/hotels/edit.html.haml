@@ -10,3 +10,7 @@
 = link_to 'Delete', user_hotel_path(@owner, @hotel), :confirm => "Are you sure?", :method => :delete
 \|
 = link_to 'Back', user_hotels_path
+- if @hotel.lat.present? && @hotel.lng.present?
+  :coffeescript
+    @lat = #{@hotel.lat}
+    @lng = #{@hotel.lng}

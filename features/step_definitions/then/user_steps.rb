@@ -59,3 +59,8 @@ Then /^the "([^"]*)" field should have value$/ do |field|
     page.find_field(field).value.present?
   end
 end
+
+Then /^I should see the google map marker points to my hotel's location$/ do
+  page.find_field("Lat").value.to_f.should be_within(0.001).of(page.evaluate_script("GoogleMap.marker.getPosition().lat()"))
+  page.find_field("Lng").value.to_f.should be_within(0.001).of(page.evaluate_script("GoogleMap.marker.getPosition().lng()"))
+end

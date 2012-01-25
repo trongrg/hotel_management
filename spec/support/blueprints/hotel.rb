@@ -9,6 +9,6 @@ Hotel.blueprint do
   state { Faker::Address.state }
   country { "Viet Nam" }
   zip_code { Faker::Address.zip_code }
-  lat { rand()*10 }
-  lng { rand()*10 }
+  lat { 10.781135 }
+  lng { 106.698457 }
 end

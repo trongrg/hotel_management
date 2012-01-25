@@ -36,3 +36,8 @@ Feature: user edits hotel
 		When I go to the edit user hotel page of user "trongrg", hotel "Thien An"
 		And I edit the hotel without a lng
 		Then I should see a missing hotel's lng message
+
+  @javascript
+  Scenario: See my hotel location on embedded google map
+		When I go to the edit user hotel page of user "trongrg", hotel "Thien An"
+    Then I should see the google map marker points to my hotel's location
