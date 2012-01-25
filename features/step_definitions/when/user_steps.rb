@@ -89,3 +89,14 @@ When /^I edit the hotel with valid info$/ do
   fill_in "Name", :with => "New Name"
   click_button "Update Hotel"
 end
+
+When /^I click and drag the google map marker to the right$/ do
+  lat = page.evaluate_script("GoogleMap.marker.getPosition().lat()")
+  lng = page.evaluate_script("GoogleMap.marker.getPosition().lng()") + 0.01
+  page.execute_script("GoogleMap.marker.setPosition(new google.maps.LatLng(#{lat}, #{lng}))")
+  page.execute_script("google.maps.event.trigger(GoogleMap.marker, 'mouseup')")
+end
+
+When /^I fill in the hotel address$/ do
+  fill_fields(:address1 => "702 Nguyen Van Linh Street", :address2 => "District 7", :city => "Ho Chi Minh City", :country => "Viet Nam")
+end

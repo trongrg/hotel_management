@@ -16,6 +16,8 @@
   = f.buttons do
     = f.commit_button
 
+= render 'google_map'
+
 = link_to 'Show', user_hotel_path(@owner, @hotel)
 \|
 = link_to 'Delete', user_hotel_path(@owner, @hotel), :confirm => "Are you sure?", :method => :delete

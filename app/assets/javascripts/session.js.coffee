@@ -1,3 +1,5 @@
+#= require jquery
+#= require jquery_ujs
 $(document).ready ->
   $('#user_username').focus ->
     $("label[for='user_username']").hide()

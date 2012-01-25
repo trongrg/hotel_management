@@ -6,4 +6,9 @@ describe Hotel do
   it { should validate_presence_of :lat }
   it { should validate_presence_of :lng }
   it { should belong_to :owner }
+
+  it "has VN as the default country" do
+    hotel = Hotel.new
+    hotel.country.should == "VN"
+  end
 end

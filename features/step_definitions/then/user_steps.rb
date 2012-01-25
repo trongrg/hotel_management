@@ -53,3 +53,9 @@ Then /^I should see (\d+) (.+)$/ do |number, model|
     page.all("tr").count.should == number.to_i
   end
 end
+
+Then /^the "([^"]*)" field should have value$/ do |field|
+  wait_for true do
+    page.find_field(field).value.present?
+  end
+end
