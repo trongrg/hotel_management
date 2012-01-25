@@ -1,20 +1,7 @@
 %h1 Editing hotel
 
 = semantic_form_for @hotel, :url => user_hotel_path(@owner, @hotel), :method => :put do |f|
-  = f.inputs do
-    = f.input :name
-    = f.input :address1
-    = f.input :address2
-    = f.input :city
-    = f.input :state
-    = f.input :country
-    = f.input :zip_code
-    = f.input :phone_number
-    = f.input :lat
-    = f.input :lng
-
-  = f.buttons do
-    = f.commit_button
+  = render :partial => 'form_content', :locals => {:f => f}
 
 = render 'google_map'
 

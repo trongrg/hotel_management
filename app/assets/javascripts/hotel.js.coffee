@@ -32,16 +32,29 @@ GoogleMap.getLocationFromAddress = () ->
 GoogleMap.getAddress = () ->
   position = GoogleMap.marker.getPosition()
   geocoder = new google.maps.Geocoder()
+  $('.address').val('')
   geocoder.geocode({'latLng': position}, (results, status) ->
     if (status == google.maps.GeocoderStatus.OK)
-      components = results[0].address_components
-      for component in components
-        for type in component.types
-          switch type
-            when 'country'
-              $('#hotel_country').val(component.short_name)
-            when 'route'
-              $('#hotel_address1').val($('#hotel_address1').val() + ' ' + component.long_name)
+      address = {address1: '', address2: '', city: '', state: '', country: '', zip_code: ''}
+      for component in results[0].address_components
+        if ($.inArray('street_number', component.types) > -1)
+          address.address1 = component.long_name
+        else if ($.inArray('route', component.types) > -1)
+          address.address1 = address.address1 + ' ' + component.long_name
+        else if ($.inArray('neighborhood', component.types) > -1)
+          address.address2 = component.long_name
+        else if ($.inArray('sublocality', component.types) > -1)
+          address.address2 = address.address2 + ' ' + component.long_name
+        else if ($.inArray('locality', component.types) > -1)
+          address.city = component.long_name
+        else if ($.inArray('administrative_area_level_1', component.types) > -1)
+          address.state = component.long_name
+        else if ($.inArray('country', component.types) > -1)
+          address.country = component.short_name
+        else if ($.inArray('postal_code', component.types) > -1)
+          address.zip_code = component.long_name
+      for field, value of address
+        $("#hotel_"+field).val(value)
   )
 
 $(document).ready ->
@@ -49,3 +62,7 @@ $(document).ready ->
   $('#search_google_map_link').click (e)->
     e.preventDefault()
     GoogleMap.getLocationFromAddress()
+  $('#get_address_link').click (e)->
+    e.preventDefault()
+    GoogleMap.getAddress()
+    GoogleMap.getLocation()

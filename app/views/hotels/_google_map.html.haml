@@ -1,7 +1,9 @@
 - content_for :head do
   = javascript_include_tag "#{GoogleMapSettings.server}/maps/api/js?key=AIzaSyBrp5OKFAdzY1xre8m-Fbq3VuoswPv2Y7s&sensor=false"
 
-= link_to "Search on Google Map", "#", :id => "search_google_map_link"
+#map_actions
+  = link_to "Search on Google Map", "#", :id => "search_google_map_link"
+  = link_to "Get Address from Marker", "#", :id => "get_address_link"
 
 #map_canvas
 
