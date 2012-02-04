@@ -2,8 +2,10 @@
 //= require formtastic_ie6
 //= require formtastic_ie7
 @import sassy-buttons
+body
+  font: 11px Arial,Helvetica, sans-serif
+  text-transform: uppercase
 #sign_in_box
-  font: 15px Arial,Helvetica, sans-serif
   background-color: #e0e0e0
   @include filter-gradient(#e0e0e0, #aaaaaa, vertical)
   @include background-image(linear-gradient(top, #e0e0e0 0%,#aaaaaa 100%))
@@ -27,37 +29,49 @@
     input[type="text"]
       margin-top: 2px
     label[for="user_username"], label[for="user_password"]
+      font-size: 13px
       position: absolute
       right: 15px
       top: 14px
-      opacity: 1
-      text-transform: uppercase
       font-weight: bold
-      text-shadow: none
       abbr
         display: none
     label[for="user_remember_me"]
       padding-left: 5%
       color: #666
-      text-transform: uppercase
-      font-size: 70%
   li.commit.button
     float: right
     margin-top: -40px
     input[type="submit"]
       +sassy-button('shiny', 5px, 100%, #007A9D, #007A9D, #fff)
       border: 1px solid #007A9D
-      text-transform: uppercase
       font-weight: bold
-      font-size: 90%
+      font-size: 13px
+      text-transform: uppercase
+      margin-top: 10px
   a
     color: #666
     text-decoration: none
-    text-transform: uppercase
-    font-size: 70%
     &:hover
       text-decoration: underline
   h2
     color: white
     text-shadow: 0 -1px #666, -1px 0 #666, 1px 0 #666, 0 1px #666, 0px -2px #666, 2px 0px #666
     font-size: 30px
+
+#flash
+  div
+    border-radius: 10px
+    padding: 20px
+    margin: 30px auto
+    width: 393px
+    color: white
+    font-weight: bold
+    text-align: center
+    box-shadow: 0 0 25px 5px #313131
+  #notice
+    border: 1px solid green
+    background: green
+  #alert
+    border: 1px solid #720713
+    background: #720713
