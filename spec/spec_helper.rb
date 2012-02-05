@@ -10,9 +10,9 @@ Spork.prefork do
   Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
   require File.expand_path("../../config/environment", __FILE__)
 
+  require 'rspec/rails'
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
-  require 'rspec/rails'
   ActiveRecord::Base.connection.disconnect!
 end
 
