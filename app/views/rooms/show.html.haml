@@ -1,0 +1,14 @@
+%p#notice= notice
+
+%p
+  %b Number:
+  = @room.number
+%p
+  %b Room type:
+  = @room.room_type.name
+
+= link_to 'Edit', edit_hotel_room_path(@hotel, @room)
+\|
+= link_to 'Delete', hotel_room_path(@hotel, @room), :confirm => 'Are you sure?', :method => :delete
+\|
+= link_to 'Back', hotel_rooms_path(@hotel)

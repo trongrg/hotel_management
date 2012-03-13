@@ -1,0 +1,24 @@
+%h1 Listing rooms
+
+%table#rooms
+  %thead
+    %tr
+      %th Number
+      %th Room type
+      %th
+      %th
+      %th
+
+  %tbody
+    - @rooms.each do |room|
+      %tr
+        %td= room.number
+        %td= room.room_type_id
+        %td= link_to 'Show', hotel_room_path(@hotel, room)
+        %td= link_to 'Edit', edit_hotel_room_path(@hotel, room)
+        %td= link_to 'Delete', hotel_room_path(@hotel, room), :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Room', new_hotel_room_path(@hotel)
+= paginate @rooms

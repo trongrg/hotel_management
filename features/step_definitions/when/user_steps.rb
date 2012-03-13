@@ -81,7 +81,12 @@ When /^I edit my account details without an? (.+)/ do |field|
 end
 
 When /^I edit the (.+) without an? (.+)$/ do |model, field|
-  fill_in field.humanize, :with => ""
+  case field.downcase
+  when "room type"
+    select "", :from => field.humanize
+  else
+    fill_in field.humanize, :with => ""
+  end
   click_button "Update #{model.humanize}"
 end
 

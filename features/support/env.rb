@@ -40,6 +40,7 @@ end
 Spork.each_run do
   ActiveRecord::Base.establish_connection
   Dir[Rails.root.join("app/models/**/*.rb")].each { |f| load f }
+  Dir[Rails.root.join("app/controllers/**/*.rb")].each { |f| load f }
   Dir[Rails.root.join("spec/support/blueprints/**/*.rb")].each { |f| require f }
   I18n.backend.reload!
   DatabaseCleaner.clean_with :truncation

@@ -8,4 +8,4 @@
       = f.input :password, :as => :password
       - if devise_mapping.rememberable?
         = f.input :remember_me, :as => :boolean
-      = f.commit_button "Sign in"
+      = f.action(:submit, :label => "Sign in")

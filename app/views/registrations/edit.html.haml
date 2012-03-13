@@ -16,7 +16,7 @@
     = f.input :country, :selected => resource.country
     = f.input :zip_code
 
-  = f.buttons do
-    = f.commit_button "Update profile"
+  = f.actions do
+    = f.action(:submit, :label => "Update profile")
 
 = link_to "Change password", edit_profile_password_path

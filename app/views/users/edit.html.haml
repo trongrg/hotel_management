@@ -21,7 +21,7 @@
     = f.input :country
     = f.input :zip_code
 
-  = f.buttons do
-    = f.commit_button
+  = f.actions do
+    = f.action(:submit)
 
 = link_to_if(can?(:index, User), "User list", users_path)

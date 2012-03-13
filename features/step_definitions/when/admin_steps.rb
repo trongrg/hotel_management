@@ -1,5 +1,5 @@
 When /^I follow "([^"]*)" link of (.+) "([^"]*)"$/ do |link, model, name|
-  object = model.titleize.gsub(' ', '').constantize.send(find_method_for(model), name)
+  object = model.gsub(' ', '_').camelize.constantize.send(find_method_for(model), name)
   within "tr##{model.gsub(' ', '_')}_#{object.id}" do
     click_link link
   end
@@ -28,9 +28,17 @@ end
 
 When /^I create a new (#{model_names.join("|")}) without an? (.+)$/ do |model, field|
   model.gsub!(" ", "_")
-  send("create_#{model}", send("valid_#{model}".to_sym).merge(field.to_sym => ""))
+  send("create_#{model}", send("valid_#{model}".to_sym).merge(field.gsub(' ', '_').to_sym => ""))
 end
 
 When /^I create a new (.+) with an invalid (.+)$/ do |model, field|
   send("create_#{model}", send("valid_#{model}".to_sym).merge(field.to_sym => "*#&"))
+end
+
+When /^I create a new room with a new room type$/ do
+  create_room valid_room.merge(:room_type => "Deluxe"), true
+end
+
+When /^I create a new room with room type "([^"]*)"$/ do |room_type|
+  create_room valid_room.merge(:room_type => room_type)
 end

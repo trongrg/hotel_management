@@ -32,6 +32,9 @@ class Ability
       can :manage, RoomType do |room_type|
         user.hotels.include?(room_type.hotel) || room_type.hotel.nil?
       end
+      can :manage, Room do |room|
+        user.hotels.map(&:room_types).flatten.include?(room.room_type) || room.room_type.blank?
+      end
     elsif user.role? :staff
       can :show, User, :id => user.id
     end

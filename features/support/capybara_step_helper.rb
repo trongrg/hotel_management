@@ -31,6 +31,8 @@ module CapybaraStepHelper
         select year, :from => 'user_dob_1i'
         select month, :from => 'user_dob_2i'
         select day, :from => 'user_dob_3i'
+      when "Room type"
+        select value, :from => field
       else
         fill_in field, :with => value
       end
@@ -66,8 +68,10 @@ module CapybaraStepHelper
       'find_by_username'
     when 'hotel'
       'find_by_name'
-    when 'room type'
+    when 'room_type', 'room type'
       'find_by_name'
+    when 'room'
+      'find_by_number'
     else
       'find'
     end
@@ -87,6 +91,28 @@ module CapybaraStepHelper
       end
     end
     click_button "Create Room type"
+  end
+
+  def valid_room
+    {:number => "101", :room_type => valid_room_type[:name]}
+  end
+
+  def create_room room
+    room.each do |field, value|
+      field = field.to_s.humanize
+      if field == "Room type"
+        select value, :from => field
+      else
+        fill_in field, :with => value
+      end
+    end
+    click_button "Create Room"
+  end
+
+  private
+  def room_type_attributes
+    room_type = RoomType.make!
+    {:name => room_type.name, :price => room_type.price, :currency => room_type.currency, :image => room_type.image, :description => room_type.description, :hotel_id => hotel.id }
   end
 end
 

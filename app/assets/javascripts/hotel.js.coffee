@@ -45,7 +45,7 @@ GoogleMap.getAddress = () ->
           address.address2 = component.long_name
         else if ($.inArray('sublocality', component.types) > -1)
           address.address2 = address.address2 + ' ' + component.long_name
-        else if ($.inArray('locality', component.types) > -1)
+        else if ($.inArray('locality', component.types) > -1 || $.inArray('administrative_area_level_2', component.types) > -1)
           address.city = component.long_name
         else if ($.inArray('administrative_area_level_1', component.types) > -1)
           address.state = component.long_name

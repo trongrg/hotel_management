@@ -7,12 +7,12 @@ Feature: list room types
     Given I am signed in as a hotel owner with username: "trongrg"
     And user "trongrg" has a hotel with name: "Thien An"
 
-  Scenario: list room type without pagination
+  Scenario: list room types without pagination
     And hotel "Thien An" has 3 room types
     When I go to the hotel room types page of hotel "Thien An"
     Then I should see 3 room types
 
-  Scenario: list hotel with pagination
+  Scenario: list room types with pagination
     And hotel "Thien An" has 30 room types
     When I go to the hotel room types page of hotel "Thien An"
     Then I should see 25 room types
