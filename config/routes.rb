@@ -18,9 +18,7 @@ HotelManagement::Application.routes.draw do
     put '/sign_up' => "registrations#update"
   end
 
-  resources :users do
-    resources :hotels
-  end
+  resources :users
 
   resource :dashboard, :only => :show, :controller => "dashboard"
 

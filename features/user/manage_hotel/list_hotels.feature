@@ -8,12 +8,12 @@ Feature: user view hotel list
 
   Scenario: list hotel without pagination
     And user "trongrg" owns 3 hotels
-    When I go to the user hotels page of user "trongrg"
+    When I go to the hotels page
     Then I should see 3 hotels
 
   Scenario: list hotel with pagination
     And user "trongrg" owns 30 hotels
-    When I go to the user hotels page of user "trongrg"
+    When I go to the hotels page
     Then I should see 25 hotels
     And I should see "Next" link
     And I should see "2" link
@@ -21,7 +21,7 @@ Feature: user view hotel list
     Then I should see 5 hotels
 
   Scenario: see 'New Hotel' link
-    When I go to the user hotels page of user "trongrg"
+    When I go to the hotels page
     Then I should see "New Hotel" link
     When I follow "New Hotel"
-    Then I should be on the new user hotel page of user "trongrg"
+    Then I should be on the new hotel page

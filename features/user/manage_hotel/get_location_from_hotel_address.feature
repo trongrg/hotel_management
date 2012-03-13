@@ -8,7 +8,7 @@ Feature: user get hotel's location from its address
     Given I am signed in as a hotel owner with username: "trongrg"
 
   Scenario: get hotel's location from its address when create hotel
-    When I go to the new user hotel page of user "trongrg"
+    When I go to the new hotel page
     And I fill in the hotel address
     And I follow "Search on Google Map"
     Then the "Lat" field should have value
@@ -16,7 +16,7 @@ Feature: user get hotel's location from its address
 
   Scenario: get hotel's location from its address when edit hotel
     And user "trongrg" has a hotel with name: "Thien An"
-    When I go to the edit user hotel page of user "trongrg", hotel "Thien An"
+    When I go to the edit hotel page of hotel "Thien An"
     And I fill in the hotel address
     And I follow "Search on Google Map"
     Then the "Lat" field should have value

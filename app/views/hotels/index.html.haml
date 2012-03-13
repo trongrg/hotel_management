@@ -30,12 +30,12 @@
         %td= hotel.phone_number
         %td= hotel.lat
         %td= hotel.lng
-        %td= link_to 'Show', user_hotel_path(@owner, hotel)
-        %td= link_to 'Edit', edit_user_hotel_path(@owner, hotel)
-        %td= link_to 'Delete', user_hotel_path(@owner, hotel), :confirm => 'Are you sure?', :method => :delete
+        %td= link_to 'Show', hotel_path(hotel)
+        %td= link_to 'Edit', edit_hotel_path(hotel)
+        %td= link_to 'Delete', hotel_path(hotel), :confirm => 'Are you sure?', :method => :delete
 
 %br
 
 = paginate @hotels
 
-= link_to_if can?(:create, Hotel), 'New Hotel', new_user_hotel_path(@owner)
+= link_to_if can?(:create, Hotel), 'New Hotel', new_hotel_path

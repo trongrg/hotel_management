@@ -1,15 +1,15 @@
 %h1 Editing hotel
 
-= semantic_form_for @hotel, :url => user_hotel_path(@owner, @hotel), :method => :put do |f|
+= semantic_form_for @hotel, :method => :put do |f|
   = render :partial => 'form_content', :locals => {:f => f}
 
 = render 'google_map'
 
-= link_to 'Show', user_hotel_path(@owner, @hotel)
+= link_to 'Show', hotel_path(@hotel)
 \|
-= link_to 'Delete', user_hotel_path(@owner, @hotel), :confirm => "Are you sure?", :method => :delete
+= link_to 'Delete', hotel_path(@hotel), :confirm => "Are you sure?", :method => :delete
 \|
-= link_to 'Back', user_hotels_path
+= link_to 'Back', hotels_path
 - if @hotel.lat.present? && @hotel.lng.present?
   :coffeescript
     @lat = #{@hotel.lat}

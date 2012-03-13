@@ -8,7 +8,7 @@ Feature: user get hotel's address and lat lng from google map marker
     Given I am signed in as a hotel owner with username: "trongrg"
 
   Scenario: get hotel's address when create hotel
-    When I go to the new user hotel page of user "trongrg"
+    When I go to the new hotel page
     And I follow "Get Address from Marker"
     Then the "Lat" field should have value
     And the "Lng" field should have value
@@ -19,7 +19,7 @@ Feature: user get hotel's address and lat lng from google map marker
 
   Scenario: get hotel's address when edit hotel
     And user "trongrg" has a hotel with name: "Thien An"
-    When I go to the edit user hotel page of user "trongrg", hotel "Thien An"
+    When I go to the edit hotel page of hotel "Thien An"
     And I follow "Get Address from Marker"
     Then the "Lat" field should have value
     And the "Lng" field should have value

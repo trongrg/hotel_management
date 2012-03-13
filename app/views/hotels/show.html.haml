@@ -30,8 +30,8 @@
   %b Lng:
   = @hotel.lng
 
-= link_to 'Edit', edit_user_hotel_path(@owner, @hotel)
+= link_to 'Edit', edit_hotel_path(@hotel)
 \|
-= link_to 'Delete', user_hotel_path(@owner, @hotel), :confirm => "Are you sure?", :method => :delete
+= link_to 'Delete', hotel_path(@hotel), :confirm => "Are you sure?", :method => :delete
 \|
-= link_to 'Back', user_hotels_path
+= link_to 'Back', hotels_path

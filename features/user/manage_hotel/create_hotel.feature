@@ -7,11 +7,11 @@ Feature: user creates hotel
     Given I am signed in as a hotel owner with username: "trongrg"
 
   Scenario: create hotel with valid info
-    When I go to the new user hotel page of user "trongrg"
+    When I go to the new hotel page
     And I create a new hotel
     Then I should see a successful create hotel message
 
   Scenario: create hotel without name
-    When I go to the new user hotel page of user "trongrg"
+    When I go to the new hotel page
     And I create a new hotel without a name
     Then I should see a missing hotel's name message
