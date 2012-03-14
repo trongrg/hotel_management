@@ -1,7 +1,7 @@
-Feature: user delete room type
+Feature: user edit room type
   In order to manage room types of a hotel
   As a hotel owner
-  I should be able to delete new room type
+  I should be able to edit a room type
 
   Background:
     Given I am signed in as a hotel owner with username: "trongrg"
