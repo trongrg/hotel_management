@@ -11,15 +11,14 @@ Spork.prefork do
   require File.expand_path("../../config/environment", __FILE__)
 
   require 'rspec/rails'
-  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
   ActiveRecord::Base.connection.disconnect!
 end
 
 Spork.each_run do
   ActiveRecord::Base.establish_connection
-  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
   Dir[Rails.root.join("app/models/**/*.rb")].each {|f| load f}
+  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| load f}
 
   RSpec.configure do |config|
     config.mock_with :rspec
