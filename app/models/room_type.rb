@@ -3,6 +3,7 @@ class RoomType < ActiveRecord::Base
 
   belongs_to :hotel
   has_many :rooms
+  has_many :furnishings
 
   CURRENCIES = ['USD', 'VND', 'GBP']
 end

@@ -72,6 +72,8 @@ module CapybaraStepHelper
       'find_by_name'
     when 'room'
       'find_by_number'
+    when 'furnishing'
+      'find_by_name'
     else
       'find'
     end
@@ -107,6 +109,15 @@ module CapybaraStepHelper
       end
     end
     click_button "Create Room"
+  end
+
+  def valid_furnishing
+    { :name => "Bed", :price => 100, :description => "giuong" }
+  end
+
+  def create_furnishing furnishing
+    fill_fields furnishing
+    click_button "Create Furnishing"
   end
 
   private

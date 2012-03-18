@@ -1,0 +1,20 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @furnishing.name
+%p
+  %b Price:
+  = @furnishing.price
+%p
+  %b Description:
+  = @furnishing.description
+%p
+  %b Room type:
+  = @furnishing.room_type_id
+
+= link_to 'Edit', edit_room_type_furnishing_path(@room_type, @furnishing)
+\|
+= link_to 'Delete', room_type_furnishing_path(@room_type, @furnishing), :confirm => 'Are you sure?', :method => :delete
+\|
+= link_to 'Back', room_type_furnishings_path(@room_type)

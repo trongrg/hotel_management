@@ -1,0 +1,28 @@
+%h1 Listing furnishings
+
+%table#furnishings
+  %thead
+    %tr
+      %th Name
+      %th Price
+      %th Description
+      %th Room type
+      %th
+      %th
+      %th
+
+  %tbody
+    - @furnishings.each do |furnishing|
+      %tr
+        %td= furnishing.name
+        %td= furnishing.price
+        %td= furnishing.description
+        %td= furnishing.room_type_id
+        %td= link_to 'Show', room_type_furnishing_path(@room_type, furnishing)
+        %td= link_to 'Edit', edit_room_type_furnishing_path(@room_type, furnishing)
+        %td= link_to 'Delete', room_type_furnishing_path(@room_type, furnishing), :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Furnishing', new_room_type_furnishing_path(@room_type)
+= paginate @furnishings

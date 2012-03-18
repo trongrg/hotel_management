@@ -87,7 +87,7 @@ describe HotelsController do
 
         it "redirects to the created hotel" do
           post :create, {:hotel => valid_attributes}
-          response.should redirect_to(hotel_path(owner, Hotel.last))
+          response.should redirect_to(hotel_path(Hotel.last))
         end
       end
 
@@ -127,7 +127,7 @@ describe HotelsController do
 
           it "redirects to the hotel" do
             put :update, {:id => @hotel.to_param, :hotel => valid_attributes}
-            response.should redirect_to(hotel_path(owner, @hotel))
+            response.should redirect_to(hotel_path(@hotel))
           end
         end
 
@@ -168,7 +168,7 @@ describe HotelsController do
 
       it "redirects to the hotels list" do
         delete :destroy, {:id => @hotel.to_param}
-        response.should redirect_to(hotels_url(owner))
+        response.should redirect_to(hotels_url)
       end
     end
   end

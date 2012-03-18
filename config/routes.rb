@@ -1,9 +1,11 @@
 HotelManagement::Application.routes.draw do
-
-
   resources :hotels do
     resources :rooms
     resources :room_types
+  end
+
+  resources :room_types, :only => [] do
+    resources :furnishings
   end
 
   devise_for :users, :skip => [:sessions, :registrations],
