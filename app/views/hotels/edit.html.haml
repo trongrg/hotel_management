@@ -1,3 +1,5 @@
+- content_for :head do
+  = stylesheet_link_tag 'hotels'
 %h1 Editing hotel
 
 = semantic_form_for @hotel, :method => :put do |f|

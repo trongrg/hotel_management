@@ -1,0 +1,80 @@
+@import sassy-buttons
+@import compass
+#map_canvas
+  width: 300px
+  height: 300px
+  float: left
+#search_google_map_link
+  float: left
+  clear: right
+form.formtastic.hotel
+  width: 700px
+  float: left
+#clearfix
+  clear: both
+
+#hotels
+  width: 100%
+  h1
+    font-size: 30px
+    height: 60px
+    line-height: 60px
+  .tabular_data
+    .thead
+      height: 30px
+      line-height: 30px
+      +linear-gradient(#DFE1E2, #EFEFEF)
+      +box-shadow(0 1px 2px rgba(0,0,0,0.37))
+      border-bottom: 1px solid #EDEDED
+      font-weight: bold
+      text-transform: uppercase
+      color: #5E6469
+      +border-top-radius(5px)
+      +text-shadow(white 0 1px 0)
+      padding: 5px 15px
+      z-index: 10
+      position: relative
+      .button
+        +sassy-button('simple', 5px, 90%, #ccc, #aaa, #fff, "inset")
+        border: 1px solid #888
+        +box-shadow(0 0 3px #888)
+    ul.tbody
+      >li
+        padding: 15px 15px
+        font-size: 12px
+        color: #666
+        background-color: #F2F2F2
+        border-top: 1px solid white
+        border-bottom: 1px solid #E3E3E3
+        border-left: 1px solid #DDD
+        border-right: 1px solid #DDD
+        .title
+          float: left
+          font-size: 14px
+          font-weight: bold
+          text-indent: 18px
+          text-transform: uppercase
+        ul.actions
+          display: none
+          float: right
+          font-weight: bold
+          margin-right: 60px
+          li
+            float: left
+            margin-right: 10px
+        ul.status
+          display: block
+          float: right
+          margin-right: 30px
+          li
+            float: left
+            margin-right: 30px
+
+        &:hover
+          background: white
+          ul.actions
+            display: block
+          ul.status
+            display: none
+        &:last-child
+          +border-bottom-radius(10px)

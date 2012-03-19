@@ -3,8 +3,23 @@
 //= require formtastic
 //= require formtastic_ie6
 //= require formtastic_ie7
+@import compass
 @import compass/reset
-*
+body
+  font-size: 100%
   font-family: 'Helvetica Neue', Helvetica, san-serif
-html
-  background: #F0F6FC
+  //background: #F0F6FC
+  .content
+    width: 1000px
+    margin: 40px auto
+  .clearfix
+    +clearfix
+  .left
+    float: left
+  .right
+    float: right
+  a
+    color: #327A9F
+    text-decoration: none
+    &:hover
+      text-decoration: underline

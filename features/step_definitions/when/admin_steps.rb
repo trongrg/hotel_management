@@ -1,6 +1,6 @@
 When /^I follow "([^"]*)" link of (.+) "([^"]*)"$/ do |link, model, name|
   object = model.gsub(' ', '_').camelize.constantize.send(find_method_for(model), name)
-  within "tr##{model.gsub(' ', '_')}_#{object.id}" do
+  within "##{model.gsub(' ', '_')}_#{object.id}" do
     click_link link
   end
 end

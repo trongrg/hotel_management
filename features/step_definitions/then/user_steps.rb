@@ -48,7 +48,13 @@ Then /^I should see a successful ([^\s]+) (#{model_names.join("|")}|password|acc
   page.should have_content "#{object.humanize} has been #{action}d successfully."
 end
 
-Then /^I should see (\d+) (.+)$/ do |number, model|
+Then /^I should see (\d+) hotels$/ do |number|
+  within "#hotels .tabular_data" do
+    page.all("ul.tbody>li").count.should == number.to_i
+  end
+end
+
+Then /^I should see (\d+) ((^hotel).+)$/ do |number, model|
   within "table##{model.pluralize.gsub(' ', '_')} tbody" do
     page.all("tr").count.should == number.to_i
   end

@@ -20,8 +20,8 @@ Feature: user view hotel list
     When I follow "Next"
     Then I should see 5 hotels
 
-  Scenario: see 'New Hotel' link
+  Scenario: see 'Create Hotel' link
     When I go to the hotels page
-    Then I should see "New Hotel" link
-    When I follow "New Hotel"
+    Then I should see "Create Hotel" link
+    When I follow "Create Hotel"
     Then I should be on the new hotel page
