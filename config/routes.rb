@@ -27,9 +27,9 @@ HotelManagement::Application.routes.draw do
   namespace :profile do
     resource :password, :only => [:edit, :update], :controller => "password"
   end
-  root :to => redirect('/dashboard', :status => 302), :constrants => lambda { |r|
-    current_user = env['warden'].user
-    current_user.present? && !current_user.admin?
-  }
+
+  constraints(RolesConstraint.new(:user, :admin, :hotel_owner, :staff)) do
+    root :to => 'dashboard#show'
+  end
   root :to => 'welcome#show'
 end
