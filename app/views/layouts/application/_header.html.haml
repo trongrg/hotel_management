@@ -1,0 +1,29 @@
+%h1.logo
+  = link_to "Hotel Management", "/"
+.navigation_area
+  .padding
+  %ul.nav_links
+    %li
+      = link_to "Hotels &#9662;".html_safe, "#"
+      %ul.sub_nav
+        %li
+          = link_to "View All Hotels", hotels_path
+        - current_user.hotels.each do |hotel|
+          %li= link_to hotel.name, hotel
+    -#- %w(dashboard reports support).each do |target|
+    - %w(dashboard).each do |target|
+      %li
+        = link_to target.humanize,
+          send("#{target}_path"),
+          :class => ("current" if controller_name == target)
+.account_area
+  Welcome,
+  %ul.account_nav
+    %li.active
+      %a{ :href => "#" }
+        %span.full_name= current_user.first_name
+        %span.arrow &#9662;
+      %ul.sub_nav
+        %li= link_to "Account", "#"
+        %li= link_to "Profile", edit_user_registration_path
+        %li= link_to "Sign out", destroy_user_session_path

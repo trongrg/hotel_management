@@ -10,9 +10,9 @@
       - flash.each do |type, message|
         %div{ :id => type }
           = message
-    .main_nav
-      .right_nav
-        %ul
-          %li= link_to "Sign out", destroy_user_session_path
-          %li= link_to "Profile", edit_user_registration_path
-    = yield
+    #header
+      = render 'layouts/application/header'
+    #main
+      = yield
+    #footer
+      = render 'layouts/application/footer'

@@ -1,0 +1,128 @@
+@import compass
+
+#header
+  +clearfix
+  height: 50px
+  line-height: 50px
+  width: 100%
+  +linear-gradient(#256188, #1a8ecd)
+  border-bottom: 1px solid #15344F
+  +box-shadow(0 1px 1px silver, inset 0 -1px 1px rgba(0, 0, 0, 0.1), 0 1px 5px #222)
+  font-family: Vernada, Arial, san-serif
+  color: #c7e9fb
+  overflow: visible
+  h1.logo
+    display: block
+    float: left
+    margin-left: 20px
+  a
+    text-decoration: none
+    color: #c7e9fb
+    display: block
+    text-transform: uppercase
+    font-weight: bold
+    font-size: 14px
+    padding: 0 15px
+  .navigation_area
+    float: left
+    margin-left: 20px
+    .nav_links
+      margin-top: 10px
+      position: relative
+      >li
+        float: left
+        margin-right: 10px
+        >a
+          height: 30px
+          line-height: 30px
+          border: 1px solid transparent
+          border-top: none
+          &:hover, &.current
+            +border-radius(5px)
+            +linear-gradient(#153B5C, #256188)
+            color: white
+
+        &.active
+          >a, a:hover
+            background: white
+            color: #256188
+            z-index: 10
+            position: relative
+            height: 30px
+            +border-top-radius(5px)
+            +border-bottom-radius(0px)
+            border: 1px solid #777
+            border-bottom: none
+          ul.sub_nav
+            z-index: 9
+            position: absolute
+            top: 30px
+            left: 0
+            background: white
+            border: 1px solid #777
+            min-width: 150px
+            +border-radius(5px)
+            +border-top-left-radius(0px)
+            +box-sizing(border-box)
+            +box-shadow(0 -1px 8px rgba(0, 0, 0, 0.7))
+            li
+              + li
+                border-top: 1px solid #eee
+            >li
+              a
+                padding: 0 15px
+                font-weight: normal
+                text-transform: none
+                color: black
+                line-height: 30px
+                &:hover
+                  +linear-gradient(#256188, #153B5C)
+                  color: white
+                  +border-radius(0px)
+  .account_area
+    vertical-align: top
+    float: right
+    margin-right: 20px
+    ul.account_nav
+      display: inline-block
+      position: relative
+      li.active
+        >a
+          +linear-gradient(#3089be, #153B5C)
+          color: white
+          z-index: 10
+      li
+        position: relative
+        .full_name
+          display: inline-block
+        span.arrow
+          float: right
+        a
+          padding: 0 10px
+          min-width: 150px
+        ul.sub_nav
+          min-width: 100px
+          z-index: 9
+          position: absolute
+          top: 50px
+          right: 0
+          background: white
+          border: 1px solid #86b9d2
+          +border-bottom-radius(5px)
+          +box-sizing(border-box)
+          +box-shadow(0 -1px 8px #153B5C)
+          li
+            + li
+              border-top: 1px solid #eee
+          >li
+            a
+              padding: 0 15px
+              font-weight: normal
+              text-transform: none
+              color: black
+              line-height: 30px
+              min-width: 138px
+              &:hover
+                +linear-gradient(#256188, #153B5C)
+                color: white
+                +border-radius(0px)

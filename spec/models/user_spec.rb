@@ -42,4 +42,10 @@ describe User do
       subject.address.should == [subject.address1, subject.address2, subject.city, subject.state, subject.country, subject.zip_code].join(" ")
     end
   end
+
+  describe "#full_name" do
+    it "returns the full_name of user" do
+      subject.full_name.should == subject.first_name + " " + subject.last_name
+    end
+  end
 end

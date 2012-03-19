@@ -23,4 +23,8 @@ class User < ActiveRecord::Base
   def address
     [address1, address2, city, state, country, zip_code].join(" ")
   end
+
+  def full_name
+    [first_name, last_name].join(" ")
+  end
 end
