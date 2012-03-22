@@ -11,6 +11,8 @@ gem "formtastic"
 gem "carmen"
 gem "cancan"
 gem "kaminari"
+gem 'client_side_validations'
+
 group :production do
   gem 'pg'
 end

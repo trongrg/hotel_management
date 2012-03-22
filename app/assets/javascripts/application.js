@@ -2,6 +2,7 @@
 //= require jquery_ujs
 //= require_tree ./application
 //= require_self
+//= require rails.validations
 
 $(document).ready(function(){
   $("ul.nav_links").superfish({

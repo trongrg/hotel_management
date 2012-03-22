@@ -50,6 +50,7 @@ GEM
     childprocess (0.3.1)
       ffi (~> 1.0.6)
     chunky_png (1.2.5)
+    client_side_validations (3.1.4)
     coffee-filter (0.1.1)
       coffee-script (>= 2.2.0)
       haml (>= 3.0.18)
@@ -232,6 +233,7 @@ DEPENDENCIES
   cancan
   capybara
   carmen
+  client_side_validations
   coffee-filter
   coffee-rails
   compass (>= 0.12.rc)

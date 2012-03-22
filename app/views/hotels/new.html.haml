@@ -4,7 +4,7 @@
   = javascript_include_tag 'hotel'
 
 
-= semantic_form_for @hotel do |f|
+= semantic_form_for @hotel, :validate => true do |f|
   .heading
     %h1 Create New Hotel
   %hr
