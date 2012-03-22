@@ -33,6 +33,33 @@
       >li
         float: left
         margin-right: 10px
+        ul.sub_nav
+          z-index: 9
+          position: absolute
+          top: 30px
+          left: 0
+          background: white
+          border: 1px solid #777
+          min-width: 150px
+          +border-radius(5px)
+          +border-top-left-radius(0px)
+          +box-sizing(border-box)
+          +box-shadow(0 -1px 8px rgba(0, 0, 0, 0.7))
+          li
+            + li
+              border-top: 1px solid #eee
+          >li
+            a
+              padding: 0 15px
+              font-weight: normal
+              text-transform: none
+              color: black
+              line-height: 30px
+              border: 1px solid transparent
+              &:hover
+                +linear-gradient(#6968C4, #7179E8)
+                color: white
+                +border-radius(0px)
         >a
           height: 30px
           line-height: 30px
@@ -54,33 +81,6 @@
             +border-bottom-radius(0px)
             border: 1px solid #777
             border-bottom: none
-          ul.sub_nav
-            z-index: 9
-            position: absolute
-            top: 30px
-            left: 0
-            background: white
-            border: 1px solid #777
-            min-width: 150px
-            +border-radius(5px)
-            +border-top-left-radius(0px)
-            +box-sizing(border-box)
-            +box-shadow(0 -1px 8px rgba(0, 0, 0, 0.7))
-            li
-              + li
-                border-top: 1px solid #eee
-            >li
-              a
-                padding: 0 15px
-                font-weight: normal
-                text-transform: none
-                color: black
-                line-height: 30px
-                border: 1px solid transparent
-                &:hover
-                  +linear-gradient(#6968C4, #7179E8)
-                  color: white
-                  +border-radius(0px)
   .account_area
     vertical-align: top
     float: right

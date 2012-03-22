@@ -1,17 +1,65 @@
 @import sassy-buttons
 @import compass
-#map_canvas
-  width: 300px
-  height: 300px
-  float: left
-#search_google_map_link
-  float: left
-  clear: right
+
 form.formtastic.hotel
-  width: 700px
-  float: left
-#clearfix
-  clear: both
+  border: 1px solid #888
+  width: 900px
+  +border-radius(10px)
+  +linear-gradient(#e0e0e0, white)
+  margin: auto
+  +clearfix
+  .heading
+    h1
+      text-transform: uppercase
+      font-weight: bold
+      font-size: 16px
+      line-height: 20px
+      color: #333
+      margin: 20px auto
+      text-indent: 30px
+  .form_content
+    float: left
+    label
+      color: #333
+      font-weight: bolder
+      display: block
+      width: 140px
+      float: left
+      margin-left: 30px
+    li.input
+      display: block
+      margin-bottom: 10px
+    input[type='text'], input[type='number'], input[type='tel']
+      +border-radius(5px)
+      margin: 0
+      margin-right: 5px
+      width: 300px
+      border: 1px solid gray
+      padding: 4px 0 4px 4px
+    input[type='submit']
+      +sassy-button('simple', 5px, 90%, #ccc, #aaa, #fff, "inset")
+      border: 1px solid #888
+      +box-shadow(0 0 3px #888)
+      margin-bottom: 30px
+      margin-right: 30px
+      float: right
+  #google_map
+    +clearfix
+    float: left
+    #map_canvas
+      width: 300px
+      height: 300px
+      float: left
+    .map_actions
+      width: 100px !important
+      height: 300px
+      float: left
+      padding: 120px 10px
+      a
+        display: block
+        +sassy-button('shiny', 5px, 75%, #434342, #787877, #fff, "inset")
+        padding: 10px
+        margin-bottom: 20px
 
 #hotels
   width: 100%

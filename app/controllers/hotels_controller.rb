@@ -2,6 +2,7 @@ class HotelsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :load_owner
   load_and_authorize_resource
+  layout :determine_layout
   # GET /hotels
   # GET /hotels.json
   def index
@@ -87,5 +88,12 @@ class HotelsController < ApplicationController
   protected
   def load_owner
     @owner = current_user
+  end
+  def determine_layout
+    if request.xhr?
+      false
+    else
+      'application'
+    end
   end
 end

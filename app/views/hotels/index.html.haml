@@ -1,5 +1,8 @@
 - content_for :head do
   = stylesheet_link_tag 'hotels'
+  = javascript_include_tag 'hotel'
+  = javascript_include_tag "#{GoogleMapSettings.server}/maps/api/js?key=AIzaSyBrp5OKFAdzY1xre8m-Fbq3VuoswPv2Y7s&sensor=false"
+
 #hotels
   .content
     %h1 My Hotels
@@ -8,7 +11,7 @@
       .tabular_data
         .thead
           %h3.left= current_user.full_name
-          = link_to "Create Hotel", "#", :class => "right button"
+          = link_to "Create Hotel", "#", :class => "right button", :id => 'create_hotel_btn'
 
         %ul.tbody
           - @hotels.each do |hotel|

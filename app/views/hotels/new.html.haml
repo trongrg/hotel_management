@@ -1,9 +1,13 @@
-- content_for :head
+- content_for :head do
   = stylesheet_link_tag 'hotels'
-%h1 New hotel
+  = javascript_include_tag "#{GoogleMapSettings.server}/maps/api/js?key=AIzaSyBrp5OKFAdzY1xre8m-Fbq3VuoswPv2Y7s&sensor=false"
+  = javascript_include_tag 'hotel'
+
 
 = semantic_form_for @hotel do |f|
-  = render :partial => 'form_content', :locals => {:f => f}
-
-= render 'google_map'
-= link_to 'Back', hotels_path
+  .heading
+    %h1 Create New Hotel
+  %hr
+  .form_content
+    = render :partial => 'form_content', :locals => {:f => f}
+  = render 'google_map'
