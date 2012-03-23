@@ -19,6 +19,8 @@ GoogleMap.getLocation = () ->
   position = GoogleMap.marker.getPosition()
   $('#hotel_lat').val(position.lat())
   $('#hotel_lng').val(position.lng())
+  $("#hotel_lat").data("changed", true)
+  $("#hotel_lng").data("changed", true)
 
 GoogleMap.getLocationFromAddress = () ->
   address = $('#hotel_address1').val() + ', ' + $('#hotel_address2').val() + ', ' + $('#hotel_city').val() + ', ' + $('#hotel_state').val() + ', ' + $("#hotel_country option[value='"+$("#hotel_country").val()+"']").text()
