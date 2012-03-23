@@ -6,8 +6,10 @@ $(document).ready ()->
       type: 'GET',
       success: (html_response)->
         $.facebox(html_response)
+        $("form#new_hotel").validate()
         $("form#new_hotel").ajaxForm(
           dataType: 'json'
         )
+        $('select').chosen()
     })
   $('select').chosen()

@@ -14,4 +14,11 @@ en:
     account: "Account"
     room: "Room"
     furnishing: "Furnishing"
+  activerecord:
+    errors:
+      models:
+        hotel:
+          attributes:
+            phone_number:
+              phone_number: "is invalid"
 
