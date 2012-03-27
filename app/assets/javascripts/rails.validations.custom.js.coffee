@@ -14,5 +14,5 @@ $ ->
     form_element.removeClass 'valid', 700
 
   clientSideValidations.validators.local["phone_number"] = (element, options)->
-    if (!/^(\+\s?)?(\d+[\s]?\d+)+$/i.test(element.val()))
+    if (!/^(\(\d+\)|\+)?(\s|-|\.)?(\d+(\s|-|\.)?\d+)+(\sx\d+)?$/.test(element.val()))
       return options.message

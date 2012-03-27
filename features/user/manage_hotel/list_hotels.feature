@@ -20,8 +20,10 @@ Feature: user view hotel list
     When I follow "Next"
     Then I should see 5 hotels
 
+  @javascript
   Scenario: see 'Create Hotel' link
     When I go to the hotels page
     Then I should see "Create Hotel" link
     When I follow "Create Hotel"
-    Then I should be on the new hotel page
+    Then I should be on the hotels page
+    And I should see a create hotel popup dialog

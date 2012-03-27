@@ -1,4 +1,5 @@
 require 'machinist/active_record'
+require 'faker'
 
 User.blueprint do
   first_name { Faker::Name.first_name }

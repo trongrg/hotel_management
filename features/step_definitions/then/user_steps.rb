@@ -54,7 +54,7 @@ Then /^I should see (\d+) hotels$/ do |number|
   end
 end
 
-Then /^I should see (\d+) ((^hotel).+)$/ do |number, model|
+Then /^I should see (\d+) ((?!hotel).+)$/ do |number, model|
   within "table##{model.pluralize.gsub(' ', '_')} tbody" do
     page.all("tr").count.should == number.to_i
   end
@@ -69,4 +69,9 @@ end
 Then /^I should see the google map marker points to my hotel's location$/ do
   page.find_field("Lat").value.to_f.should be_within(0.001).of(page.evaluate_script("GoogleMap.marker.getPosition().lat()"))
   page.find_field("Lng").value.to_f.should be_within(0.001).of(page.evaluate_script("GoogleMap.marker.getPosition().lng()"))
+end
+
+Then /^I should see a create (#{model_names.join("|")}) popup dialog$/ do |model_name|
+  form = "#facebox form#new_#{model_name}"
+  page.should have_css form
 end

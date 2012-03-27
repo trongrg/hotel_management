@@ -39,6 +39,7 @@ group :test do
   gem "rspec-rails"
   gem "cucumber-rails", :require => false
   gem "capybara"
+  gem 'capybara-webkit'
   gem 'simplecov', :require => false
   gem 'database_cleaner'
   gem 'machinist'

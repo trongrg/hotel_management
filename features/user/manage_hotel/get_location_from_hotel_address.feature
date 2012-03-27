@@ -10,7 +10,7 @@ Feature: user get hotel's location from its address
   Scenario: get hotel's location from its address when create hotel
     When I go to the new hotel page
     And I fill in the hotel address
-    And I follow "Search on Google Map"
+    And I follow "Locate Hotel"
     Then the "Lat" field should have value
     And the "Lng" field should have value
 
@@ -18,6 +18,6 @@ Feature: user get hotel's location from its address
     And user "trongrg" has a hotel with name: "Thien An"
     When I go to the edit hotel page of hotel "Thien An"
     And I fill in the hotel address
-    And I follow "Search on Google Map"
+    And I follow "Locate Hotel"
     Then the "Lat" field should have value
     And the "Lng" field should have value

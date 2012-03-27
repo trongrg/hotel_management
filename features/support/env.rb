@@ -17,20 +17,20 @@ Spork.prefork do
   require 'cucumber/rails'
   require 'cucumber/rails/world'
 
-  Before '@javascript, @selenium, @no-txn' do
+  Before('@javascript', '@selenium', '@no-txn') do
     DatabaseCleaner.strategy = :truncation
   end
 
-  After '@javascript, @selenium, @no-txn' do
+  After('@javascript', '@selenium', '@no-txn') do
     DatabaseCleaner.clean_with :truncation
   end
 
-  Before '~@javascript', '~@selenium', '~@no-txn' do
+  Before('~@javascript', '~@selenium', '~@no-txn')do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
   end
 
-  After '~@javascript', '~@selenium', '~@no-txn' do
+  After('~@javascript', '~@selenium', '~@no-txn')do
     DatabaseCleaner.clean
   end
 
