@@ -24,7 +24,13 @@ end
 
 Then /^I should see a missing ([^']+)'s (.+) message$/ do |model, field|
   within "##{model.gsub(' ', '_')}_#{field.gsub(" ", "_")}_input" do
-    page.should have_content"can't be blank"
+    page.should have_content "can't be blank"
+  end
+end
+
+Then /^I should see a invalid ([^']+)'s (.+) message$/ do |model, field|
+  within "##{model.gsub(' ', '_')}_#{field.gsub(" ", "_")}_input" do
+    page.should have_content "is invalid"
   end
 end
 
@@ -48,15 +54,15 @@ Then /^I should see a successful ([^\s]+) (#{model_names.join("|")}|password|acc
   page.should have_content "#{object.humanize} has been #{action}d successfully."
 end
 
-Then /^I should see (\d+) hotels$/ do |number|
-  within "#hotels .tabular_data" do
-    page.all("ul.tbody>li").count.should == number.to_i
-  end
-end
-
-Then /^I should see (\d+) ((?!hotel).+)$/ do |number, model|
-  within "table##{model.pluralize.gsub(' ', '_')} tbody" do
-    page.all("tr").count.should == number.to_i
+Then /^I should see (\d+) (#{model_names.map(&:pluralize).join('|')})$/ do |number, model|
+  if model == 'hotels'
+    within "#hotels .tabular_data" do
+      page.all("ul.tbody>li").count.should == number.to_i
+    end
+  else
+    within "table##{model.pluralize.gsub(' ', '_')} tbody" do
+      page.all("tr").count.should == number.to_i
+    end
   end
 end
 
@@ -71,7 +77,25 @@ Then /^I should see the google map marker points to my hotel's location$/ do
   page.find_field("Lng").value.to_f.should be_within(0.001).of(page.evaluate_script("GoogleMap.marker.getPosition().lng()"))
 end
 
-Then /^I should see a create (#{model_names.join("|")}) popup dialog$/ do |model_name|
+Then /^I should (not )?see (a|the) create (#{model_names.join("|")}) popup dialog$/ do |negate, a_the, model_name|
   form = "#facebox form#new_#{model_name}"
-  page.should have_css form
+  if negate
+    begin
+      page.should have_no_css form
+    rescue
+      page.find(form).should_not be_visible
+    end
+  else
+    page.find(form).should be_visible
+  end
+end
+
+Then /^I should see the newly created (#{model_names.join('|')})$/ do |model|
+  if model == 'hotel'
+    within "#hotels .tabular_data" do
+      page.all("ul.tbody>li").count.should == 1
+    end
+  else
+    pending
+  end
 end

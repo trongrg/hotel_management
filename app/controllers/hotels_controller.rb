@@ -49,7 +49,10 @@ class HotelsController < ApplicationController
     respond_to do |format|
       if @hotel.save
         format.html { redirect_to hotel_path(@hotel), notice: t('record.created', :record => t('model.hotel')) }
-        format.json { render json: @hotel, status: :created, location: @hotel }
+        format.json do
+          json = { :result => @hotel , :notice => t('record.created', :record => t('model.hotel')) }
+          render json: json, status: :created, location: @hotel
+        end
       else
         format.html { render action: "new" }
         format.json { render json: @hotel.errors, status: :unprocessable_entity }

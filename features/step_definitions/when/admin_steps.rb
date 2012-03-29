@@ -31,7 +31,7 @@ When /^I create a new (#{model_names.join("|")}) without an? (.+)$/ do |model, f
   send("create_#{model}", send("valid_#{model}".to_sym).merge(field.gsub(' ', '_').to_sym => ""))
 end
 
-When /^I create a new (.+) with an invalid (.+)$/ do |model, field|
+When /^I create a new (#{model_names.join('|')}) with an invalid (.+)$/ do |model, field|
   send("create_#{model}", send("valid_#{model}".to_sym).merge(field.to_sym => "*#&"))
 end
 
