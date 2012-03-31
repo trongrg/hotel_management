@@ -2,7 +2,7 @@ module CapybaraStepHelper
   def valid_user
     @user ||= { :first_name => "Trong", :last_name => "Tran", :username => "trongtran",
       :email => "trongrg@gmail.com", :password => "please", :password_confirmation => "please",
-      :dob => "1988/10/15",
+      :dob => "1988/10/15", :roles => [ Role.find_or_create_by_name("Hotel Owner").name ],
       :phone_number => "01694622095", :address1 => "702 Nguyen Van Linh", :address2 => "District 7",
       :state => "Ho Chi Minh City", :country => "Viet Nam", :zip_code => "12345"
     }
@@ -33,6 +33,8 @@ module CapybaraStepHelper
         select day, :from => 'user_dob_3i'
       when "Room type"
         select value, :from => field
+      when "Roles"
+        value.each { |v| select v, :from => field }
       else
         fill_in field, :with => value
       end

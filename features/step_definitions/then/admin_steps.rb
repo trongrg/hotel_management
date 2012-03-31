@@ -11,3 +11,7 @@ Then /^I should see the info of user "([^"]*)"$/ do |username|
     page.should have_content user.send(attr)
   end
 end
+
+Then /^the new user is a (.+)$/ do |role|
+  User.last.roles.map(&:name).should include role.titleize
+end

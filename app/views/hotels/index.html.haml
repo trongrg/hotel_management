@@ -25,6 +25,7 @@
                 %li= link_to "Delete", hotel, :confirm => "You are about to permanently delete hotel \"#{hotel.name}\", are you sure you want to do that?", :method => :delete, :class => "delete_link"
               %ul.status
                 %li 1 staff
+                %li= "#{hotel.room_types.count} room types"
                 %li= "#{hotel.rooms.count} rooms"
 
         %ul.template
@@ -38,6 +39,7 @@
               %li= link_to "Delete", "#", :confirm => "You are about to permanently delete hotel \"{hotel_name}\", are you sure you want to do that?", :method => :delete, :class => "delete_link"
             %ul.status
               %li 0 staff
+              %li 0 room types
               %li 0 rooms
       %br
       = paginate @hotels

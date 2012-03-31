@@ -8,9 +8,9 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation,
     :remember_me, :username, :first_name, :last_name,
     :phone_number, :address1, :address2, :state, :country, :zip_code, :dob, :city,
-    :roles
+    :roles, :role_ids
 
-  validates :username, :dob, :presence => true
+  validates :username, :dob, :roles, :role_ids, :presence => true
   validates :username, :format => { :with => /^[\w\.]+$/, :message => "is invalid. Only letters, digits, periods and underscores are allowed." }
 
   has_and_belongs_to_many :roles

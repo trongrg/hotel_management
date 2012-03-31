@@ -5,6 +5,7 @@
     = f.input :username
     = f.input :password
     = f.input :password_confirmation
+    = f.input :roles, :as => :select, :collection => Role.all
 
   = f.inputs :name => "Personal Info" do
     = f.input :email, :as => :email
