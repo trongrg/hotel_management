@@ -6,15 +6,17 @@
     = csrf_meta_tags
     = yield :head
   %body
-    #flash
-      - flash.each do |type, message|
-        %div{ :id => type }
-          = message
-    #header
-      = render 'layouts/application/header'
-    #main
-      .container
-        = yield
+    #wrapper
+      #flash
+        - flash.each do |type, message|
+          %div{ :id => type }
+            = message
+      #header
+        = render 'layouts/application/header'
+      #main
+        .container
+          = yield
+      .push
     #footer
       .container
         = render 'layouts/application/footer'
