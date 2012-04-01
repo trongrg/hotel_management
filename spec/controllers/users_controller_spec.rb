@@ -8,7 +8,7 @@ describe UsersController do
       @staff = User.make!(:staff)
       @valid_attrs = { :first_name => "Trong", :last_name => "Tran", :username => "trongtran",
         :email => "trongrg@gmail.com", :password => "please", :password_confirmation => "please",
-        :dob => {:"1i" => "1988", :"2i" => "December", :"3i" => "15"},
+        :dob => {:"1i" => "1988", :"2i" => "December", :"3i" => "15"}, :role_ids => [ Role.find_or_create_by_name("Staff").id ],
         :phone_number => "01694622095", :address1 => "702 Nguyen Van Linh", :address2 => "District 7",
         :state => "Ho Chi Minh City", :country => "Viet Nam", :zip_code => "12345"
       }

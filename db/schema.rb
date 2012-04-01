@@ -11,15 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120314211536) do
+ActiveRecord::Schema.define(:version => 20120331124330) do
 
   create_table "furnishings", :force => true do |t|
     t.string   "name"
-    t.float    "price"
     t.string   "description"
     t.integer  "room_type_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.integer  "price_in_cents", :default => 0, :null => false
+    t.string   "currency",                      :null => false
   end
 
   create_table "hotels", :force => true do |t|
@@ -51,13 +52,13 @@ ActiveRecord::Schema.define(:version => 20120314211536) do
 
   create_table "room_types", :force => true do |t|
     t.string   "name"
-    t.float    "price"
     t.string   "currency"
     t.text     "description"
     t.string   "image"
     t.integer  "hotel_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "price_in_cents", :default => 0, :null => false
   end
 
   create_table "rooms", :force => true do |t|

@@ -1,6 +1,7 @@
 class RoomTypesController < ApplicationController
   before_filter :authenticate_user!
   before_filter :load_hotel
+  before_filter :load_currencies
   load_and_authorize_resource
   # GET /room_types
   # GET /room_types.json

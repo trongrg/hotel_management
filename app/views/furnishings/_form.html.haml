@@ -1,6 +1,8 @@
 = f.inputs do
   = f.input :name
-  = f.input :price
+  = f.semantic_fields_for :price do |f|
+    = f.input :currency, :label => "Currency", :as => :select, :collection => @currencies
+    = f.input :dollars, :label => "Price"
   = f.input :description
 
 = f.actions do

@@ -16,8 +16,3 @@ Feature: user creates room type
     When I go to the new hotel room type page of hotel "Thien An"
     And I create a new room type without a name
     Then I should see a missing room type's name message
-
-  Scenario: create room type without a price
-    When I go to the new hotel room type page of hotel "Thien An"
-    And I create a new room type without a price
-    Then I should see a missing room type's price message

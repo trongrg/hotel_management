@@ -17,8 +17,3 @@ Feature: hotel owner create furnishing
     When I go to the new room type furnishing page of room type "Deluxe"
     And I create a new furnishing without a name
     Then I should see a missing furnishing's name message
-
-  Scenario: create furnishing without a price
-    When I go to the new room type furnishing page of room type "Deluxe"
-    And I create a new furnishing without a price
-    Then I should see a missing furnishing's price message

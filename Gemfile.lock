@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/RubyMoney/google_currency.git
+  revision: 640c8b42b089d68f3f62d506d1d73df11bdf5c28
+  specs:
+    google_currency (2.0.2)
+      money (~> 4)
+      multi_json (>= 1.0.0)
+
+GIT
   remote: git://github.com/sporkrb/spork.git
   revision: 5b550b368621419f565959ccda13a3dc37b55bc7
   specs:
@@ -133,6 +141,9 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.17.2)
+    money (4.0.2)
+      i18n (~> 0.4)
+      json
     multi_json (1.1.0)
     mysql2 (0.3.11)
     nokogiri (1.5.1)
@@ -246,6 +257,7 @@ DEPENDENCIES
   devise
   faker
   formtastic
+  google_currency!
   guard
   guard-cucumber
   guard-rspec
@@ -255,6 +267,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   machinist
+  money
   mysql2
   pg
   rails (= 3.2.2)

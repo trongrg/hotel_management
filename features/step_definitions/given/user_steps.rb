@@ -3,12 +3,12 @@ Given /^I am not signed in$/ do
 end
 
 Given /^I am signed in$/ do
-  User.make!(valid_user)
+  User.make!(valid_user.except(:roles))
   sign_in valid_user
 end
 
 Given /^I exist as a user$/ do
-  User.make!(valid_user)
+  User.make!(valid_user.except(:roles))
 end
 
 Given /^I do not exist as a user$/ do

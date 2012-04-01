@@ -1,6 +1,7 @@
 class FurnishingsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :load_room_type
+  before_filter :load_currencies
   load_and_authorize_resource
   # GET /furnishings
   # GET /furnishings.json

@@ -3,26 +3,26 @@ When /^I sign out$/ do
 end
 
 When /^I sign up with valid user data$/ do
-  sign_up valid_user
+  sign_up valid_user.except(:roles)
 end
 
 When /^I sign up with an invalid (.+)$/ do |field|
-  user = valid_user.merge(field.gsub(" ", "_").to_sym => "#*$")
+  user = valid_user.except(:roles).merge(field.gsub(" ", "_").to_sym => "#*$")
   sign_up user
 end
 
 When /^I sign up with a short password$/ do
-  user = valid_user.merge(:password => "1")
+  user = valid_user.merge(:password => "1").except(:roles)
   sign_up user
 end
 
 When /^I sign up without an? (.+)$/ do |field|
-  user = valid_user.merge(field.to_sym => "")
+  user = valid_user.merge(field.to_sym => "").except(:roles)
   sign_up user
 end
 
 When /^I sign up with a mismatched password confirmation$/ do
-  user = valid_user.merge(:password_confirmation => "please123")
+  user = valid_user.merge(:password_confirmation => "please123").except(:roles)
   sign_up user
 end
 

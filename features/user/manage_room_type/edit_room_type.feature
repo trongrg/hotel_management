@@ -22,8 +22,3 @@ Feature: user edit room type
     When I go to the edit hotel room type page of hotel "Thien An", room type "Deluxe"
     And I edit the room type without a name
     Then I should see a missing room type's name message
-
-  Scenario: Edit room type without price
-    When I go to the edit hotel room type page of hotel "Thien An", room type "Deluxe"
-    And I edit the room type without a price
-    Then I should see a missing room type's price message

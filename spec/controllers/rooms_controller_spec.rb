@@ -143,7 +143,7 @@ describe RoomsController do
 
   context "with unauthorized user" do
     before do
-      sign_in User.make!
+      sign_in User.make!(:staff)
     end
     describe "GET index" do
       before do

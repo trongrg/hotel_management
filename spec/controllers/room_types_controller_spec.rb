@@ -10,7 +10,7 @@ describe RoomTypesController do
       end
 
       def valid_attributes
-        {:name => "Deluxe", :price => 199, :currency => "USD", :hotel_id => @hotel.id}
+        {:name => "Deluxe", :price_in_cents => 19900, :currency => "USD", :hotel_id => @hotel.id}
       end
 
       describe "GET index" do
