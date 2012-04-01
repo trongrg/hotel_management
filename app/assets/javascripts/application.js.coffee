@@ -6,6 +6,7 @@
 //= require rails.validations.custom
 
 $(document).ready ()->
+  $("select").chosen()
   $("ul.nav_links").superfish
     hoverClass: 'active',
     delay: 800,
