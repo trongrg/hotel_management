@@ -1,0 +1,7 @@
+%h2 Send invitation
+= semantic_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post} do |f|
+  = devise_error_messages!
+  = f.input :email
+  = f.input :'role_ids][', :as => :hidden, :value => Role.find_or_create_by_name("Staff").id
+  = f.actions do
+    = f.action :submit, :label => "Send an invitation"

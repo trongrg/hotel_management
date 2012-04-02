@@ -12,6 +12,6 @@ Then /^I should see the info of user "([^"]*)"$/ do |username|
   end
 end
 
-Then /^the new user is a (.+)$/ do |role|
+Then /^the new user should be a (.+)$/ do |role|
   User.last.roles.map(&:name).should include role.titleize
 end

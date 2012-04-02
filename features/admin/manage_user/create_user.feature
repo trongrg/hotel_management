@@ -21,7 +21,7 @@ Feature: admin edit user
   Scenario: create a user
     When I create a new user
     Then I should see a successful create user message
-    And the new user is a hotel owner
+    And the new user should be a hotel owner
 
   Scenario: create a user without a password
     When I create a new user without a password

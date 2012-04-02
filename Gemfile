@@ -14,6 +14,7 @@ gem "kaminari"
 gem 'client_side_validations'
 gem 'money'
 gem "google_currency", :git => 'git://github.com/RubyMoney/google_currency.git'
+gem 'devise_invitable'
 
 group :production do
   gem 'pg'

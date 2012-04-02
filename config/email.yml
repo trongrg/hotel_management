@@ -1,0 +1,14 @@
+development:
+  :address: smtp.gmail.com
+  :port: 587
+  :authentication: plain
+  :user_name: trongrg@gmail.com
+  :password: Tr6ngrgaj
+  :enable_starttls_auto: true
+production:
+  :address: smtp.gmail.com
+  :port: 587
+  :authentication: plain
+  :user_name: trongrg@gmail.com
+  :password: Tr6nrgaj
+  :enable_starttls_auto: true

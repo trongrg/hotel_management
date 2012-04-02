@@ -99,3 +99,15 @@ Then /^I should see the newly created (#{model_names.join('|')})$/ do |model|
     pending
   end
 end
+
+Then /^I should see a successful invitation message$/ do
+  page.should have_content "An invitation email has been sent to "
+end
+
+Then /^an invitation email should be sent to "([^"]*)"$/ do |email|
+  ActionMailer::Base.deliveries.last.to[0].should == email
+end
+
+Then /^I should see a successful update info message$/ do
+  page.should have_content 'Your info was updated successfully. You are now signed in.'
+end

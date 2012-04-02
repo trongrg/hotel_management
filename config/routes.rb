@@ -8,8 +8,10 @@ HotelManagement::Application.routes.draw do
     resources :furnishings
   end
 
-  devise_for :users, :skip => [:sessions, :registrations],
-    :controller => {:sessions => "sessions", :registrations => "registrations"}
+  devise_for :users,
+    :skip => [:sessions, :registrations],
+    :controllers => {:sessions => "sessions", :registrations => "registrations", :invitations => "invitations"}
+
   devise_scope :user do
     get '/sign_in' => "sessions#new", :as => :new_user_session
     post '/sign_in' => "sessions#create", :as => :user_session

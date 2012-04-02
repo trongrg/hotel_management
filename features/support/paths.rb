@@ -15,6 +15,18 @@ module NavigationHelpers
         model.titleize.gsub(' ', '').constantize.send(find_method_for(model), object_name)
       end
       self.send(path_components.join("_").to_sym, *objects)
+    when /^the (.+) page with invitation token of user "(.+)"$/
+      path_components = $1.split(" ").push("path")
+      invitation_token = User.find_by_email($2).invitation_token
+      send(path_components.join("_"), :invitation_token => invitation_token)
+    when /^the (.+) page with (.+)$/
+      path_components = $1.split(" ").push("path")
+      query_string = $2.split(", ")
+      query_string = query_string.map do |query|
+        key, value = query.split("\"").map { |e| e.gsub("\"", "").strip }
+        Hash[key.gsub(" ", "_").to_sym => value]
+      end
+      self.send(path_components.join("_").to_sym, *query_string)
     else
       begin
         page_name =~ /^the (.*) page$/

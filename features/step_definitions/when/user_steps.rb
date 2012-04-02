@@ -105,3 +105,13 @@ end
 When /^I fill in the hotel address$/ do
   fill_fields(:address1 => "702 Nguyen Van Linh Street", :address2 => "District 7", :city => "Ho Chi Minh City", :country => "Viet Nam")
 end
+
+When /^I send an invitation to "([^"]*)"$/ do |email|
+  fill_fields({:email => email})
+  click_on "Send an invitation"
+end
+
+When /^I update my info/ do
+  fill_fields valid_user.except(:email, :roles)
+  click_on "Update info"
+end
