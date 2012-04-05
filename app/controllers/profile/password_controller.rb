@@ -1,5 +1,6 @@
 class Profile::PasswordController < ApplicationController
   before_filter :authenticate_user!
+  layout 'application'
   def edit
     @user = current_user
   end
