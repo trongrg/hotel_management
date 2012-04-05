@@ -14,8 +14,8 @@ describe RegistrationsController do
       get('/profile').should route_to("registrations#edit")
     end
 
-    it "routes PUT '/sign_up' to 'registrations#update'" do
-      put('/sign_up').should route_to("registrations#update")
+    it "routes PUT '/profile' to 'registrations#update'" do
+      put('/profile').should route_to("registrations#update")
     end
   end
 end
