@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe UsersController do
+  context "not signed in user" do
+    it_should_only_allow_access_to_signed_in_user([:index, :show, :new, :create, :edit, :update, :destroy])
+  end
+  it_should_only_allow_access_to(:show, :all)
+  it_should_only_allow_access_to([:index, :new, :create, :edit, :update, :destroy], :admin)
   context "with signed in admin" do
     before do
       @admin = User.make!(:admin)
@@ -162,174 +167,6 @@ describe UsersController do
         delete :destroy, :id => @staff.id
         response.should redirect_to users_path
       end
-    end
-  end
-
-  shared_examples_for "not authorize" do
-    it "redirects to sign in page" do
-      response.should redirect_to new_user_session_path
-    end
-
-    it "shows not authorize message" do
-      flash[:alert].should == "You need to sign in or sign up before continuing."
-    end
-  end
-
-  shared_examples_for "not have permission" do
-    it "redirects to dashboard page" do
-      response.should redirect_to dashboard_path
-    end
-
-    it "shows not have permission message" do
-      flash[:alert].should == "You are not authorized to access this page."
-    end
-  end
-
-  context "with not signed in user" do
-    describe "GET 'index'" do
-      before do
-        get :index
-      end
-
-      it_should_behave_like "not authorize"
-    end
-
-    describe "GET 'show'" do
-      before do
-        get :show, :id => 1
-      end
-
-      it_should_behave_like "not authorize"
-    end
-
-    describe "GET 'new'" do
-      before do
-        get :new
-      end
-
-      it_should_behave_like "not authorize"
-    end
-
-    describe "POST 'create'" do
-      before do
-        post :create, :user => @valid_attrs
-      end
-
-      it_should_behave_like "not authorize"
-    end
-
-    describe "GET 'edit'" do
-      before do
-        get :edit, :id => 1
-      end
-
-      it_should_behave_like "not authorize"
-    end
-
-    describe "PUT 'update'" do
-      before do
-        put :update, :id => 1
-      end
-
-      it_should_behave_like "not authorize"
-    end
-
-    describe "DELETE 'destroy'" do
-      before do
-        delete :destroy, :id => 1
-      end
-
-      it_should_behave_like "not authorize"
-    end
-  end
-
-  context "with signed in user" do
-    before do
-      @user = User.make!(:staff)
-      @another_user = User.make!(:staff)
-      @valid_attrs = { :first_name => "Trong", :last_name => "Tran", :username => "trongtran",
-        :email => "trongrg@gmail.com", :password => "please", :password_confirmation => "please",
-        :dob => {:"1i" => "1988", :"2i" => "December", :"3i" => "15"},
-        :phone_number => "01694622095", :address1 => "702 Nguyen Van Linh", :address2 => "District 7",
-        :state => "Ho Chi Minh City", :country => "Viet Nam", :zip_code => "12345"
-      }
-      sign_in @user
-    end
-
-    describe "GET 'index'" do
-      before do
-        get :index
-      end
-
-      it_should_behave_like "not have permission"
-    end
-
-    describe "GET 'show'" do
-      context "his/her page" do
-        before do
-          get :show, :id => @user.id
-        end
-
-        it "returns http success" do
-          response.should be_success
-        end
-
-        it "renders 'show' template" do
-          response.should render_template('show')
-        end
-
-        it "assigns the user as @user" do
-          assigns(:user).should == @user
-        end
-      end
-
-      context "another user's page" do
-        before do
-          get :show, :id => @another_user.id
-        end
-
-        it_should_behave_like "not have permission"
-      end
-    end
-
-    describe "GET 'new'" do
-      before do
-        get :new
-      end
-
-      it_should_behave_like "not have permission"
-    end
-
-    describe "POST 'create'" do
-      before do
-        post :create, :user => {}
-      end
-
-      it_should_behave_like "not have permission"
-    end
-
-    describe "GET 'edit'" do
-      before do
-        get :edit, :id => @user.id
-      end
-
-      it_should_behave_like "not have permission"
-    end
-
-    describe "PUT 'update'" do
-      before do
-        put :update, :id => @another_user.id, :user => {}
-      end
-
-      it_should_behave_like "not have permission"
-    end
-
-    describe "DELETE 'destroy'" do
-      before do
-        delete :destroy, :id => @another_user.id
-      end
-
-      it_should_behave_like "not have permission"
     end
   end
 end

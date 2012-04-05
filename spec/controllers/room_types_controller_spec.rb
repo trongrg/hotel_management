@@ -1,6 +1,13 @@
 require 'spec_helper'
 
 describe RoomTypesController do
+  context "not signed in user" do
+    it_should_only_allow_access_to_signed_in_user([:index, :show, :new, :create, :edit, :update, :destroy])
+  end
+  it_should_only_allow_access_to([:index, :show, :new, :create, :edit, :update, :destroy], [:admin, :hotel_owner]) do |controller|
+    controller.stub(:load_hotel)
+  end
+
   context "with signed in user" do
     context "which has permission" do
       before do
@@ -139,65 +146,6 @@ describe RoomTypesController do
           response.should redirect_to(hotel_room_types_url)
         end
       end
-    end
-
-    context "which does not have permission" do
-      before do
-        @owner = User.make!(:hotel_owner)
-        @hotel = Hotel.make!
-        @room_type = RoomType.make!(:hotel => @hotel)
-        sign_in @owner
-      end
-
-      describe "GET show" do
-        before { get :show, :id => @room_type.id, :hotel_id => @hotel.id }
-        it_should_behave_like "not authorized"
-      end
-
-      describe "Get edit" do
-        before { get :edit, :hotel_id => @hotel.id, :id => @room_type.id }
-        it_should_behave_like "not authorized"
-      end
-
-      describe "PUT update" do
-        before { put :update, :hotel_id => @hotel.id, :id => @room_type.id, :room_type => {} }
-        it_should_behave_like "not authorized"
-      end
-
-      describe "DELETE destroy" do
-        before { delete :destroy, :hotel_id => @hotel.id, :id => @room_type.id }
-        it_should_behave_like "not authorized"
-      end
-    end
-  end
-  context "with not signed in user" do
-    describe "GET index" do
-      before { get :index, :hotel_id => 1 }
-      it_should_behave_like "not signed in"
-    end
-    describe "GET show" do
-      before { get :show, :id => 1, :hotel_id => 1 }
-      it_should_behave_like "not signed in"
-    end
-    describe "GET new" do
-      before { get :new, :hotel_id => 1 }
-      it_should_behave_like "not signed in"
-    end
-    describe "POST create" do
-      before { post :create, :hotel_id => 1, :room_type => {} }
-      it_should_behave_like "not signed in"
-    end
-    describe "Get edit" do
-      before { get :edit, :hotel_id => 1, :id => 1 }
-      it_should_behave_like "not signed in"
-    end
-    describe "PUT update" do
-      before { put :update, :hotel_id => 1, :id => 1, :room_type => {} }
-      it_should_behave_like "not signed in"
-    end
-    describe "DELETE destroy" do
-      before { delete :destroy, :hotel_id => 1, :id => 1 }
-      it_should_behave_like "not signed in"
     end
   end
 end

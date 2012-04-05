@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe FurnishingsController do
+  context "not signed in user" do
+    it_should_only_allow_access_to_signed_in_user([:index, :show, :new, :create, :edit, :update, :destroy])
+  end
+  it_should_only_allow_access_to([:index, :show, :new, :create, :edit, :update, :destroy], [:admin, :hotel_owner]) do |controller|
+    controller.stub(:load_room_type)
+  end
   context "with signed in user" do
     context "which has permission" do
       before(:each) do
@@ -142,65 +148,6 @@ describe FurnishingsController do
         end
       end
 
-    end
-    context "which does not have permission" do
-      before do
-        @owner = User.make!(:hotel_owner)
-        @hotel = Hotel.make!
-        @room_type = RoomType.make!(:hotel => @hotel)
-        @furnishing = Furnishing.make!(:room_type => @room_type)
-        sign_in @owner
-      end
-
-      describe "GET show" do
-        before { get :show, :room_type_id => @room_type.id, :id => @furnishing }
-        it_should_behave_like "not authorized"
-      end
-
-      describe "Get edit" do
-        before { get :edit, :id => @furnishing.id, :room_type_id => @room_type.id }
-        it_should_behave_like "not authorized"
-      end
-
-      describe "PUT update" do
-        before { put :update, :id => @furnishing.id, :room_type_id => @room_type.id, :room_type => {} }
-        it_should_behave_like "not authorized"
-      end
-
-      describe "DELETE destroy" do
-        before { delete :destroy, :id => @furnishing.id, :room_type_id => @room_type.id }
-        it_should_behave_like "not authorized"
-      end
-    end
-  end
-  context "with not signed in user" do
-    describe "GET index" do
-      before { get :index, :room_type_id => 1 }
-      it_should_behave_like "not signed in"
-    end
-    describe "GET show" do
-      before { get :show, :id => 1, :room_type_id => 1 }
-      it_should_behave_like "not signed in"
-    end
-    describe "GET new" do
-      before { get :new, :room_type_id => 1 }
-      it_should_behave_like "not signed in"
-    end
-    describe "POST create" do
-      before { post :create, :room_type_id => 1, :furnishing => {} }
-      it_should_behave_like "not signed in"
-    end
-    describe "Get edit" do
-      before { get :edit, :room_type_id => 1, :id => 1 }
-      it_should_behave_like "not signed in"
-    end
-    describe "PUT update" do
-      before { put :update, :room_type_id => 1, :id => 1, :furnishing => {} }
-      it_should_behave_like "not signed in"
-    end
-    describe "DELETE destroy" do
-      before { delete :destroy, :room_type_id => 1, :id => 1 }
-      it_should_behave_like "not signed in"
     end
   end
 end

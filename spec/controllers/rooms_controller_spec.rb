@@ -1,6 +1,13 @@
 require 'spec_helper'
 
 describe RoomsController do
+  context "not signed in user" do
+    it_should_only_allow_access_to_signed_in_user([:index, :show, :new, :create, :edit, :update, :destroy])
+  end
+  it_should_only_allow_access_to([:index, :show, :new, :create, :edit, :update, :destroy], [:admin, :hotel_owner]) do |controller|
+    controller.stub(:load_hotel)
+  end
+
   def valid_attributes
     {:number => "101", :room_type_id => room_type.to_param}
   end
@@ -138,133 +145,6 @@ describe RoomsController do
         delete :destroy, {:id => room.to_param, :hotel_id => hotel.to_param}
         response.should redirect_to(hotel_rooms_url)
       end
-    end
-  end
-
-  context "with unauthorized user" do
-    before do
-      sign_in User.make!(:staff)
-    end
-    describe "GET index" do
-      before do
-        get :index, :hotel_id => hotel.to_param
-      end
-
-      it_should_behave_like "not authorized"
-    end
-
-    describe "GET new" do
-      before do
-        get :new, :hotel_id => hotel.to_param
-      end
-
-      it_should_behave_like "not authorized"
-    end
-
-    describe "POST create" do
-      before do
-        post :create, :hotel_id => hotel.to_param, :room => valid_attributes
-      end
-
-      it_should_behave_like "not authorized"
-    end
-
-    describe "GET edit" do
-      before do
-        room = Room.create! valid_attributes
-        get :edit, :hotel_id => hotel.to_param, :id => room.to_param
-      end
-
-      it_should_behave_like "not authorized"
-    end
-
-    describe "PUT update" do
-      before do
-        room = Room.create! valid_attributes
-        put :update, :hotel_id => hotel.to_param, :room => valid_attributes, :id => room.to_param
-      end
-
-      it_should_behave_like "not authorized"
-    end
-
-    describe "GET show" do
-      before do
-        room = Room.create! valid_attributes
-        get :show, :hotel_id => hotel.to_param, :id => room.to_param
-      end
-
-      it_should_behave_like "not authorized"
-    end
-
-    describe "DELETE destroy" do
-      before do
-        room = Room.create! valid_attributes
-        get :index, :hotel_id => hotel.to_param, :id => room.to_param
-      end
-
-      it_should_behave_like "not authorized"
-    end
-  end
-
-  context "with not signed in user" do
-    describe "GET index" do
-      before do
-        get :index, :hotel_id => hotel.to_param
-      end
-
-      it_should_behave_like "not signed in"
-    end
-
-    describe "GET new" do
-      before do
-        get :new, :hotel_id => hotel.to_param
-      end
-
-      it_should_behave_like "not signed in"
-    end
-
-    describe "POST create" do
-      before do
-        post :create, :hotel_id => hotel.to_param, :room => valid_attributes
-      end
-
-      it_should_behave_like "not signed in"
-    end
-
-    describe "GET edit" do
-      before do
-        room = Room.create! valid_attributes
-        get :edit, :hotel_id => hotel.to_param, :id => room.to_param
-      end
-
-      it_should_behave_like "not signed in"
-    end
-
-    describe "PUT update" do
-      before do
-        room = Room.create! valid_attributes
-        put :update, :hotel_id => hotel.to_param, :room => valid_attributes, :id => room.to_param
-      end
-
-      it_should_behave_like "not signed in"
-    end
-
-    describe "GET show" do
-      before do
-        room = Room.create! valid_attributes
-        get :show, :hotel_id => hotel.to_param, :id => room.to_param
-      end
-
-      it_should_behave_like "not signed in"
-    end
-
-    describe "DELETE destroy" do
-      before do
-        room = Room.create! valid_attributes
-        get :index, :hotel_id => hotel.to_param, :id => room.to_param
-      end
-
-      it_should_behave_like "not signed in"
     end
   end
 end
