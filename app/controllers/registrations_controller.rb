@@ -1,5 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
-  layout 'guess'
+  layout :determine_layout
 
   def new
     super
@@ -27,6 +27,15 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   protected
+  def determine_layout
+    case action_name
+    when 'new'
+      'guess'
+    when 'edit'
+      'application'
+    end
+
+  end
   def after_update_path_for(resource)
     dashboard_path
   end
