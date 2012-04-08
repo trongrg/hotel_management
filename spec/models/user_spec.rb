@@ -11,6 +11,7 @@ describe User do
   it { should have_and_belong_to_many :roles }
   it { should have_many :invitations }
   it { should have_many :hotels }
+  it { should have_many :working_hotels }
 
   it "validates confirmation of password" do
     subject.password_confirmation = "123"
@@ -49,6 +50,13 @@ describe User do
   describe "#full_name" do
     it "returns the full_name of user" do
       subject.full_name.should == subject.first_name + " " + subject.last_name
+    end
+  end
+
+  describe "#role_names" do
+    it "returns an array of role names" do
+      subject.roles = [Role.find_by_name("Admin"), Role.find_by_name("Hotel Owner")]
+      subject.role_names.should == ["Admin", "Hotel Owner"]
     end
   end
 end

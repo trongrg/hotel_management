@@ -6,6 +6,14 @@ body
   font-size: 100%
   font-family: 'Helvetica Neue', Helvetica, san-serif
   //background: #F0F6FC
+  h1, h2, h3, h4, h5, h6
+    font-weight: bold
+  h1
+    font-size: 60px
+  h2
+    font-size: 40px
+  h3
+    font-size: 30px
   select
     min-width: 100px
   .content
@@ -27,6 +35,27 @@ body
     width: 940px
     padding: 10px
     margin: auto
+  .section
+    margin-bottom: 15px
+    background: white
+    border: 1px solid #E9E9E9
+    padding: 10px 20px 10px
+    +clearfix
+    .sub_section
+      margin: 10px auto
+      background: #F5F6F7
+      border: 1px #DAD5D6
+      color: black
+      border-top: 1px solid rgba(204, 204, 204, 0.7)
+      border-bottom: 1px solid rgba(204, 204, 204, 0.7)
+      padding: 10px
+      +clearfix
+  .row
+    +clearfix
+    line-height: 20px
+    margin-bottom: 10px
+  .property
+    width: 30%
   form.formtastic
     li.input
       input.valid

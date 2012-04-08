@@ -1,0 +1,27 @@
+.section
+  %h3 #{@staff_member.full_name}
+  .sub_section
+    .row
+      .left.property Username:
+      .left= @staff_member.username
+    .row
+      .left.property Full name:
+      .left= @staff_member.full_name
+    .row
+      .left.property Email:
+      .left= @staff_member.email
+    .row
+      .left.property Date of birth:
+      .left= @staff_member.dob.strftime("%B %d, %Y")
+    .row
+      .left.property Phone number:
+      .left= @staff_member.phone_number
+    .row
+      .left.property Address:
+      .left= @staff_member.address
+    .row
+      .left.property Working on:
+      .left
+        - @staff_member.working_hotels.each do |hotel|
+          = succeed(', ') do
+            = link_to hotel.name, hotel

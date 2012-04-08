@@ -6,6 +6,7 @@ en:
     updated: "%{record} has been updated successfully."
     created: "%{record} has been created successfully."
     deleted: "%{record} has been deleted successfully."
+    removed: "%{record} has been removed successfully."
   model:
     hotel: "Hotel"
     user: "User"
@@ -14,6 +15,7 @@ en:
     account: "Account"
     room: "Room"
     furnishing: "Furnishing"
+    staff_member: "Staff member"
   activerecord:
     errors:
       models:

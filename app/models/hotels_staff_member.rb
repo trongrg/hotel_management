@@ -1,0 +1,2 @@
+class HotelsStaffMember < HotelsUser
+end

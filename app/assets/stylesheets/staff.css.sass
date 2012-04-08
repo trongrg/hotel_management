@@ -1,0 +1,72 @@
+@import compass
+@import sassy-buttons
+#staff
+  width: 100%
+  h1
+    font-size: 30px
+    height: 60px
+    line-height: 60px
+  .tabular_data
+    .full_name, .email, .username, .actions, .roles
+      width: 20%
+    .thead
+      height: 30px
+      line-height: 30px
+      +linear-gradient(#DFE1E2, #EFEFEF)
+      +box-shadow(0 1px 2px rgba(0,0,0,0.37))
+      border-bottom: 1px solid #EDEDED
+      font-weight: bold
+      text-transform: uppercase
+      color: #5E6469
+      +border-top-radius(5px)
+      +text-shadow(white 0 1px 0)
+      padding: 5px 15px
+      z-index: 10
+      position: relative
+      li
+        float: left
+      .button
+        float: left
+        text-decoration: none
+        +sassy-button('simple', 5px, 90%, #ccc, #aaa, #fff, "inset")
+        border: 1px solid #888
+        +box-shadow(0 0 3px #888)
+    ul.tbody
+      >li
+        padding: 15px 15px
+        font-size: 12px
+        color: #666
+        background-color: #F2F2F2
+        border-top: 1px solid white
+        border-bottom: 1px solid #E3E3E3
+        border-left: 1px solid #DDD
+        border-right: 1px solid #DDD
+        line-height: 16px
+        .details
+          float: left
+          width: 100%
+          +clearfix
+          li
+            float: left
+            font-size: 14px
+        .actions
+          font-weight: bold
+          li
+            float: left
+            margin-right: 10px
+        ul.status
+          display: block
+          float: right
+          margin-right: 30px
+          li
+            float: left
+            margin-right: 30px
+
+        &:hover
+          background: white
+          ul.actions
+            display: block
+          ul.status
+            display: none
+        &:last-child
+          +border-bottom-radius(10px)

@@ -21,7 +21,7 @@
                 %li= link_to "Overview", "#"
                 %li= link_to "Manage", "#"
                 %li= link_to "Edit", edit_hotel_path(hotel), :class => "edit_link"
-                %li= link_to "Staff", "#"
+                %li= link_to "Staff", hotel_staff_index_path(hotel)
                 %li= link_to "Delete", hotel, :confirm => "You are about to permanently delete hotel \"#{hotel.name}\", are you sure you want to do that?", :method => :delete, :class => "delete_link"
               %ul.status
                 %li 1 staff

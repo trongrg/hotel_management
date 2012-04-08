@@ -8,6 +8,8 @@ describe Hotel do
   it { should belong_to :owner }
   it { should have_many :room_types }
   it { should have_many :rooms }
+  it { should have_many :staff_members }
+  it { should have_many :hotels_staff_members }
 
   it "has VN as the default country" do
     hotel = Hotel.new

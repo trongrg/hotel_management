@@ -27,6 +27,7 @@ class Ability
     user ||= User.new
     if user.role? :admin
       can :manage, :all
+      can :manage, :staff
     elsif user.role? :hotel_owner
       can :manage, Hotel, :owner_id => user.id
       can :manage, RoomType do |room_type|
@@ -38,9 +39,8 @@ class Ability
       can :manage, Furnishing do |furnishing|
         user.hotels.map(&:room_types).flatten.include?(furnishing.room_type) || furnishing.room_type.blank?
       end
-      can :show, User, :id => user.id
-    elsif user.role? :staff
-      can :show, User, :id => user.id
+      can :manage, :staff
     end
+    can :show, User, :id => user.id
   end
 end

@@ -50,7 +50,7 @@ Then /^I see an invalid sign in message$/ do
   page.should have_content "Invalid email or password."
 end
 
-Then /^I should see a successful ([^\s]+) (#{model_names.join("|")}|password|account) message$/ do |action, object|
+Then /^I should see a successful ([^\s]+) (#{model_names.join("|")}|password|account|staff member) message$/ do |action, object|
   page.should have_content "#{object.humanize} has been #{action}d successfully."
 end
 
@@ -110,4 +110,25 @@ end
 
 Then /^I should see a successful update info message$/ do
   page.should have_content 'Your info was updated successfully. You are now signed in.'
+end
+
+Then /^I should see (\d+) staff members?$/ do |number|
+  within "#staff" do
+    page.all("li.staff_member").count.should == number.to_i
+  end
+end
+
+Then /^I should see staff brief info$/ do
+  within "#staff .thead" do
+    ['Full name', 'Username', 'Email', 'Roles'].each do |header|
+      page.should have_content header
+    end
+  end
+end
+
+Then /^I should see actions (.+)$/ do |actions|
+  actions = actions.split(", ")
+  actions.each do |action|
+    page.should have_content action
+  end
 end

@@ -1,0 +1,27 @@
+- content_for :head do
+  = stylesheet_link_tag 'staff'
+#staff
+  .content
+    %h1 Staff members of hotel #{@hotel.name}
+
+    .staff_list
+      .tabular_data
+        %ul.thead
+          %li.full_name Full name
+          %li.username Username
+          %li.email Email
+          %li.roles Roles
+          %li.actions
+            = link_to "Invite Staff", "#", :class => "right button", :id => 'invite_staff_btn'
+        %ul.tbody
+          - @staff.each do |staff_member|
+            %li.staff_member.clearfix{ :id => "user_#{staff_member.id}" }
+              %ul.details
+                %li.full_name= link_to staff_member.full_name, hotel_staff_path(@hotel, staff_member)
+                %li.username= staff_member.username
+                %li.email= staff_member.email
+                %li.roles= staff_member.role_names.join(", ")
+                %li.actions
+                  %ul
+                    %li= link_to "Show", hotel_staff_path(@hotel, staff_member)
+                    %li= link_to "Remove", hotel_staff_path(@hotel, staff_member), :confirm => "You are about to remove staff #{staff_member.full_name} from hotel #{@hotel.name}, are you sure you want to do that?", :method => "delete"

@@ -49,3 +49,9 @@ Given /^(#{model_names.join('|')}) "([^"]*)" has (\d+) (#{model_names.map(&:plur
   parent_object.send("#{children}=", number.to_i.times.map { children.singularize.camelize.constantize.make })
   parent_object.save
 end
+
+Given /^hotel "([^"]*)" has (\d+) staff members$/ do |hotel_name, number|
+  hotel = Hotel.find_by_name(hotel_name)
+  hotel.staff_members = (1..number.to_i).map{User.make!}
+  hotel.save
+end

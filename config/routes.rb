@@ -2,7 +2,7 @@ HotelManagement::Application.routes.draw do
   resources :hotels do
     resources :rooms
     resources :room_types
-    resources :staff, :controller => "users"
+    resources :staff, :controller => "staff", :only => [:index, :show, :destroy]
   end
 
   resources :room_types, :only => [] do
@@ -20,7 +20,7 @@ HotelManagement::Application.routes.draw do
     get '/sign_up' => "registrations#new", :as => :new_user_registration
     post '/sign_up' => "registrations#create", :as => :user_registration
     get '/profile' => "registrations#edit", :as => :edit_user_registration
-    put '/profile' => "registrations#update", :as => :user_registration
+    put '/sign_up' => "registrations#update", :as => :user_registration
   end
 
   resources :users

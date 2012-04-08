@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :roles
   has_many :hotels, :foreign_key => :owner_id
+  has_many :working_hotels, :through => :hotels_users, :source => :hotel
+  has_many :hotels_users
 
   def role?(role)
     !!self.roles.find_by_name(role.to_s.titleize)
@@ -29,5 +31,9 @@ class User < ActiveRecord::Base
 
   def full_name
     [first_name, last_name].join(" ")
+  end
+
+  def role_names
+    roles.map(&:name).sort
   end
 end
