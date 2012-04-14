@@ -30,16 +30,15 @@ class Ability
       can :manage, :staff
     elsif user.role? :hotel_owner
       can :manage, Hotel, :owner_id => user.id
-      can :manage, RoomType do |room_type|
-        user.hotels.include?(room_type.hotel) || room_type.hotel.nil?
-      end
-      can :manage, Room do |room|
-        user.hotels.map(&:room_types).flatten.include?(room.room_type) || room.room_type.blank?
-      end
-      can :manage, Furnishing do |furnishing|
-        user.hotels.map(&:room_types).flatten.include?(furnishing.room_type) || furnishing.room_type.blank?
-      end
+      can :manage, RoomType, :hotel_id => user.hotels.map(&:id) + [nil]
+      can :manage, Room, :room_type_id => user.hotels.find(:all, :include => :room_types).map(&:room_type_ids).flatten + [nil]
+      can :manage, Furnishing, :room_type_id => user.hotels.find(:all, :include => :room_types).map(&:room_type_ids).flatten + [nil]
       can :manage, :staff
+      can :manage, CheckIn, :room_id => user.hotels.find(:all, :include => :room_types).map(&:room_types).flatten.map(&:room_ids).flatten + [nil]
+      can :manage, Guest
+    elsif user.role? :staff
+      can :manage, CheckIn, :room_id => user.working_hotels.find(:all, :include => :room_types).map(&:room_types).flatten.map(&:room_ids).flatten + [nil]
+      can :manage, Guest
     end
     can :show, User, :id => user.id
   end

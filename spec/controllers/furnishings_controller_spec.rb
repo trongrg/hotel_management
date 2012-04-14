@@ -23,7 +23,8 @@ describe FurnishingsController do
       describe "GET index" do
         it "assigns all accessible furnishings as @furnishings" do
           furnishing1 = Furnishing.create! valid_attributes
-          furnishing2 = Furnishing.create!(valid_attributes.merge!(:room_type_id => RoomType.make!(:hotel => @hotel)))
+          furnishing2 = Furnishing.create! valid_attributes
+          furnishing2.update_attributes(:room_type => RoomType.make!)
           get :index, { :room_type_id => @room_type.to_param }
           assigns(:furnishings).should eq([furnishing1])
         end

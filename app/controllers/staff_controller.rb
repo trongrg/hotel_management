@@ -1,8 +1,8 @@
 class StaffController < ApplicationController
   before_filter :authenticate_user!
   before_filter :load_hotel
+  before_filter :authorize
   def index
-    authorize! :read, :staff
     @staff = @hotel.staff_members
     respond_to do |format|
       format.html
@@ -11,7 +11,6 @@ class StaffController < ApplicationController
   end
 
   def show
-    authorize! :read, :staff
     @staff_member = @hotel.staff_members.find(params[:id])
     respond_to do |format|
       format.html
@@ -20,7 +19,6 @@ class StaffController < ApplicationController
   end
 
   def destroy
-    authorize! :manage, :staff
     @staff_member = @hotel.staff_members.find(params[:id])
     @hotel.staff_members.delete(@staff_member)
     @hotel.save
@@ -33,5 +31,8 @@ class StaffController < ApplicationController
   def load_hotel
     @hotel = Hotel.find(params[:hotel_id])
     authorize! :read, @hotel
+  end
+  def authorize
+    authorize! :manage, :staff
   end
 end

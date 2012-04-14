@@ -87,5 +87,6 @@ class RoomTypesController < ApplicationController
   protected
   def load_hotel
     @hotel = Hotel.find(params[:hotel_id])
+    authorize! :read, @hotel
   end
 end
