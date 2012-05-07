@@ -1,0 +1,31 @@
+%h1 Listing check_ins
+
+%table#check_ins
+  %thead
+    %tr
+      %th Status
+      %th Room
+      %th Guest
+      %th User
+      %th Prepaid in cents
+      %th Currency
+      %th
+      %th
+      %th
+
+  %tbody
+    - @check_ins.each do |check_in|
+      %tr{:id => "check_in_#{check_in.id}"}
+        %td= check_in.status
+        %td= check_in.room_id
+        %td= check_in.guest_id
+        %td= check_in.user_id
+        %td= check_in.prepaid_in_cents
+        %td= check_in.currency
+        %td= link_to 'Show', room_check_in_path(@room, check_in)
+        %td= link_to 'Edit', edit_room_check_in_path(@room, check_in)
+        %td= link_to 'Delete', room_check_in_path(@room, check_in), :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Check in', new_room_check_in_path(@room)

@@ -1,4 +1,8 @@
 HotelManagement::Application.routes.draw do
+  resources :rooms, :only => [] do
+    resources :check_ins
+  end
+
   resources :hotels do
     resources :rooms
     resources :room_types

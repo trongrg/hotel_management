@@ -33,12 +33,21 @@ Given /^user "([^"]+)" owns (\d+) hotels?$/ do |username, number|
   end
 end
 
-Given /^(#{model_names.join('|')}) "([^"]+)" has a (#{model_names.join('|')}) with (.+): "([^"]+)"$/ do |parent, parent_name, child, attr, value|
+#Given /^(#{model_names.join('|')}) "([^"]+)" has a (#{model_names.join('|')}) with (.+): "([^"]+)"$/ do |parent, parent_name, child, attr, value|
+  #parent.gsub!(' ', '_')
+  #child.gsub!(' ', '_')
+  #parent_object = parent.camelize.constantize.send(find_method_for(parent), parent_name)
+  #child_attrs = {:"#{attr}" => value}
+  #parent_object.send("#{child.pluralize}").send("<<", [child.camelize.constantize.make(child_attrs)])
+  #parent_object.save
+#end
+
+Given /^(#{model_names.join('|')}) "([^"]+)" has a (#{model_names.join('|')}) with (.+)"$/ do |parent, parent_name, child, attrs|
   parent.gsub!(' ', '_')
   child.gsub!(' ', '_')
   parent_object = parent.camelize.constantize.send(find_method_for(parent), parent_name)
-  child_attrs = {:"#{attr}" => value}
-  parent_object.send("#{child.pluralize}=", [child.camelize.constantize.make(child_attrs)])
+  child_attrs = Hash[attrs.split(", ").map { |attr_value| attr, value = attr_value.split(": "); [attr, value.gsub("\"", "")] }]
+  parent_object.send("#{child.pluralize}").send("<<", [child.camelize.constantize.make(child_attrs)])
   parent_object.save
 end
 
@@ -46,7 +55,7 @@ Given /^(#{model_names.join('|')}) "([^"]*)" has (\d+) (#{model_names.map(&:plur
   parent.gsub!(' ', '_')
   children.gsub!(' ', '_')
   parent_object = parent.camelize.constantize.send(find_method_for(parent), parent_name)
-  parent_object.send("#{children}=", number.to_i.times.map { children.singularize.camelize.constantize.make })
+  parent_object.send("#{children}").send("<<", number.to_i.times.map { children.singularize.camelize.constantize.make })
   parent_object.save
 end
 
@@ -54,4 +63,9 @@ Given /^hotel "([^"]*)" has (\d+) staff members$/ do |hotel_name, number|
   hotel = Hotel.find_by_name(hotel_name)
   hotel.staff_members = (1..number.to_i).map{User.make!}
   hotel.save
+end
+
+Given /^user "([^"]*)" is working on hotel "([^"]*)"$/ do |username, hotel_name|
+  hotel = Hotel.find_by_name(hotel_name) || Hotel.make!(:name => hotel_name)
+  hotel.update_attributes(:staff_members => [User.find_by_username(username)])
 end

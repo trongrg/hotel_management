@@ -1,0 +1,13 @@
+= f.inputs do
+  = f.input :status, :as => :select, :collection => CheckIn::STATUS.values
+  = f.semantic_fields_for :guest, "Guest" do |f|
+    = f.input :first_name
+    = f.input :last_name
+    = f.input :national_id_number
+    = f.input :phone_number
+  = f.semantic_fields_for :prepaid do |f|
+    = f.input :dollars, :label => "Prepaid"
+    = f.input :currency, :as => :select, :collection => @currencies
+
+= f.actions do
+  = f.action(:submit)

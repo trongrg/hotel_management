@@ -34,8 +34,7 @@ gem 'jquery-rails'
 
 group :development, :test do
   gem 'mysql2'
-  gem 'ruby-debug-base19', '~> 0.11.26'
-  gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'debugger'
 end
 
 group :test do

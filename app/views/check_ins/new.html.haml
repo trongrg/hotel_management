@@ -1,0 +1,6 @@
+%h1 New check in
+
+= semantic_form_for @check_in, :url => room_check_ins_path(@room) do |f|
+  = render :partial => 'form', :locals => {:f => f}
+
+= link_to 'Back', room_check_ins_path(@room)

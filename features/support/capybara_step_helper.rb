@@ -35,6 +35,8 @@ module CapybaraStepHelper
         select value, :from => field
       when "Roles"
         value.each { |v| select v, :from => field }
+      when /attributes$/
+        fill_fields value
       else
         fill_in field, :with => value
       end
@@ -120,6 +122,27 @@ module CapybaraStepHelper
   def create_furnishing furnishing
     fill_fields furnishing
     click_button "Create Furnishing"
+  end
+
+  def valid_check_in
+    {:guest_attributes =>
+     {:first_name => 'Trong', :last_name => 'Tran', :national_id_number => '250737373', :phone_number => '0987654321' }
+    }
+  end
+
+  def create_check_in check_in
+    check_in.each do |field, value|
+      field = field.to_s.humanize
+      case field
+      when 'Guest attributes'
+        fill_fields value
+      when 'Room'
+        select value, :from => field
+      else
+        fill_in field, value
+      end
+    end
+    click_button "Create Check in"
   end
 
   private

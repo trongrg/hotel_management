@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120407052445) do
+ActiveRecord::Schema.define(:version => 20120409195852) do
+
+  create_table "check_ins", :force => true do |t|
+    t.string   "status"
+    t.integer  "room_id"
+    t.integer  "guest_id"
+    t.integer  "user_id"
+    t.integer  "prepaid_in_cents"
+    t.string   "currency"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
 
   create_table "furnishings", :force => true do |t|
     t.string   "name"
@@ -21,6 +32,15 @@ ActiveRecord::Schema.define(:version => 20120407052445) do
     t.datetime "updated_at",                    :null => false
     t.integer  "price_in_cents", :default => 0, :null => false
     t.string   "currency",                      :null => false
+  end
+
+  create_table "guests", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "national_id_number"
+    t.string   "phone_number"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "hotels", :force => true do |t|
@@ -35,8 +55,8 @@ ActiveRecord::Schema.define(:version => 20120407052445) do
     t.float    "lat"
     t.float    "lng"
     t.integer  "owner_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "hotels_users", :force => true do |t|
@@ -49,8 +69,8 @@ ActiveRecord::Schema.define(:version => 20120407052445) do
 
   create_table "roles", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "roles_users", :id => false, :force => true do |t|
@@ -64,16 +84,16 @@ ActiveRecord::Schema.define(:version => 20120407052445) do
     t.text     "description"
     t.string   "image"
     t.integer  "hotel_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.integer  "price_in_cents", :default => 0, :null => false
   end
 
   create_table "rooms", :force => true do |t|
     t.string   "number"
     t.integer  "room_type_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -87,8 +107,8 @@ ActiveRecord::Schema.define(:version => 20120407052445) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
     t.string   "username"
     t.string   "phone_number"
     t.string   "first_name"
