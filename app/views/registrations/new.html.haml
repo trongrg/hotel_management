@@ -5,7 +5,7 @@
     = f.input :username
     = f.input :password, :as => :password
     = f.input :password_confirmation, :as => :password
-    = f.input :'role_ids][', :as => :hidden, :value => Role.find_or_create_by_name("Hotel Owner").id
+    = f.input :'role_ids][', :as => :hidden, :input_html => {:value => Role.find_or_create_by_name("Hotel Owner").id}
 
   = f.inputs :name => "Personal Info" do
     = f.input :email, :as => :email
