@@ -1,4 +1,5 @@
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require_tree ./application
 //= require_self
@@ -7,6 +8,8 @@
 
 $(document).ready ()->
   $("select").chosen()
+  $(".date_picker>input").datepicker
+    dateFormat: 'dd/mm/yy'
   $("ul.nav_links").superfish
     hoverClass: 'active',
     delay: 800,

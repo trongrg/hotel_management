@@ -139,10 +139,30 @@ module CapybaraStepHelper
       when 'Room'
         select value, :from => field
       else
-        fill_in field, value
+        fill_in field, :with => value
       end
     end
     click_button "Create Check in"
+  end
+
+  def valid_reservation
+    {:guest_attributes =>
+     {:first_name => 'Trong', :last_name => 'Tran', :national_id_number => '250737373', :phone_number => '0987654321' },
+      :check_in_date => DateTime.now.to_date, :check_out_date => 1.day.from_now.to_date
+    }
+  end
+
+  def create_reservation reservation
+    reservation.each do |field, value|
+      field = field.to_s.humanize
+      case field
+      when 'Guest attributes'
+        fill_fields value
+      else
+        fill_in field, :with => value
+      end
+    end
+    click_button "Create Reservation"
   end
 
   private

@@ -1,0 +1,33 @@
+%p#notice= notice
+
+%p
+  %b Room:
+  = @reservation.room_id
+%p
+  %b Guest:
+  = @reservation.guest_id
+%p
+  %b User:
+  = @reservation.user_id
+%p
+  %b Status:
+  = @reservation.status
+%p
+  %b Prepaid in cents:
+  = @reservation.prepaid_in_cents
+%p
+  %b Currency:
+  = @reservation.currency
+%p
+  %b Check in date:
+  = @reservation.check_in_date
+%p
+  %b Check out date:
+  = @reservation.check_out_date
+%p
+  %b Confirmation:
+  = @reservation.confirmation
+
+= link_to 'Edit', edit_reservation_path(@reservation)
+\|
+= link_to 'Back', reservations_path

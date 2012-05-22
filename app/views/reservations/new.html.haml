@@ -1,0 +1,6 @@
+%h1 New reservation
+
+= semantic_form_for @reservation, :url => room_reservations_path(@room) do |f|
+  = render 'form', :f => f
+
+= link_to 'Back', room_reservations_path(@room)

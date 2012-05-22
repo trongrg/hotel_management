@@ -40,6 +40,7 @@ end
 Spork.each_run do
   ActiveRecord::Base.establish_connection
   Dir[Rails.root.join("app/models/**/*.rb")].each { |f| load f }
+  require 'machinist/active_record'
   Dir[Rails.root.join("spec/support/blueprints/**/*.rb")].each do |f|
     require f
     load f

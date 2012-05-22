@@ -35,9 +35,11 @@ class Ability
       can :manage, Furnishing, :room_type_id => user.hotels.find(:all, :include => :room_types).map(&:room_type_ids).flatten + [nil]
       can :manage, :staff
       can :manage, CheckIn, :room_id => user.hotels.find(:all, :include => :room_types).map(&:room_types).flatten.map(&:room_ids).flatten + [nil]
+      can :manage, Reservation, :room_id => user.hotels.find(:all, :include => :room_types).map(&:room_types).flatten.map(&:room_ids).flatten + [nil]
       can :manage, Guest
     elsif user.role? :staff
       can :manage, CheckIn, :room_id => user.working_hotels.find(:all, :include => :room_types).map(&:room_types).flatten.map(&:room_ids).flatten + [nil]
+      can :manage, Reservation, :room_id => user.working_hotels.find(:all, :include => :room_types).map(&:room_types).flatten.map(&:room_ids).flatten + [nil]
       can :manage, Guest
     end
     can :show, User, :id => user.id

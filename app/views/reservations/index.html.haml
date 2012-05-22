@@ -1,0 +1,35 @@
+%h1 Listing reservations
+
+%table
+  %tr
+    %th Room
+    %th Guest
+    %th User
+    %th Status
+    %th Prepaid in cents
+    %th Currency
+    %th Check in date
+    %th Check out date
+    %th Confirmation
+    %th
+    %th
+    %th
+
+  - @reservations.each do |reservation|
+    %tr
+      %td= reservation.room_id
+      %td= reservation.guest_id
+      %td= reservation.user_id
+      %td= reservation.status
+      %td= reservation.prepaid_in_cents
+      %td= reservation.currency
+      %td= reservation.check_in_date
+      %td= reservation.check_out_date
+      %td= reservation.confirmation
+      %td= link_to 'Show', room_reservation_path(@room, reservation)
+      %td= link_to 'Edit', edit_room_reservation_path(@room, reservation)
+      %td= link_to 'Destroy', room_reservation_path(@room, reservation), :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Reservation', new_room_reservation_path(@room)
