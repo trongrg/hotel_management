@@ -28,7 +28,9 @@ end
 
 Spork.each_run do
   ActiveRecord::Base.establish_connection
-  Dir[Rails.root.join("app/models/**/*.rb")].each {|f| load f}
-  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| load f}
+  require 'machinist/active_record'
+  Dir[Rails.root.join("app/models/**/*.rb")].each {|f| require f}
+  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+  I18n.backend.reload!
 end
 

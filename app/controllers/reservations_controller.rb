@@ -5,7 +5,11 @@ class ReservationsController < ApplicationController
   # GET /reservations
   # GET /reservations.json
   def index
-    @reservations = Reservation.all
+    if Reservation::STATUS.stringify_keys.keys.include?(params[:status])
+      @reservations = @room.reservations.send(params[:status])
+    else
+      @reservations = @room.reservations
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -38,6 +42,9 @@ class ReservationsController < ApplicationController
   # GET /reservations/1/edit
   def edit
     @reservation = Reservation.find(params[:id])
+    if @reservation.expired?
+      redirect_to room_reservations_path(@room), notice: "Cannot edit/delete expired reservation"
+    end
   end
 
   # POST /reservations

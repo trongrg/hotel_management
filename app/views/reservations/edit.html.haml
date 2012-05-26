@@ -1,7 +1,8 @@
 %h1 Editing reservation
 
-= render 'form'
+= semantic_form_for @reservation, :url => room_reservation_path(@room, @reservation) do |f|
+  = render 'form', :f => f
 
-= link_to 'Show', @reservation
+= link_to 'Show', room_reservation_path(@room, @reservation)
 \|
-= link_to 'Back', reservations_path
+= link_to 'Back', room_reservations_path(@room)

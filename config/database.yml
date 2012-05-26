@@ -1,5 +1,5 @@
 # MySQL.  Versions 4.1 and 5.0 are recommended.
-# 
+#
 # Install the MYSQL driver
 #   gem install mysql2
 #
@@ -12,12 +12,11 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  host: 127.0.0.1
   database: hotel_management_development
   pool: 5
   username: root
   password:
-  socket: /tmp/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -26,12 +25,11 @@ test: &test
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  host: 127.0.0.1
   database: hotel_management_test
   pool: 5
   username: root
   password:
-  socket: /tmp/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock
 
 production:
   adapter: mysql2

@@ -1,3 +1,5 @@
+require 'machinist/active_record'
+
 Reservation.blueprint do
   room { Room.make }
   user { User.make(:staff) }

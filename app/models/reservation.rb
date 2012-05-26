@@ -18,13 +18,16 @@ class Reservation < ActiveRecord::Base
   after_initialize :default_values
   before_update :check_status
   before_destroy :check_status
-  before_create :generate_confirmation
 
   scope :expired, :conditions => ['status = ?', STATUS[:expired]]
   scope :active, :conditions => ['status = ?', STATUS[:active]]
 
   def prepaid_attributes=(value)
     self.prepaid = "#{value[:currency]}#{value[:dollars]}"
+  end
+
+  def expired?
+    self.status == STATUS[:expired]
   end
 
   private
@@ -34,7 +37,7 @@ class Reservation < ActiveRecord::Base
   end
 
   def check_status
-    if self.status_was == STATUS[:expired]
+    if self.expired?
       self.errors[:base] << "Cannot edit/delete expired check in"
       return false
     end

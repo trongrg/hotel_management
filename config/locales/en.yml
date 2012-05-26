@@ -17,6 +17,7 @@ en:
     furnishing: "Furnishing"
     staff_member: "Staff member"
     check_in: "Check in"
+    reservation: "Reservation"
   activerecord:
     errors:
       models:

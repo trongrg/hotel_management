@@ -24,10 +24,7 @@
 %p
   %b Check out date:
   = @reservation.check_out_date
-%p
-  %b Confirmation:
-  = @reservation.confirmation
 
-= link_to 'Edit', edit_reservation_path(@reservation)
+= link_to 'Edit', edit_room_reservation_path(@room, @reservation)
 \|
-= link_to 'Back', reservations_path
+= link_to 'Back', room_reservations_path(@room)

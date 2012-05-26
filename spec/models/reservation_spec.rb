@@ -46,4 +46,11 @@ describe Reservation do
       end
     end
   end
+
+  describe "#expired?" do
+    it "returns whether the status is 'Expired' or not" do
+      subject.update_attributes(:status => Reservation::STATUS[:expired])
+      subject.expired?.should be_true
+    end
+  end
 end

@@ -1,3 +1,4 @@
+require 'machinist/active_record'
 CheckIn.blueprint do
   status { "available" }
   room { Room.make }

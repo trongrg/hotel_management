@@ -24,10 +24,29 @@ describe ReservationsController do
   end
 
   describe "GET index" do
-    it "assigns all reservations as @reservations" do
-      reservation = Reservation.create! valid_attributes
-      get :index, {:room_id => @room.id}
-      assigns(:reservations).should eq([reservation])
+    context "status is active" do
+      it "assigns all active reservations as @reservations" do
+        reservation1 = @room.reservations.create! valid_attributes
+        reservation2 = @room.reservations.create! valid_attributes.merge(:status => "Expired")
+        get :index, {:room_id => @room.id, :status => "active"}
+        assigns(:reservations).should == [reservation1]
+      end
+    end
+    context "status is expired" do
+      it "assigns all expired reservations as @reservations" do
+        reservation1 = @room.reservations.create! valid_attributes
+        reservation2 = @room.reservations.create! valid_attributes.merge(:status => "Expired")
+        get :index, {:room_id => @room.id, :status => "expired"}
+        assigns(:reservations).should == [reservation2]
+      end
+    end
+    context "status not given" do
+      it "assigns all reservations of given room as @reservations" do
+        reservation1 = @room.reservations.create! valid_attributes
+        reservation2 = Reservation.create! valid_attributes.merge(:room => Room.make)
+        get :index, {:room_id => @room.id}
+        assigns(:reservations).should == [reservation1]
+      end
     end
   end
 
@@ -70,7 +89,7 @@ describe ReservationsController do
 
       it "redirects to the created reservation" do
         post :create, {:reservation => valid_attributes, :room_id => @room.id}
-        response.should redirect_to(room_reservation_url(@room, Reservation.last))
+        response.should redirect_to(room_reservations_url(@room))
       end
     end
 
