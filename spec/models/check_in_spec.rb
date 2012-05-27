@@ -44,4 +44,14 @@ describe CheckIn do
       end
     end
   end
+
+  it "does not belong to a occupied room" do
+    room = Room.make!(:room_type => RoomType.make)
+    CheckIn.make!(:room => room, :status => CheckIn::STATUS[:active])
+    room.reload
+    check_in = CheckIn.make(:room => room, :status => CheckIn::STATUS[:active])
+    check_in.save
+    check_in.should_not be_persisted
+    check_in.errors[:base].should include("Cannot check in to an occupied room")
+  end
 end

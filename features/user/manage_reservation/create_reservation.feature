@@ -1,4 +1,3 @@
-@javascript @selenium
 Feature: user creates reservation
   In order to operate my hotel
   As a staff member

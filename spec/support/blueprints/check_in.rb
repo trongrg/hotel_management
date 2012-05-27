@@ -1,6 +1,6 @@
 require 'machinist/active_record'
 CheckIn.blueprint do
-  status { "available" }
+  status { CheckIn::STATUS[:active] }
   room { Room.make }
   guest { Guest.make }
   user { User.make }

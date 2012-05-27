@@ -27,7 +27,6 @@ class Ability
     user ||= User.new
     if user.role? :admin
       can :manage, :all
-      can :manage, :staff
     elsif user.role? :hotel_owner
       can :manage, Hotel, :owner_id => user.id
       can :manage, RoomType, :hotel_id => user.hotels.map(&:id) + [nil]
@@ -37,10 +36,12 @@ class Ability
       can :manage, CheckIn, :room_id => user.hotels.find(:all, :include => :room_types).map(&:room_types).flatten.map(&:room_ids).flatten + [nil]
       can :manage, Reservation, :room_id => user.hotels.find(:all, :include => :room_types).map(&:room_types).flatten.map(&:room_ids).flatten + [nil]
       can :manage, Guest
+      can :manage, CheckOut, :room_id => user.hotels.find(:all, :include => :room_types).map(&:room_types).flatten.map(&:room_ids).flatten + [nil]
     elsif user.role? :staff
       can :manage, CheckIn, :room_id => user.working_hotels.find(:all, :include => :room_types).map(&:room_types).flatten.map(&:room_ids).flatten + [nil]
       can :manage, Reservation, :room_id => user.working_hotels.find(:all, :include => :room_types).map(&:room_types).flatten.map(&:room_ids).flatten + [nil]
       can :manage, Guest
+      can :manage, CheckOut, :room_id => user.working_hotels.find(:all, :include => :room_types).map(&:room_types).flatten.map(&:room_ids).flatten + [nil]
     end
     can :show, User, :id => user.id
   end

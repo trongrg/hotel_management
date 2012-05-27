@@ -38,8 +38,10 @@ class Reservation < ActiveRecord::Base
 
   def check_status
     if self.status_was == STATUS[:expired]
-      self.errors[:base] << "Cannot edit/delete expired check in"
+      self.errors[:base] << "Cannot edit/delete expired reservation"
       return false
+    else
+      return true
     end
   end
 end

@@ -1,0 +1,8 @@
+= f.inputs do
+  = f.semantic_fields_for :additional_charges do |f|
+    = f.input :dollars, :label => "Additional charges"
+    = f.input :currency, :as => :select, :collection => @currencies, :selected => @check_out.currency
+  = f.input :settlement_type, :as => :select, :collection => CheckOut::SETTLEMENT_TYPE.values
+
+= f.actions do
+  = f.action(:submit)

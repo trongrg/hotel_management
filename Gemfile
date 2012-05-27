@@ -52,5 +52,6 @@ group :test do
   gem 'guard-spork'
   gem 'guard-rspec'
   gem 'guard-cucumber'
+  gem 'timecop'
   #gem 'webmock'
 end

@@ -18,6 +18,7 @@ en:
     staff_member: "Staff member"
     check_in: "Check in"
     reservation: "Reservation"
+    check_out: "Check out"
   activerecord:
     errors:
       models:

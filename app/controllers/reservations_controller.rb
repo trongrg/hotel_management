@@ -84,11 +84,15 @@ class ReservationsController < ApplicationController
   # DELETE /reservations/1.json
   def destroy
     @reservation = Reservation.find(params[:id])
-    @reservation.destroy
 
     respond_to do |format|
-      format.html { redirect_to room_reservations_url(@room), notice: t('record.deleted', :record => t('model.reservation')) }
-      format.json { head :no_content }
+      if @reservation.destroy
+        format.html { redirect_to room_reservations_url(@room), notice: t('record.deleted', :record => t('model.reservation')) }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to room_reservations_url(@room), alert: @reservation.errors.full_messages }
+        format.json { render json: @reservation.errors }
+      end
     end
   end
   private

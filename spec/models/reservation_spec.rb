@@ -33,7 +33,7 @@ describe Reservation do
       end
       it "adds errors to base" do
         subject.update_attributes(:status => Reservation::STATUS[:active])
-        subject.errors[:base].should include("Cannot edit/delete expired check in")
+        subject.errors[:base].should include("Cannot edit/delete expired reservation")
       end
     end
     context "destroy" do
@@ -42,7 +42,7 @@ describe Reservation do
       end
       it "adds errors to base" do
         subject.destroy
-        subject.errors[:base].should include("Cannot edit/delete expired check in")
+        subject.errors[:base].should include("Cannot edit/delete expired reservation")
       end
     end
   end

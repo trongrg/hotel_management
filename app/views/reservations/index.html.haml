@@ -28,7 +28,7 @@
         %td= reservation.check_out_date
         %td= link_to 'Show', room_reservation_path(@room, reservation)
         %td= link_to 'Edit', edit_room_reservation_path(@room, reservation)
-        %td= link_to 'Destroy', room_reservation_path(@room, reservation), :confirm => 'Are you sure?', :method => :delete
+        %td= link_to 'Delete', room_reservation_path(@room, reservation), :confirm => 'Are you sure?', :method => :delete
 
 %br
 

@@ -19,6 +19,7 @@ class CheckIn < ActiveRecord::Base
   before_update :check_status
   after_initialize :default_values
   before_destroy :check_status
+  before_validation :check_room_occupation
 
   scope :expired, :conditions => ['status = ?', STATUS[:expired]]
   scope :active, :conditions => ['status = ?', STATUS[:active]]
@@ -37,6 +38,17 @@ class CheckIn < ActiveRecord::Base
     if self.status_was == STATUS[:expired]
       self.errors[:base] << "Cannot edit/delete expired check in"
       return false
+    else
+      return true
+    end
+  end
+
+  def check_room_occupation
+    if self.room.present? && self.room.current_check_in.present? && self.room.current_check_in != self && self.status == STATUS[:active]
+      self.errors[:base] << "Cannot check in to an occupied room"
+      return false
+    else
+      return true
     end
   end
 end

@@ -35,6 +35,8 @@ module CapybaraStepHelper
         select value, :from => field
       when "Roles"
         value.each { |v| select v, :from => field }
+      when 'Settlement type'
+        select value, :from => field
       when /attributes$/
         fill_fields value
       else
@@ -163,6 +165,26 @@ module CapybaraStepHelper
       end
     end
     click_button "Create Reservation"
+  end
+
+  def valid_check_out
+    {:additional_charges_attributes => {:additional_charges => 0, :currency => "USD"},
+     :settlement_type => "Cash"}
+  end
+
+  def create_check_out check_out
+    check_out.each do |field, value|
+      field = field.to_s.humanize
+      case field
+      when 'Additional charges attributes'
+        fill_fields value
+      when 'Settlement type'
+        select value, :from => field
+      else
+        fill_in field, :with => value
+      end
+    end
+    click_button "Create Check out"
   end
 
   private

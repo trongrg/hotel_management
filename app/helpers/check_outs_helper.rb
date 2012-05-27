@@ -1,0 +1,2 @@
+module CheckOutsHelper
+end

@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Room price:
+  = @check_out.room_price.format
+%p
+  %b Nights:
+  = @check_out.nights
+%p
+  %b Room:
+  = @check_out.room.number
+%p
+  %b Additional charges:
+  = @check_out.additional_charges.format
+%p
+  %b Total:
+  = @check_out.total.format
+%p
+  %b Settlement type:
+  = @check_out.settlement_type
+
+= link_to 'Edit', edit_room_check_out_path(@room, @check_out)
+\|
+= link_to 'Back', room_check_outs_path(@room)

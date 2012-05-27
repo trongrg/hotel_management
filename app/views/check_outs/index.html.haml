@@ -1,0 +1,31 @@
+%h1 Listing check_outs
+
+%table#check_outs
+  %thead
+    %tr
+      %th Room price
+      %th Nights
+      %th Room
+      %th Additional charges
+      %th Total
+      %th Settlement type
+      %th
+      %th
+      %th
+
+  %tbody
+    - @check_outs.each do |check_out|
+      %tr{:id => "check_out_#{check_out.id}"}
+        %td= check_out.room_price
+        %td= check_out.nights
+        %td= check_out.room.number
+        %td= check_out.additional_charges
+        %td= check_out.total
+        %td= check_out.settlement_type
+        %td= link_to 'Show', room_check_out_path(@room, check_out)
+        %td= link_to 'Edit', edit_room_check_out_path(@room, check_out)
+        %td= link_to 'Delete', room_check_out_path(@room, check_out), :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Check out', new_room_check_out_path(@room)
