@@ -3,8 +3,12 @@
   = f.semantic_fields_for :guest, "Guest" do |f|
     = f.input :first_name
     = f.input :last_name
-    = f.input :national_id_number
+    = f.input :gender, :as => :select, :collection => Guest::GENDERS.values
+    = f.input :passport
     = f.input :phone_number
+  = f.input :adults
+  = f.input :children
+  = f.input :special_requirements, :as => :text
   = f.semantic_fields_for :prepaid do |f|
     = f.input :dollars, :label => "Prepaid"
     = f.input :currency, :as => :select, :collection => @currencies

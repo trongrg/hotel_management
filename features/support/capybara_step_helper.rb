@@ -37,6 +37,8 @@ module CapybaraStepHelper
         value.each { |v| select v, :from => field }
       when 'Settlement type'
         select value, :from => field
+      when 'Gender'
+        select value, :from => field
       when /attributes$/
         fill_fields value
       else
@@ -128,7 +130,7 @@ module CapybaraStepHelper
 
   def valid_check_in
     {:guest_attributes =>
-     {:first_name => 'Trong', :last_name => 'Tran', :national_id_number => '250737373', :phone_number => '0987654321' }
+     {:first_name => 'Trong', :last_name => 'Tran', :passport => '250737373', :phone_number => '0987654321', :gender => "Female" }
     }
   end
 
@@ -149,7 +151,7 @@ module CapybaraStepHelper
 
   def valid_reservation
     {:guest_attributes =>
-     {:first_name => 'Trong', :last_name => 'Tran', :national_id_number => '250737373', :phone_number => '0987654321' },
+     {:first_name => 'Trong', :last_name => 'Tran', :passport => '250737373', :phone_number => '0987654321', :gender => "Female" },
       :check_in_date => DateTime.now.to_date, :check_out_date => 1.day.from_now.to_date
     }
   end

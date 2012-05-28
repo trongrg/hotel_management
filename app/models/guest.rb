@@ -1,5 +1,7 @@
 class Guest < ActiveRecord::Base
-  validates :first_name, :last_name, :national_id_number, :presence => true
+  GENDERS = {:female => "Female", :male => "Male"}
+  validates :first_name, :last_name, :passport, :presence => true
+  validates :gender, :inclusion => GENDERS.values
 
   def full_name
     "#{first_name} #{last_name}"

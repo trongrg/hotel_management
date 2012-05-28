@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120526072857) do
+ActiveRecord::Schema.define(:version => 20120527150440) do
 
   create_table "check_ins", :force => true do |t|
     t.string   "status"
@@ -20,8 +20,11 @@ ActiveRecord::Schema.define(:version => 20120526072857) do
     t.integer  "user_id"
     t.integer  "prepaid_in_cents"
     t.string   "currency"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.integer  "adults"
+    t.integer  "children"
+    t.string   "special_requirements"
   end
 
   create_table "check_outs", :force => true do |t|
@@ -52,10 +55,11 @@ ActiveRecord::Schema.define(:version => 20120526072857) do
   create_table "guests", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "national_id_number"
     t.string   "phone_number"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "gender"
+    t.string   "passport"
   end
 
   create_table "hotels", :force => true do |t|
@@ -91,8 +95,11 @@ ActiveRecord::Schema.define(:version => 20120526072857) do
     t.string   "currency"
     t.date     "check_in_date"
     t.date     "check_out_date"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.integer  "adults"
+    t.integer  "children"
+    t.string   "special_requirements"
   end
 
   create_table "roles", :force => true do |t|
