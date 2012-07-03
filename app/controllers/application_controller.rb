@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def load_currencies
-    @currencies = Money::Currency::TABLE.values.inject({}) do |hash, currency|
+    @currencies = Money::Currency::table.values.inject({}) do |hash, currency|
       hash.update(currency[:iso_code] => currency[:iso_code])
     end
   end

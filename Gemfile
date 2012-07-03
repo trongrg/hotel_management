@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.2'
+gem 'rails'
 
 gem "devise"
 gem "haml", ">= 3.0.0"
@@ -15,6 +15,7 @@ gem 'client_side_validations'
 gem 'money'
 gem "google_currency", :git => 'git://github.com/RubyMoney/google_currency.git'
 gem 'devise_invitable'
+gem 'jquery-rails'
 
 group :production do
   gem 'pg'
@@ -23,14 +24,13 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
+  gem 'sass'
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
   gem "compass", ">= 0.12.rc"
   gem "sassy-buttons"
 end
-
-gem 'jquery-rails'
 
 group :development, :test do
   gem 'mysql2'

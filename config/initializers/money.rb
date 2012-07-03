@@ -12,4 +12,4 @@ end
 # exchange rate by goole currency
 Money.default_bank = Money::Bank::GoogleCurrency.new
 # patch for vnd
-Money::Currency::TABLE[:vnd][:symbol_before] = false
+Money::Currency::table[:vnd][:symbol_first] = false
