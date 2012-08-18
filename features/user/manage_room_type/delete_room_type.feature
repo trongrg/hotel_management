@@ -21,10 +21,3 @@ Feature: user delete room type
     And I accept the confirm box
     Then I should see a successful delete room type message
     And I should be on the hotel room types page of hotel "Thien An"
-
-  Scenario: Delete from edit room type page
-    When I go to the edit hotel room type page of hotel "Thien An", room type "Deluxe"
-    And I follow "Delete"
-    And I accept the confirm box
-    Then I should see a successful delete room type message
-    And I should be on the hotel room types page of hotel "Thien An"

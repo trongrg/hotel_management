@@ -4,11 +4,7 @@ class Reservation < ActiveRecord::Base
   belongs_to :user
   belongs_to :guest
 
-  composed_of :prepaid,
-    :class_name => "Money",
-    :mapping => [%w(prepaid_in_cents cents), %w(currency currency_as_string)],
-    :constructor => Proc.new { |cents, currency| Money.new(cents || 0, currency || Money.default_currency) },
-    :converter => Proc.new { |value| value.respond_to?(:to_money) ? value.to_money : raise(ArgumentError, "Can't convert #{value.class} to Money") }
+  monetize :prepaid_in_cents, :as => :prepaid, :allow_nil => true
 
   validates :room, :user, :guest, :status, :check_in_date, :check_out_date, :presence => true
   validates :status, :inclusion => STATUS.values
@@ -23,7 +19,7 @@ class Reservation < ActiveRecord::Base
   scope :active, :conditions => ['status = ?', STATUS[:active]]
 
   def prepaid_attributes=(value)
-    self.prepaid = "#{value[:currency]}#{value[:dollars]}"
+    self.prepaid = Money.parse("#{value[:currency]}#{value[:dollars]}")
   end
 
   def expired?

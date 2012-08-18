@@ -22,10 +22,3 @@ Feature: user delete room
     And I accept the confirm box
     Then I should see a successful delete room message
     And I should be on the hotel rooms page of hotel "Thien An"
-
-  Scenario: Delete from edit room page
-    When I go to the edit hotel room page of hotel "Thien An", room "101"
-    And I follow "Delete"
-    And I accept the confirm box
-    Then I should see a successful delete room message
-    And I should be on the hotel rooms page of hotel "Thien An"

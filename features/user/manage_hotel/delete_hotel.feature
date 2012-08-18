@@ -13,13 +13,6 @@ Feature: hotel owner delete hotel
     And I accept the confirm box
     Then I should see a successful delete hotel message
 
-  Scenario: Delete hotel from edit hotel page
-    When I go to the edit hotel page of hotel "Thien An"
-    And I follow "Delete"
-    And I accept the confirm box
-    Then I should see a successful delete hotel message
-    And I should be on the hotels page
-
   Scenario: Delete hotel from hotel page
     When I go to the hotel page of hotel "Thien An"
     And I follow "Delete"

@@ -1,14 +1,6 @@
 require 'spec_helper'
 
 describe StaffController do
-  context "not signed in user" do
-    it_should_only_allow_access_to_signed_in_user([:index, :show, :destroy])
-  end
-  it_should_only_allow_access_to([:index, :show, :destroy], [:hotel_owner, :admin]) do |c|
-    c.instance_variable_set('@hotel', Hotel.make)
-    c.stub!(:load_hotel)
-  end
-
   context "with signed in hotel owner" do
     before do
       @user = User.make!(:hotel_owner)

@@ -7,12 +7,7 @@ class CheckIn < ActiveRecord::Base
   validates :status, :room, :guest, :user, :presence => true
   validates :status, :inclusion => STATUS.values
 
-
-  composed_of :prepaid,
-    :class_name => "Money",
-    :mapping => [%w(prepaid_in_cents cents), %w(currency currency_as_string)],
-    :constructor => Proc.new { |cents, currency| Money.new(cents || 0, currency || Money.default_currency) },
-    :converter => Proc.new { |value| value.respond_to?(:to_money) ? value.to_money : raise(ArgumentError, "Can't convert #{value.class} to Money") }
+  monetize :prepaid_in_cents, :as => :prepaid, :allow_nil => true
 
   accepts_nested_attributes_for :guest
 
@@ -25,7 +20,7 @@ class CheckIn < ActiveRecord::Base
   scope :active, :conditions => ['status = ?', STATUS[:active]]
 
   def prepaid_attributes=(value)
-    self.prepaid = "#{value[:currency]}#{value[:dollars]}"
+    self.prepaid = Money.parse("#{value[:currency]}#{value[:dollars]}")
   end
 
   private

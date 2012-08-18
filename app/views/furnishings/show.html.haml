@@ -15,6 +15,6 @@
 
 = link_to 'Edit', edit_room_type_furnishing_path(@room_type, @furnishing)
 \|
-= link_to 'Delete', room_type_furnishing_path(@room_type, @furnishing), :confirm => 'Are you sure?', :method => :delete
+= link_to 'Delete', room_type_furnishing_path(@room_type, @furnishing), :data => { :confirm => 'Are you sure?' }, :method => :delete
 \|
 = link_to 'Back', room_type_furnishings_path(@room_type)

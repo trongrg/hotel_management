@@ -24,7 +24,7 @@
         %td= check_in.currency
         %td= link_to 'Show', room_check_in_path(@room, check_in)
         %td= link_to 'Edit', edit_room_check_in_path(@room, check_in)
-        %td= link_to 'Delete', room_check_in_path(@room, check_in), :confirm => 'Are you sure?', :method => :delete
+        %td= link_to 'Delete', room_check_in_path(@room, check_in), :data => { :confirm => 'Are you sure?' }, :method => :delete
 
 %br
 

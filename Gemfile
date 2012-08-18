@@ -13,6 +13,7 @@ gem "cancan"
 gem "kaminari"
 gem 'client_side_validations'
 gem 'money'
+gem 'money-rails'
 gem "google_currency", :git => 'git://github.com/RubyMoney/google_currency.git'
 gem 'devise_invitable'
 gem 'jquery-rails'

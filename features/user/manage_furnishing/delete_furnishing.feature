@@ -22,10 +22,3 @@ Feature: hotel owner delete furnishing
     And I accept the confirm box
     Then I should see a successful delete furnishing message
     And I should be on the room type furnishings page of room type "Deluxe"
-
-  Scenario: Delete from edit furnishing page
-    When I go to the edit room type furnishing page of room type "Deluxe", furnishing "Bed"
-    And I follow "Delete"
-    And I accept the confirm box
-    Then I should see a successful delete furnishing message
-    And I should be on the room type furnishings page of room type "Deluxe"

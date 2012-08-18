@@ -13,8 +13,6 @@
 
 = link_to 'Show', hotel_path(@hotel)
 \|
-= link_to 'Delete', hotel_path(@hotel), :confirm => "Are you sure?", :method => :delete
-\|
 = link_to 'Back', hotels_path
 - if @hotel.lat.present? && @hotel.lng.present?
   :coffeescript

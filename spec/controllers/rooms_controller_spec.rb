@@ -1,13 +1,6 @@
 require 'spec_helper'
 
 describe RoomsController do
-  context "not signed in user" do
-    it_should_only_allow_access_to_signed_in_user([:index, :show, :new, :create, :edit, :update, :destroy])
-  end
-  it_should_only_allow_access_to([:index, :show, :new, :create, :edit, :update, :destroy], [:admin, :hotel_owner]) do |controller|
-    controller.stub(:load_hotel)
-  end
-
   def valid_attributes
     {:number => "101", :room_type_id => room_type.to_param}
   end

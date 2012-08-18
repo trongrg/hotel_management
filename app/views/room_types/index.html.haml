@@ -22,7 +22,7 @@
         %td= room_type.image
         %td= link_to 'Show', hotel_room_type_path(@hotel, room_type)
         %td= link_to 'Edit', edit_hotel_room_type_path(@hotel, room_type)
-        %td= link_to 'Delete', hotel_room_type_path(@hotel, room_type), :confirm => 'Are you sure?', :method => :delete
+        %td= link_to 'Delete', hotel_room_type_path(@hotel, room_type), :data => { :confirm => 'Are you sure?' }, :method => :delete
 
 %br
 

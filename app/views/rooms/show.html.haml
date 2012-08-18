@@ -9,6 +9,6 @@
 
 = link_to 'Edit', edit_hotel_room_path(@hotel, @room)
 \|
-= link_to 'Delete', hotel_room_path(@hotel, @room), :confirm => 'Are you sure?', :method => :delete
+= link_to 'Delete', hotel_room_path(@hotel, @room), :data => { :confirm => 'Are you sure?' }, :method => :delete
 \|
 = link_to 'Back', hotel_rooms_path(@hotel)

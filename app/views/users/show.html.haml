@@ -24,4 +24,4 @@
 
 = link_to_if(can?(:index, User), "User list", users_path)
 = link_to_if(can?(:update, @user), "Edit", edit_user_path(@user))
-= link_to_if(can?(:destroy, @user), "Delete", user_path(@user), :confirm => "Are you sure?", :method => :delete)
+= link_to_if(can?(:destroy, @user), "Delete", user_path(@user), :data => { :confirm => "Are you sure?" }, :method => :delete)

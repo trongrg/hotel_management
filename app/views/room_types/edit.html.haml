@@ -3,8 +3,6 @@
 = semantic_form_for @room_type, :url => hotel_room_type_path(@hotel, @room_type), :method => :put do |f|
   = render :partial => 'form', :locals => {:f => f}
 
-= link_to 'Delete', hotel_room_type_path(@hotel, @room_type), :confirm => 'Are you sure?', :method => :delete
-\|
 = link_to 'Show', hotel_room_type_path(@hotel, @room_type)
 \|
 = link_to 'Back', hotel_room_types_path(@hotel)

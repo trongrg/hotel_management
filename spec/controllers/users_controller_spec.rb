@@ -1,11 +1,6 @@
 require 'spec_helper'
 
 describe UsersController do
-  context "not signed in user" do
-    it_should_only_allow_access_to_signed_in_user([:index, :show, :new, :create, :edit, :update, :destroy])
-  end
-  it_should_only_allow_access_to(:show, :all)
-  it_should_only_allow_access_to([:index, :new, :create, :edit, :update, :destroy], :admin)
   context "with signed in admin" do
     before do
       @admin = User.make!(:admin)

@@ -11,17 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120527150440) do
+ActiveRecord::Schema.define(:version => 20120818084151) do
 
   create_table "check_ins", :force => true do |t|
     t.string   "status"
     t.integer  "room_id"
     t.integer  "guest_id"
     t.integer  "user_id"
-    t.integer  "prepaid_in_cents"
+    t.integer  "prepaid_in_cents",     :default => 0, :null => false
     t.string   "currency"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.integer  "adults"
     t.integer  "children"
     t.string   "special_requirements"
@@ -32,14 +32,14 @@ ActiveRecord::Schema.define(:version => 20120527150440) do
     t.integer  "room_id"
     t.integer  "check_in_id"
     t.integer  "guest_id"
-    t.integer  "room_price_in_cents"
+    t.integer  "room_price_in_cents",         :default => 0, :null => false
     t.integer  "nights"
-    t.integer  "additional_charges_in_cents"
-    t.integer  "total_in_cents"
+    t.integer  "additional_charges_in_cents", :default => 0, :null => false
+    t.integer  "total_in_cents",              :default => 0, :null => false
     t.string   "currency"
     t.string   "settlement_type"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
   end
 
   create_table "furnishings", :force => true do |t|
@@ -91,12 +91,12 @@ ActiveRecord::Schema.define(:version => 20120527150440) do
     t.integer  "guest_id"
     t.integer  "user_id"
     t.string   "status"
-    t.integer  "prepaid_in_cents"
+    t.integer  "prepaid_in_cents",     :default => 0, :null => false
     t.string   "currency"
     t.date     "check_in_date"
     t.date     "check_out_date"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.integer  "adults"
     t.integer  "children"
     t.string   "special_requirements"

@@ -24,15 +24,14 @@ describe Reservation do
 
   context "status is Expired" do
     before do
-      subject.update_attribute(:status, Reservation::STATUS[:expired])
+      subject.update_attributes(:status => Reservation::STATUS[:expired])
     end
     context "update" do
       it "does not update" do
         subject.update_attributes(:status => Reservation::STATUS[:active]).should be_false
-        subject.update_attribute(:status, Reservation::STATUS[:active]).should be_false
       end
       it "adds errors to base" do
-        subject.update_attributes(:status => Reservation::STATUS[:active])
+        subject.update_attributes(:status => Reservation::STATUS[:active]).should be_false
         subject.errors[:base].should include("Cannot edit/delete expired reservation")
       end
     end

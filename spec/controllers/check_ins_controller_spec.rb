@@ -1,13 +1,6 @@
 require 'spec_helper'
 
 describe CheckInsController do
-  context "not signed in user" do
-    it_should_only_allow_access_to_signed_in_user([:index, :show, :new, :create, :edit, :update, :destroy])
-  end
-  it_should_only_allow_access_to([:index, :show, :new, :create, :edit, :update, :destroy], :all) do |controller|
-    controller.stub(:load_room)
-  end
-
   context "signed in user" do
     before do
       @user = User.make!(:staff)

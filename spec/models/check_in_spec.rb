@@ -22,12 +22,11 @@ describe CheckIn do
 
   context "status is not Active" do
     before do
-      subject.update_attribute(:status, CheckIn::STATUS[:expired])
+      subject.update_attributes(:status => CheckIn::STATUS[:expired])
     end
     context "update" do
       it "does not update" do
         subject.update_attributes(:status => CheckIn::STATUS[:active]).should be_false
-        subject.update_attribute(:status, CheckIn::STATUS[:active]).should be_false
       end
       it "adds errors to base" do
         subject.update_attributes(:status => CheckIn::STATUS[:active])

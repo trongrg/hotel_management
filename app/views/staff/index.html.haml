@@ -24,4 +24,4 @@
                 %li.actions
                   %ul
                     %li= link_to "Show", hotel_staff_path(@hotel, staff_member)
-                    %li= link_to "Remove", hotel_staff_path(@hotel, staff_member), :confirm => "You are about to remove staff #{staff_member.full_name} from hotel #{@hotel.name}, are you sure you want to do that?", :method => "delete"
+                    %li= link_to "Remove", hotel_staff_path(@hotel, staff_member), :data => {:confirm => "You are about to remove staff #{staff_member.full_name} from hotel #{@hotel.name}, are you sure you want to do that?" }, :method => "delete"

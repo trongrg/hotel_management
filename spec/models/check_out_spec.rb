@@ -5,12 +5,12 @@ describe CheckOut do
     @room_type = RoomType.make!(:price_in_cents => 12300)
     @room = Room.make!(:room_type => @room_type)
     @check_in = CheckIn.make!(:room => @room, :status => "Active")
-    @check_in.update_attribute(:created_at, 2.days.ago.beginning_of_day + 8.hours)
+    @check_in.update_column(:created_at, 2.days.ago.beginning_of_day + 8.hours)
     @room.reload
   end
 
   subject do
-    CheckOut.create(:user => User.make, :guest => Guest.make, :room => @room)
+    CheckOut.create!(:user => User.make, :guest => Guest.make, :room => @room, :total => '$100')
   end
   it { should belong_to :user }
   it { should belong_to :guest }
