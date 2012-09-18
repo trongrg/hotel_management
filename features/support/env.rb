@@ -25,6 +25,7 @@ Spork.prefork do
 
   require 'cucumber/rails'
   require 'cucumber/rails/world'
+  Rails.env = 'cucumber'
 
   Before('@javascript', '@selenium', '@no-txn') do
     DatabaseCleaner.strategy = :truncation
