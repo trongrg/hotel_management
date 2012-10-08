@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'rails'
 
 gem "devise"
-gem "haml", ">= 3.0.0"
+gem "haml"
 gem "haml-rails"
 gem "settingslogic"
 gem "coffee-filter"
@@ -29,7 +29,7 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
-  gem "compass", ">= 0.12.rc"
+  gem "compass"
   gem "sassy-buttons"
 end
 
