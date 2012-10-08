@@ -1,28 +1,28 @@
 @GoogleMap = ()->
-GoogleMap.init_google_map = (lat = 10.781135, lng = 106.698457) ->
+GoogleMap.initGoogleMap = (lat = 10.781135, lng = 106.698457, canvasId = "map_canvas") ->
   myOptions =
     center: new google.maps.LatLng(lat, lng)
     zoom: 15
     mapTypeId: google.maps.MapTypeId.ROADMAP
 
-  GoogleMap.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions)
+  GoogleMap.map = new google.maps.Map(document.getElementById(canvasId), myOptions)
   GoogleMap.marker = new google.maps.Marker(
     map: @map
     draggable: true
     animation: google.maps.Animation.DROP
     position: myOptions.center
   )
-  google.maps.event.addListener @marker, "mouseup", GoogleMap.getLocation
+  google.maps.event.addListener @marker, "mouseup", GoogleMap.getLocationFromMarker
   return [@map, @marker]
 
-GoogleMap.getLocation = () ->
+GoogleMap.getLocationFromMarker = () ->
   position = GoogleMap.marker.getPosition()
   $('#hotel_lat').val(position.lat())
   $('#hotel_lng').val(position.lng())
   $("#hotel_lat").data("changed", true)
   $("#hotel_lng").data("changed", true)
 
-GoogleMap.getLocationFromAddress = () ->
+GoogleMap.setLocationFromAddress = () ->
   address = $('#hotel_address1').val() + ', ' + $('#hotel_address2').val() + ', ' + $('#hotel_city').val() + ', ' + $('#hotel_state').val() + ', ' + $("#hotel_country option[value='"+$("#hotel_country").val()+"']").text()
   geocoder = new google.maps.Geocoder()
   geocoder.geocode({'address': address}, (results, status) ->
@@ -31,7 +31,7 @@ GoogleMap.getLocationFromAddress = () ->
       GoogleMap.map.setCenter(results[0].geometry.location)
       google.maps.event.trigger(GoogleMap.marker, 'mouseup')
   )
-GoogleMap.getAddress = () ->
+GoogleMap.getAddressFromMarker = () ->
   position = GoogleMap.marker.getPosition()
   geocoder = new google.maps.Geocoder()
   $('.address').val('')
@@ -62,13 +62,13 @@ GoogleMap.getAddress = () ->
 
 $(document).ready ->
   if (typeof lat == 'undefined' && typeof lng == 'undefined')
-    GoogleMap.init_google_map()
+    GoogleMap.initGoogleMap()
   else
-    GoogleMap.init_google_map(lat, lng)
+    GoogleMap.initGoogleMap(lat, lng)
   $('#search_google_map_link').click (e)->
     e.preventDefault()
-    GoogleMap.getLocationFromAddress()
+    GoogleMap.setLocationFromAddress()
   $('#get_address_link').click (e)->
     e.preventDefault()
-    GoogleMap.getAddress()
-    GoogleMap.getLocation()
+    GoogleMap.getAddressFromMarker()
+    GoogleMap.getLocationFromMarker()
