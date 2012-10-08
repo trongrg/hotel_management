@@ -1,7 +1,5 @@
 p "Create roles:"
 Role.destroy_all
-p "Admin"
-Role.create(:name => "Admin")
 p "Hotel Owner"
 Role.create(:name => "Hotel Owner")
 p "Create users:"

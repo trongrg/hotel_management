@@ -16,11 +16,7 @@ User.blueprint do
   state { Faker::Address.state }
   country { Faker::Address.country }
   zip_code { Faker::Address.zip_code }
-  roles { [Role.find_or_create_by_name("Admin")] }
-end
-
-User.blueprint(:admin) do
-  roles { [Role.find_or_create_by_name("Admin")] }
+  roles { [Role.find_or_create_by_name("Hotel Owner")] }
 end
 
 User.blueprint(:hotel_owner) do
