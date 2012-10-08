@@ -4,5 +4,4 @@ $(document).ready ->
   $('.placeholder #user_username, .placeholder #user_password').focus ->
     $(this).siblings('label').hide()
   $('.placeholder #user_username, .placeholder #user_password').blur ->
-    if $(this).val().length == 0
-      $(this).siblings('label').show()
+    $(this).siblings('label').show()
