@@ -17,6 +17,9 @@ gem 'money-rails'
 gem "google_currency", :git => 'git://github.com/RubyMoney/google_currency.git'
 gem 'devise_invitable'
 gem 'jquery-rails'
+gem 'activeadmin'
+gem 'sass-rails'
+gem 'meta_search'
 
 group :production do
   gem 'pg'
@@ -26,7 +29,6 @@ end
 # in production environments by default.
 group :assets do
   gem 'sass'
-  gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
   gem "compass"
