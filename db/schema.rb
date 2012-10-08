@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120818084151) do
+ActiveRecord::Schema.define(:version => 20121008101256) do
 
   create_table "check_ins", :force => true do |t|
     t.string   "status"
@@ -71,11 +71,11 @@ ActiveRecord::Schema.define(:version => 20120818084151) do
     t.string   "country"
     t.string   "zip_code"
     t.string   "phone_number"
-    t.float    "lat"
-    t.float    "lng"
+    t.decimal  "lat",          :precision => 16, :scale => 13
+    t.decimal  "lng",          :precision => 16, :scale => 13
     t.integer  "owner_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
   end
 
   create_table "hotels_users", :force => true do |t|

@@ -15,4 +15,16 @@ describe Hotel do
     hotel = Hotel.new
     hotel.country.should == "VN"
   end
+
+  it "stores lat and lng correctly" do
+    hotel = Hotel.make!
+    hotel.update_attributes(:lat => -33.87893199620149, :lng => 151.1978550613769)
+    hotel.reload
+    hotel.lng.should == 151.1978550613769
+    hotel.lat.should == -33.87893199620149
+    hotel.update_attributes(:lat => -90, :lng => 180)
+    hotel.reload
+    hotel.lng.should == 180
+    hotel.lat.should == -90
+  end
 end
