@@ -25,9 +25,7 @@ class Ability
     #
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
     user ||= User.new
-    if user.role? :admin
-      can :manage, :all
-    elsif user.role? :hotel_owner
+    if user.role? :hotel_owner
       can :manage, Hotel, :owner_id => user.id
       can :manage, RoomType, :hotel_id => user.hotels.map(&:id) + [nil]
       can :manage, Room, :room_type_id => user.hotels.find(:all, :include => :room_types).map(&:room_type_ids).flatten + [nil]
