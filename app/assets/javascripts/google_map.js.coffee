@@ -57,6 +57,7 @@ GoogleMap.getAddress = () ->
           address.zip_code = component.long_name
       for field, value of address
         $("#hotel_"+field).val(value)
+        $("#hotel_"+field).data("changed", true)
   )
 
 $(document).ready ->

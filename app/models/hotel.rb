@@ -1,5 +1,5 @@
 class Hotel < ActiveRecord::Base
-  validates :name, :phone_number, :lat, :lng, :presence => true
+  validates :name, :address1, :city, :phone_number, :lat, :lng, :presence => true
   validates :phone_number, :phone_number => true
 
   belongs_to :owner, :class_name => "User"
