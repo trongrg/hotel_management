@@ -3,9 +3,9 @@ Role.destroy_all
 p "Hotel Owner"
 Role.create(:name => "Hotel Owner")
 p "Create admins:"
-AdminUser.destroy_all
-p "admin trongtran/123123"
-AdminUser.create(:first_name => "Trong", :last_name => "Tran", :username => "trongrg", :password => "123123", :password_confirmation => "123123", :email => "trongrg@yahoo.com", :dob => "15/12/1988")
+AdminUser.delete_all
+admin = AdminUser.create!(:username => "trongtran", :password => "123123", :password_confirmation => "123123", :email => "trongrg@yahoo.com")
+p "#{admin.username}/123123"
 p "Create users:"
 User.destroy_all
 p "hotel onwer trongrg/123123"
