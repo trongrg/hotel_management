@@ -20,6 +20,7 @@ gem 'jquery-rails'
 gem 'activeadmin'
 gem 'sass-rails'
 gem 'meta_search'
+gem 'rb-fsevent', '~> 0.9.1'
 
 group :production do
   gem 'pg'
