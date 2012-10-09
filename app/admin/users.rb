@@ -1,5 +1,6 @@
 ActiveAdmin.register User do
   index do
+    column :id
     column :username
     column :email
     column :first_name
@@ -26,6 +27,7 @@ ActiveAdmin.register User do
 
   show do
     attributes_table do
+      row :id
       row :username
       row :email
       row :first_name
