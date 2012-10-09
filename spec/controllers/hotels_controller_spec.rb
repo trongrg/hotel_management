@@ -12,7 +12,15 @@ describe HotelsController do
     # Hotel. As you add validations to Hotel, be sure to
     # update the return value of this method accordingly.
     def valid_attributes
-      {:name => "Hotel name", :phone_number => "0987654321", :lat => 10, :lng => 10}
+      {
+        :name => "Hotel name", :phone_number => "0987654321", :lat => 10, :lng => 10,
+        :address_attributes => 
+        {
+          :address_1 => "72 Nguyen Van Linh",
+          :city => "Ho Chi Minh City",
+          :country => "VN"
+        }
+      }
     end
 
     describe "GET index" do

@@ -103,7 +103,7 @@ When /^I click and drag the google map marker to the right$/ do
 end
 
 When /^I fill in the hotel address$/ do
-  fill_fields(:address1 => "702 Nguyen Van Linh Street", :address2 => "District 7", :city => "Ho Chi Minh City", :country => "Viet Nam")
+  fill_fields(:address_1 => "702 Nguyen Van Linh Street", :address_2 => "District 7", :city => "Ho Chi Minh City", :country => "Viet Nam")
 end
 
 When /^I send an invitation to "([^"]*)"$/ do |email|

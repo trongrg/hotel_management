@@ -23,7 +23,11 @@ GoogleMap.getLocationFromMarker = () ->
   $("#hotel_lng").data("changed", true)
 
 GoogleMap.setLocationFromAddress = () ->
-  address = $('#hotel_address1').val() + ', ' + $('#hotel_address2').val() + ', ' + $('#hotel_city').val() + ', ' + $('#hotel_state').val() + ', ' + $("#hotel_country option[value='"+$("#hotel_country").val()+"']").text()
+  address = null
+  $.each(['address_1', 'address_2', 'city', 'state'], (index, field)->
+    address += $('#hotel_address_attributes_'+field).val() + ', '
+  )
+  address+= $("#hotel_address_attributes_country option[value='"+$("#hotel_country").val()+"']").text()
   geocoder = new google.maps.Geocoder()
   geocoder.geocode({'address': address}, (results, status) ->
     if (status == google.maps.GeocoderStatus.OK)
@@ -37,16 +41,16 @@ GoogleMap.getAddressFromMarker = () ->
   $('.address').val('')
   geocoder.geocode({'latLng': position}, (results, status) ->
     if (status == google.maps.GeocoderStatus.OK)
-      address = {address1: '', address2: '', city: '', state: '', country: '', zip_code: ''}
+      address = {address_1: '', address_2: '', city: '', state: '', country: '', zip_code: ''}
       for component in results[0].address_components
         if ($.inArray('street_number', component.types) > -1)
-          address.address1 = component.long_name
+          address.address_1 = component.long_name
         else if ($.inArray('route', component.types) > -1)
-          address.address1 = address.address1 + ' ' + component.long_name
+          address.address_1 = address.address_1 + ' ' + component.long_name
         else if ($.inArray('neighborhood', component.types) > -1)
-          address.address2 = component.long_name
+          address.address_2 = component.long_name
         else if ($.inArray('sublocality', component.types) > -1)
-          address.address2 = address.address2 + ' ' + component.long_name
+          address.address_2 = address.address_2 + ' ' + component.long_name
         else if ($.inArray('locality', component.types) > -1 || $.inArray('administrative_area_level_2', component.types) > -1)
           address.city = component.long_name
         else if ($.inArray('administrative_area_level_1', component.types) > -1)
@@ -56,8 +60,8 @@ GoogleMap.getAddressFromMarker = () ->
         else if ($.inArray('postal_code', component.types) > -1)
           address.zip_code = component.long_name
       for field, value of address
-        $("#hotel_"+field).val(value)
-        $("#hotel_"+field).data("changed", true)
+        $("#hotel_address_attributes_"+field).val(value)
+        $("#hotel_address_attributes_"+field).data("changed", true)
   )
 
 $(document).ready ->

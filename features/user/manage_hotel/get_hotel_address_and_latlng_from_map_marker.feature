@@ -12,8 +12,8 @@ Feature: user get hotel's address and lat lng from google map marker
     And I follow "Get Address"
     Then the "Lat" field should have value
     And the "Lng" field should have value
-    And the "Address1" field should have value
-    And the "Address2" field should have value
+    And the "Address 1" field should have value
+    And the "Address 2" field should have value
     And the "City" field should have value
     And the "State" field should have value
 
@@ -23,7 +23,7 @@ Feature: user get hotel's address and lat lng from google map marker
     And I follow "Get Address"
     Then the "Lat" field should have value
     And the "Lng" field should have value
-    And the "Address1" field should have value
-    And the "Address2" field should have value
+    And the "Address 1" field should have value
+    And the "Address 2" field should have value
     And the "City" field should have value
     And the "State" field should have value

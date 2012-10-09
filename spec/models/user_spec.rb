@@ -9,6 +9,7 @@ describe User do
   it { should validate_presence_of :roles }
   it { should validate_presence_of :role_ids }
   it { should have_and_belong_to_many :roles }
+  it { should belong_to :address }
   it { should have_many :invitations }
   it { should have_many :hotels }
   it { should have_many :working_hotels }
@@ -41,12 +42,6 @@ describe User do
     end
   end
 
-  describe "#address" do
-    it "returns the address of user" do
-      subject.address.should == [subject.address1, subject.address2, subject.city, subject.state, subject.country, subject.zip_code].join(" ")
-    end
-  end
-
   describe "#full_name" do
     it "returns the full_name of user" do
       subject.full_name.should == subject.first_name + " " + subject.last_name
@@ -55,8 +50,8 @@ describe User do
 
   describe "#role_names" do
     it "returns an array of role names" do
-      subject.roles = [Role.find_by_name("Admin"), Role.find_by_name("Hotel Owner")]
-      subject.role_names.should == ["Admin", "Hotel Owner"]
+      subject.roles = [Role.find_by_name("Hotel Owner")]
+      subject.role_names.should == ["Hotel Owner"]
     end
   end
 end

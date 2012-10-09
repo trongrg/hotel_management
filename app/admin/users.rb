@@ -6,7 +6,48 @@ ActiveAdmin.register User do
     column :last_name
     column :phone_number
     column :dob
+    column "Address 1" do |u|
+      u.address.address_1
+    end
+    column "Address 2" do |u|
+      u.address.address_2
+    end
+    column "City" do |u|
+      u.address.city
+    end
+    column "State" do |u|
+      u.address.state
+    end
+    column "Country" do |u|
+      u.address.country
+    end
     default_actions
+  end
+
+  show do
+    attributes_table do
+      row :username
+      row :email
+      row :first_name
+      row :last_name
+      row :phone_number
+      row :dob
+      row 'Address 1' do |u|
+        u.address.address_1
+      end
+      row 'Address 2' do |u|
+        u.address.address_2
+      end
+      row 'City' do |u|
+        u.address.city
+      end
+      row 'State' do |u|
+        u.address.state
+      end
+      row 'Country' do |u|
+        u.address.country
+      end
+    end
   end
 
   filter :username
@@ -23,16 +64,15 @@ ActiveAdmin.register User do
         f.input :first_name
         f.input :last_name
         f.input :phone_number
-        f.input :dob
+        f.input :dob, :as => :date_select, :start_year => 100.year.ago.year, :end_year => Time.now.year, :include_blank => false
       end
-      f.inputs "Address" do
-        f.input :address1
-        f.input :address2
-        f.input :city
-        f.input :state
-        f.input :country
-        f.input :zip_code
+      f.inputs :name => "Address", :for => :address do |a|
+        a.input :address_1
+        a.input :address_2
+        a.input :city
+        a.input :state
+        a.input :country
       end
       f.buttons
-    end
+  end
 end

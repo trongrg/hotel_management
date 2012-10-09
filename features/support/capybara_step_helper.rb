@@ -3,8 +3,8 @@ module CapybaraStepHelper
     @user ||= { :first_name => "Trong", :last_name => "Tran", :username => "trongtran",
       :email => "trongrg@gmail.com", :password => "please", :password_confirmation => "please",
       :dob => "1988/10/15", :roles => [ Role.find_or_create_by_name("Hotel Owner").name ],
-      :phone_number => "01694622095", :address1 => "702 Nguyen Van Linh", :address2 => "District 7",
-      :state => "Ho Chi Minh City", :country => "Viet Nam", :zip_code => "12345"
+      :phone_number => "01694622095", :address_attributes => { :address_1 => "702 Nguyen Van Linh", :address_2 => "District 7",
+      :city => 'District 1', :state => "Ho Chi Minh City", :country => "Viet Nam", :zip_code => "12345" }
     }
   end
 
@@ -24,6 +24,8 @@ module CapybaraStepHelper
     attrs.each do |field, value|
       field = field.to_s.humanize
       case field
+      when "Address atrributes"
+        fill_fields value
       when "Country", "Currency"
         select value, :from => field
       when "Dob"
@@ -55,18 +57,20 @@ module CapybaraStepHelper
   end
 
   def valid_hotel
-    Hotel.make.attributes.symbolize_keys.except(:id, :owner_id, :created_at, :updated_at)
+    {
+      :name => "Hotel Name",
+      :lat => 10,
+      :lng => 10,
+      :phone_number => '123456',
+      :address_attributes => {
+        :address_1 => "702 Nguyen Van Linh", :address_2 => "District 7",
+        :city => 'District 1', :state => "Ho Chi Minh City", :country => "Viet Nam", :zip_code => "12345"
+      }
+    }
   end
 
   def create_hotel hotel
-    hotel.each do |field, value|
-      field = field.to_s.humanize
-      if field == "Country"
-        select value, :from => field
-      else
-        fill_in field, :with => value
-      end
-    end
+    fill_fields hotel
     click_button "Create Hotel"
   end
 
@@ -152,7 +156,7 @@ module CapybaraStepHelper
   def valid_reservation
     {:guest_attributes =>
      {:first_name => 'Trong', :last_name => 'Tran', :passport => '250737373', :phone_number => '0987654321', :gender => "Female" },
-      :check_in_date => DateTime.now.to_date, :check_out_date => 1.day.from_now.to_date
+       :check_in_date => DateTime.now.to_date, :check_out_date => 1.day.from_now.to_date
     }
   end
 

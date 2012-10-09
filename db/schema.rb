@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121008104235) do
+ActiveRecord::Schema.define(:version => 20121008111325) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -27,6 +27,17 @@ ActiveRecord::Schema.define(:version => 20121008104235) do
   add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
   add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
+
+  create_table "addresses", :force => true do |t|
+    t.string   "address_1"
+    t.string   "address_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "zip_code"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "admin_users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -98,18 +109,13 @@ ActiveRecord::Schema.define(:version => 20121008104235) do
 
   create_table "hotels", :force => true do |t|
     t.string   "name"
-    t.string   "address1"
-    t.string   "address2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "country"
-    t.string   "zip_code"
     t.string   "phone_number"
-    t.decimal  "lat",          :precision => 30, :scale => 20
-    t.decimal  "lng",          :precision => 30, :scale => 20
+    t.decimal  "lat",          :precision => 18, :scale => 14
+    t.decimal  "lng",          :precision => 18, :scale => 14
     t.integer  "owner_id"
     t.datetime "created_at",                                   :null => false
     t.datetime "updated_at",                                   :null => false
+    t.integer  "address_id"
   end
 
   create_table "hotels_users", :force => true do |t|
@@ -183,18 +189,13 @@ ActiveRecord::Schema.define(:version => 20121008104235) do
     t.string   "first_name"
     t.string   "last_name"
     t.date     "dob"
-    t.string   "address1"
-    t.string   "address2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "country"
-    t.string   "zip_code"
     t.string   "invitation_token",       :limit => 60
     t.datetime "invitation_sent_at"
     t.datetime "invitation_accepted_at"
     t.integer  "invitation_limit"
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
+    t.integer  "address_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

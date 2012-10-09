@@ -14,9 +14,9 @@
     = f.input :phone_number
     = f.input :dob, :as => :date_select, :start_year => 100.year.ago.year, :end_year => Time.now.year, :include_blank => false
 
-  = f.inputs :name => "Contact" do
-    = f.input :address1
-    = f.input :address2
+  = f.inputs :name => "Address", :for => :address do |f|
+    = f.input :address_1
+    = f.input :address_2
     = f.input :city
     = f.input :state
     = f.input :country

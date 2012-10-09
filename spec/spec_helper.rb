@@ -26,7 +26,6 @@ Spork.prefork do
     config.infer_base_class_for_anonymous_controllers = false
     config.include Devise::TestHelpers, :type => :controller
     config.before :each do
-      Role.find_or_create_by_name("Admin")
       Role.find_or_create_by_name("Hotel Owner")
       Role.find_or_create_by_name("Staff")
     end
