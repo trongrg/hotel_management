@@ -5,12 +5,13 @@ describe RoomsController do
     {:number => "101", :room_type_id => room_type.to_param}
   end
 
-  let(:hotel) { Hotel.make! }
+  let(:owner) { User.make!(:hotel_owner) }
+  let(:hotel) { Hotel.make!(:owner => owner) }
   let(:room_type) { RoomType.make!(:hotel => hotel) }
 
-  context "with authorized user (admin/hotel_owner)" do
+  context "with authorized user (hotel_owner)" do
     before do
-      sign_in User.make!(:admin)
+      sign_in owner
     end
 
     describe "GET index" do

@@ -13,7 +13,6 @@ Feature: show staff details
       | email | ntvan2104@gmail.com |
       | dob | 21/04/1990 |
       | phone number | 0943189646 |
-      | address1 | 702 Nguyen Van Linh St. |
     And user "vannguyen" is a staff member of hotel "Thien An"
 
 
@@ -31,4 +30,4 @@ Feature: show staff details
     And I should see "Date of birth: April 21, 1990"
     And I should see "Phone number: 0943189646"
     And I should see "Working on: Thien An"
-    And I should see "Address: 702 Nguyen Van Linh St."
+    And I should see "Address:"
