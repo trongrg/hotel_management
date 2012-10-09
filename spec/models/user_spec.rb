@@ -54,4 +54,11 @@ describe User do
       subject.role_names.should == ["Hotel Owner"]
     end
   end
+
+  describe "created with invalid address" do
+    it "saves the user without address" do
+      subject.update_attributes(:address_attributes => {:address_1 => "", :country => "VN"})
+      subject.should be_persisted
+    end
+  end
 end

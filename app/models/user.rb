@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :address
   after_initialize :init_address
+  before_validation :remove_empty_address
 
   def role?(role)
     !!self.roles.find_by_name(role.to_s.titleize)
@@ -41,5 +42,12 @@ class User < ActiveRecord::Base
   protected
   def init_address
     self.address ||= Address.new
+  end
+
+  def remove_empty_address
+    unless self.address.valid?
+      self.address = nil
+    end
+    true
   end
 end
