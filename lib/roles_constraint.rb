@@ -5,7 +5,10 @@ class RolesConstraint
 
   def matches?(request)
     user = request.env['warden'].try(:user)
-    return unless user
-    @roles.map(&:to_s).select { |r| user.roles.map(&:name).include? r.titleize }.count > 0
+    if user.is_a?(User)
+      return @roles.map(&:to_s).select { |r| user.role? r }.count > 0
+    elsif user.is_a?(AdminUser)
+      return true
+    end
   end
 end

@@ -41,7 +41,7 @@ HotelManagement::Application.routes.draw do
     resource :password, :only => [:edit, :update], :controller => "password"
   end
 
-  constraints(RolesConstraint.new(:user, :admin, :hotel_owner, :staff)) do
+  constraints(RolesConstraint.new(:user, :hotel_owner, :staff)) do
     root :to => 'dashboard#show'
   end
   root :to => 'welcome#show'
