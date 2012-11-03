@@ -59,9 +59,9 @@ describe RoomsController do
           assigns(:room).should be_persisted
         end
 
-        it "redirects to the created room" do
+        it "redirects to rooms list" do
           post :create, {:room => valid_attributes, :hotel_id => hotel.to_param}
-          response.should redirect_to hotel_room_path(hotel, Room.last)
+          response.should redirect_to hotel_rooms_path(hotel)
         end
       end
 
@@ -100,10 +100,10 @@ describe RoomsController do
           assigns(:room).should eq(room)
         end
 
-        it "redirects to the room" do
+        it "redirects to rooms list" do
           room = Room.create! valid_attributes
           put :update, {:id => room.to_param, :room => valid_attributes, :hotel_id => hotel.to_param}
-          response.should redirect_to hotel_room_path(hotel, room)
+          response.should redirect_to hotel_rooms_path(hotel)
         end
       end
 
@@ -134,7 +134,7 @@ describe RoomsController do
         }.to change(Room, :count).by(-1)
       end
 
-      it "redirects to the rooms list" do
+      it "redirects to rooms list" do
         room = Room.create! valid_attributes
         delete :destroy, {:id => room.to_param, :hotel_id => hotel.to_param}
         response.should redirect_to(hotel_rooms_url)

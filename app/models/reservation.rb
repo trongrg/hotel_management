@@ -17,6 +17,7 @@ class Reservation < ActiveRecord::Base
 
   scope :expired, :conditions => ['status = ?', STATUS[:expired]]
   scope :active, :conditions => ['status = ?', STATUS[:active]]
+  scope :with_status, lambda { |status| STATUS.stringify_keys.keys.include?(status) ? { :conditions => { :status => status } } : {} }
 
   def prepaid_attributes=(value)
     self.prepaid = Money.parse("#{value[:currency]}#{value[:dollars]}")

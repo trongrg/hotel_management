@@ -12,11 +12,7 @@ class ReservationsController < ApplicationController
   # GET /reservations
   # GET /reservations.json
   def index
-    if Reservation::STATUS.stringify_keys.keys.include?(params[:status])
-      @reservations = @room.reservations.send(params[:status])
-    else
-      @reservations = @room.reservations
-    end
+    @reservations = @room.reservations.with_status(params[:status]).page(params[:page])
   end
 
   # GET /reservations/1
@@ -31,49 +27,27 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/1/edit
   def edit
-    if @reservation.expired?
-      redirect_to room_reservations_path(@room), notice: "Cannot edit/delete expired reservation"
-    end
+    redirect_to room_reservations_path(@room), alert: "Cannot edit/delete expired reservation" if @reservation.expired?
   end
 
   # POST /reservations
   # POST /reservations.json
   def create
     @reservation.user = current_user
-
-    respond_to do |format|
-      if @reservation.save
-        format.html { redirect_to room_reservations_url(@room), notice: t('record.created', :record => t('model.reservation')) }
-        format.json { render json: @reservation, status: :created, location: @reservation }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @reservation.errors, status: :unprocessable_entity }
-      end
-    end
+    @reservation.room = @room
+    create_response @reservation.save, @reservation, "created", "new"
   end
 
   # PUT /reservations/1
   # PUT /reservations/1.json
   def update
     @reservation.user = current_user
-    respond_to do |format|
-      if @reservation.update_attributes(params[:reservation])
-        format.html { redirect_to room_reservation_url(@room, @reservation), notice: t('record.updated', :record => t('model.reservation')) }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @reservation.errors, status: :unprocessable_entity }
-      end
-    end
+    create_response @reservation.update_attributes(params[:reservation]), @reservation, "updated", "edit"
   end
 
   # DELETE /reservations/1
   # DELETE /reservations/1.json
   def destroy
-    @reservation.destroy
-    respond_to do |format|
-      format.html { redirect_to room_reservations_url(@room), notice: t('record.deleted', :record => t('model.reservation')) }
-      format.json { head :no_content }
-    end
+    create_response @reservation.destroy, @reservation, "deleted", "show"
   end
 end

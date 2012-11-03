@@ -12,11 +12,7 @@ class CheckInsController < ApplicationController
   # GET /check_ins
   # GET /check_ins.json
   def index
-    @check_ins = if CheckIn::STATUS.stringify_keys.keys.include?(params[:status])
-      @room.check_ins.send(params[:status])
-    else
-      @room.check_ins
-    end
+    @check_ins = @room.check_ins.with_status(params[:status]).page(params[:page])
   end
 
   # GET /check_ins/1
@@ -37,40 +33,20 @@ class CheckInsController < ApplicationController
   # POST /check_ins.json
   def create
     @check_in.user = current_user
-    respond_to do |format|
-      if @check_in.save
-        format.html { redirect_to room_check_in_url(@room, @check_in), notice: t('record.created', :record => t('model.check_in')) }
-        format.json { render json: @check_in, status: :created, location: @check_in }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @check_in.errors, status: :unprocessable_entity }
-      end
-    end
+    @check_in.room = @room
+    create_response @check_in.save, @check_in, "created", "new"
   end
 
   # PUT /check_ins/1
   # PUT /check_ins/1.json
   def update
     @check_in.user = current_user
-    respond_to do |format|
-      if @check_in.update_attributes(params[:check_in])
-        format.html { redirect_to room_check_in_url(@room, @check_in), notice: t('record.updated', :record => t('model.check_in')) }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @check_in.errors, status: :unprocessable_entity }
-      end
-    end
+    create_response @check_in.update_attributes(params[:check_in]), @check_in, "updated", "edit"
   end
 
   # DELETE /check_ins/1
   # DELETE /check_ins/1.json
   def destroy
-    @check_in.destroy
-
-    respond_to do |format|
-      format.html { redirect_to room_check_ins_url(@room), notice: t('record.deleted', :record => t('model.check_in')) }
-      format.json { head :no_content }
-    end
+    create_response @check_in.destroy, @check_in, "deleted", "show"
   end
 end

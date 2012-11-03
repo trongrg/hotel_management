@@ -62,9 +62,9 @@ describe CheckInsController do
         assigns(:check_in).should be_persisted
       end
 
-      it "redirects to the created check_in" do
+      it "redirects to the check ins list" do
         post :create, {:check_in => valid_attributes, :room_id => @room.id}
-        response.should redirect_to(room_check_in_url(@room, CheckIn.last))
+        response.should redirect_to(room_check_ins_url(@room))
       end
     end
 
@@ -103,10 +103,10 @@ describe CheckInsController do
         assigns(:check_in).should eq(check_in)
       end
 
-      it "redirects to the check_in" do
+      it "redirects to the check ins list" do
         check_in = CheckIn.create! valid_attributes
         put :update, {:id => check_in.to_param, :check_in => valid_attributes, :room_id => @room.id}
-        response.should redirect_to(room_check_in_url(@room, check_in))
+        response.should redirect_to(room_check_ins_url(@room))
       end
     end
 
@@ -137,7 +137,7 @@ describe CheckInsController do
       }.to change(CheckIn, :count).by(-1)
     end
 
-    it "redirects to the check_ins list" do
+    it "redirects to the check ins list" do
       check_in = CheckIn.create! valid_attributes
       delete :destroy, {:id => check_in.to_param, :room_id => @room.id}
       response.should redirect_to(room_check_ins_url(@room))

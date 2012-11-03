@@ -14,7 +14,11 @@ class Hotel < ActiveRecord::Base
 
   after_initialize :init_address
 
-  scope :owned_by, lambda { |owner_id| where(:owner_id => owner_id) }
+  scope :owned_by, lambda { |owner| where(:owner_id => owner.id) }
+  scope :managed_by, lambda { |staff|
+    joins(:staff_members).
+    where("hotels_users.user_id = ?", staff.id)
+  }
 
   protected
   def init_address

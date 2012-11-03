@@ -34,8 +34,8 @@ class RegistrationsController < Devise::RegistrationsController
     when 'edit'
       'application'
     end
-
   end
+
   def after_update_path_for(resource)
     dashboard_path
   end

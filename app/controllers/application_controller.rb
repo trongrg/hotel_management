@@ -28,5 +28,34 @@ class ApplicationController < ActionController::Base
 
   def load_room
     @room = Room.find(params[:room_id])
+    authorize! :read, @room
+  end
+
+  def load_hotel
+    @hotel = Hotel.find(params[:hotel_id])
+    authorize! :read, @hotel
+  end
+
+  def create_response(success, object, message, action)
+    respond_to do |format|
+      if success
+        notice = t("record.#{message}", :record => t("model.#{object.class.name.downcase}"))
+        format.html do
+          flash[:notice] = notice
+          redirect_to action: :index
+        end
+        format.json { render json: { result: object, notice: notice, status: :success } }
+      else
+        format.html do
+          flash[:alert] = object.errors.full_messages.join("<br/>").html_safe
+          if message == "deleted"
+            redirect_to action: :index
+          else
+            render action: action
+          end
+        end
+        format.json { render json: object.errors, status: :unprocessable_entity }
+      end
+    end
   end
 end

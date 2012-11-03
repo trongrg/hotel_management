@@ -61,9 +61,9 @@ describe FurnishingsController do
             assigns(:furnishing).should be_persisted
           end
 
-          it "redirects to the created furnishing" do
+          it "redirects to furnishings list" do
             post :create, {:room_type_id => @room_type.to_param, :furnishing => valid_attributes}
-            response.should redirect_to(room_type_furnishing_path(@room_type, Furnishing.last))
+            response.should redirect_to(room_type_furnishings_path(@room_type))
           end
         end
 
@@ -102,10 +102,10 @@ describe FurnishingsController do
             assigns(:furnishing).should eq(furnishing)
           end
 
-          it "redirects to the furnishing" do
+          it "redirects to furnishings list" do
             furnishing = Furnishing.create! valid_attributes
             put :update, {:room_type_id => @room_type.to_param, :id => furnishing.to_param, :furnishing => valid_attributes}
-            response.should redirect_to(room_type_furnishing_path(@room_type, furnishing))
+            response.should redirect_to(room_type_furnishings_path(@room_type))
           end
         end
 

@@ -14,7 +14,7 @@ describe HotelsController do
     def valid_attributes
       {
         :name => "Hotel name", :phone_number => "0987654321", :lat => 10, :lng => 10,
-        :address_attributes => 
+        :address_attributes =>
         {
           :address_1 => "72 Nguyen Van Linh",
           :city => "Ho Chi Minh City",
@@ -93,9 +93,9 @@ describe HotelsController do
           assigns(:hotel).should be_persisted
         end
 
-        it "redirects to the created hotel" do
+        it "redirects to hotels list" do
           post :create, {:hotel => valid_attributes}
-          response.should redirect_to(hotel_path(Hotel.last))
+          response.should redirect_to(hotels_path)
         end
       end
 
@@ -133,9 +133,9 @@ describe HotelsController do
             assigns(:hotel).should eq(@hotel)
           end
 
-          it "redirects to the hotel" do
+          it "redirects to hotels list" do
             put :update, {:id => @hotel.to_param, :hotel => valid_attributes}
-            response.should redirect_to(hotel_path(@hotel))
+            response.should redirect_to(hotels_path)
           end
         end
 
@@ -174,7 +174,7 @@ describe HotelsController do
         }.to change(Hotel, :count).by(-1)
       end
 
-      it "redirects to the hotels list" do
+      it "redirects to hotels list" do
         delete :destroy, {:id => @hotel.to_param}
         response.should redirect_to(hotels_url)
       end

@@ -20,6 +20,8 @@ class Ability
       can :manage, Guest
       can :manage, CheckOut, :room_id => Room.owned_by(user).map(&:id) + [nil]
     elsif user.role? :staff
+      can :read, Hotel, :id => Hotel.managed_by(user).map(&:id) + [nil]
+      can :read, Room, :id => Room.managed_by(user).map(&:id) + [nil]
       can :manage, CheckIn, :room_id => Room.managed_by(user).map(&:id) + [nil]
       can :manage, Reservation, :room_id => Room.managed_by(user).map(&:id) + [nil]
       can :manage, Guest

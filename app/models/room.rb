@@ -16,4 +16,8 @@ class Room < ActiveRecord::Base
     joins( :room_type => { :hotel => :staff_members }).
       where('users.id = ?', staff.id)
   }
+
+  def occupied?
+    current_check_in.present?
+  end
 end

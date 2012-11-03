@@ -10,15 +10,14 @@ en:
   model:
     hotel: "Hotel"
     user: "User"
-    room_type: "Room type"
+    roomtype: "Room type"
     password: "Password"
     account: "Account"
     room: "Room"
     furnishing: "Furnishing"
-    staff_member: "Staff member"
-    check_in: "Check in"
+    checkin: "Check in"
     reservation: "Reservation"
-    check_out: "Check out"
+    checkout: "Check out"
   activerecord:
     errors:
       models:

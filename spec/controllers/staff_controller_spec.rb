@@ -20,7 +20,7 @@ describe StaffController do
 
       it "assigns all staff of the hotel to @staff" do
         get :index, :hotel_id => @hotel
-        assigns(:staff).should == @staff_members
+        assigns(:staff).to_a.should == @staff_members
       end
     end
 
@@ -47,7 +47,7 @@ describe StaffController do
         @hotel.reload.staff_members.should_not include(@staff_members.first)
       end
       it "shows notice message" do
-        flash[:notice].should == I18n.t('record.removed', :record => I18n.t('model.staff_member'))
+        flash[:notice].should == I18n.t('record.removed', :record => I18n.t('model.user'))
       end
     end
   end

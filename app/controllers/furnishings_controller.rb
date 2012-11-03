@@ -7,12 +7,12 @@ class FurnishingsController < ApplicationController
 
   load_and_authorize_resource
 
-  expose(:furnishings) { @room_type.furnishing }
   expose(:furnishing)
 
   # GET /furnishings
   # GET /furnishings.json
   def index
+    @furnishings = @room_type.furnishings.page(params[:page])
   end
 
   # GET /furnishings/1
@@ -33,44 +33,21 @@ class FurnishingsController < ApplicationController
   # POST /furnishings.json
   def create
     @furnishing.room_type = @room_type
-
-    respond_to do |format|
-      if @furnishing.save
-        format.html { redirect_to room_type_furnishing_path(@room_type, @furnishing), notice: t('record.created', :record => t('model.furnishing')) }
-        format.json { render json: @furnishing, status: :created, location: @furnishing }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @furnishing.errors, status: :unprocessable_entity }
-      end
-    end
+    create_response @furnishing.save, @furnishing, "created", "new"
   end
 
   # PUT /furnishings/1
   # PUT /furnishings/1.json
   def update
-    @furnishing = Furnishing.find(params[:id])
-
-    respond_to do |format|
-      if @furnishing.update_attributes(params[:furnishing])
-        format.html { redirect_to room_type_furnishing_path(@room_type, @furnishing), notice: t('record.updated', :record => t('model.furnishing')) }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @furnishing.errors, status: :unprocessable_entity }
-      end
-    end
+    create_response @furnishing.update_attributes(params[:furnishing]), @furnishing, "updated", "edit"
   end
 
   # DELETE /furnishings/1
   # DELETE /furnishings/1.json
   def destroy
-    @furnishing.destroy
-
-    respond_to do |format|
-      format.html { redirect_to room_type_furnishings_url(@room_type), notice: t('record.deleted', :record => t('model.furnishing')) }
-      format.json { head :no_content }
-    end
+    create_response @furnishing.destroy, @furnishing, "deleted", "show"
   end
+
   private
   def load_room_type
     @room_type = RoomType.find(params[:room_type_id])

@@ -58,9 +58,9 @@ describe RoomTypesController do
             assigns(:room_type).should be_persisted
           end
 
-          it "redirects to the created room_type" do
+          it "redirects to room types list" do
             post :create, {:room_type => valid_attributes, :hotel_id => @hotel}
-            response.should redirect_to(hotel_room_type_path(@hotel, RoomType.last))
+            response.should redirect_to(hotel_room_types_path(@hotel))
           end
         end
 
@@ -99,10 +99,10 @@ describe RoomTypesController do
             assigns(:room_type).should eq(room_type)
           end
 
-          it "redirects to the room_type" do
+          it "redirects to room types list" do
             room_type = RoomType.create! valid_attributes
             put :update, {:id => room_type.to_param, :room_type => valid_attributes, :hotel_id => @hotel}
-            response.should redirect_to(hotel_room_type_path(@hotel, room_type))
+            response.should redirect_to(hotel_room_types_path(@hotel))
           end
         end
 
@@ -133,7 +133,7 @@ describe RoomTypesController do
           }.to change(RoomType, :count).by(-1)
         end
 
-        it "redirects to the room_types list" do
+        it "redirects to room types list" do
           room_type = RoomType.create! valid_attributes
           delete :destroy, {:id => room_type.to_param, :hotel_id => @hotel}
           response.should redirect_to(hotel_room_types_url)

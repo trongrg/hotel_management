@@ -39,6 +39,7 @@ describe Reservation do
       it "does not destroy" do
         subject.destroy.should be_false
       end
+
       it "adds errors to base" do
         subject.destroy
         subject.errors[:base].should include("Cannot edit/delete expired reservation")

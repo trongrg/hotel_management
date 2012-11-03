@@ -63,9 +63,9 @@ describe CheckOutsController do
         assigns(:check_out).should be_persisted
       end
 
-      it "redirects to the created check_out" do
+      it "redirects to the check outs list" do
         post :create, {:check_out => valid_attributes, :room_id => @room.id}
-        response.should redirect_to(room_check_out_url(@room, CheckOut.last))
+        response.should redirect_to(room_check_outs_url(@room))
       end
     end
 
@@ -104,10 +104,10 @@ describe CheckOutsController do
         assigns(:check_out).should eq(check_out)
       end
 
-      it "redirects to the check_out" do
+      it "redirects to the check outs list" do
         check_out = CheckOut.create! valid_attributes
         put :update, {:id => check_out.to_param, :check_out => valid_attributes, :room_id => @room.id}
-        response.should redirect_to(room_check_out_url(@room, check_out))
+        response.should redirect_to(room_check_outs_url(@room))
       end
     end
 
