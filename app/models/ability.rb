@@ -10,13 +10,13 @@ class Ability
   private
   def authorize(user)
     if user.role? :hotel_owner
-      owner_authorization
+      owner_authorization(user)
     elsif user.role? :staff
-      staff_authorization
+      staff_authorization(user)
     end
   end
 
-  def owner_authorization
+  def owner_authorization(user)
     can :manage, Hotel, :owner_id => user.id
     can :manage, RoomType, :hotel_id => user.hotels.map(&:id) + [nil]
     can :manage, Room, :room_type_id => RoomType.owned_by(user).map(&:id) + [nil]
@@ -24,7 +24,7 @@ class Ability
     can :manage, :staff
   end
 
-  def staff_authorization
+  def staff_authorization(user)
     can :manage, Guest
     can :read, Hotel, :id => Hotel.managed_by(user).map(&:id) + [nil]
     can :read, Room, :id => Room.managed_by(user).map(&:id) + [nil]

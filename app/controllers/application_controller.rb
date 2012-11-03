@@ -38,8 +38,8 @@ class ApplicationController < ActionController::Base
 
   def create_response(success, object, message, action)
     respond_to do |format|
-      format.html { create_html_response }
-      format.json { create_json_response }
+      format.html { create_html_response(success, object, message, action) }
+      format.json { create_json_response(success, object, message, action) }
     end
   end
 
