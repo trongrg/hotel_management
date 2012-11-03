@@ -19,6 +19,7 @@ describe CheckInsController do
   describe "GET index" do
     it "assigns all check_ins as @check_ins" do
       check_in = CheckIn.create! valid_attributes
+      check_in2 = CheckIn.make!
       get :index, {:room_id => @room.id}
       assigns(:check_ins).should eq([check_in])
     end

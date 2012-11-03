@@ -25,4 +25,8 @@ class ApplicationController < ActionController::Base
     flash[:alert] = exception.message
     redirect_to dashboard_path
   end
+
+  def load_room
+    @room = Room.find(params[:room_id])
+  end
 end

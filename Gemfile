@@ -21,6 +21,7 @@ gem 'activeadmin'
 gem 'sass-rails'
 gem 'meta_search'
 gem 'rb-fsevent', '~> 0.9.1'
+gem "decent_exposure", "~> 2.0.0"
 
 group :production do
   gem 'pg'

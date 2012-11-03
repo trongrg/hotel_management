@@ -1,50 +1,38 @@
 class FurnishingsController < ApplicationController
+  respond_to :html, :json
+
   before_filter :authenticate_user!
   before_filter :load_room_type
   before_filter :load_currencies
+
   load_and_authorize_resource
+
+  expose(:furnishings) { @room_type.furnishing }
+  expose(:furnishing)
+
   # GET /furnishings
   # GET /furnishings.json
   def index
-    @furnishings = @room_type.furnishings.page(params[:page])
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @furnishings }
-    end
   end
 
   # GET /furnishings/1
   # GET /furnishings/1.json
   def show
-    @furnishing = Furnishing.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @furnishing }
-    end
   end
 
   # GET /furnishings/new
   # GET /furnishings/new.json
   def new
-    @furnishing = Furnishing.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @furnishing }
-    end
   end
 
   # GET /furnishings/1/edit
   def edit
-    @furnishing = Furnishing.find(params[:id])
   end
 
   # POST /furnishings
   # POST /furnishings.json
   def create
-    @furnishing = @room_type.furnishings.new(params[:furnishing])
+    @furnishing.room_type = @room_type
 
     respond_to do |format|
       if @furnishing.save
@@ -76,7 +64,6 @@ class FurnishingsController < ApplicationController
   # DELETE /furnishings/1
   # DELETE /furnishings/1.json
   def destroy
-    @furnishing = Furnishing.find(params[:id])
     @furnishing.destroy
 
     respond_to do |format|
