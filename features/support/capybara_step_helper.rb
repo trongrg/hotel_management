@@ -20,35 +20,6 @@ module CapybaraStepHelper
     click_button "Create User"
   end
 
-  def fill_fields attrs
-    attrs.each do |field, value|
-      field = field.to_s.humanize
-      case field
-      when "Address atrributes"
-        fill_fields value
-      when "Country", "Currency"
-        select value, :from => field
-      when "Dob"
-        year, month, day= DateTime.parse(value).strftime("%Y %B %d").split(" ")
-        select year, :from => 'user_dob_1i'
-        select month, :from => 'user_dob_2i'
-        select day, :from => 'user_dob_3i'
-      when "Room type"
-        select value, :from => field
-      when "Roles"
-        value.each { |v| select v, :from => field }
-      when 'Settlement type'
-        select value, :from => field
-      when 'Gender'
-        select value, :from => field
-      when /attributes$/
-        fill_fields value
-      else
-        fill_in field, :with => value
-      end
-    end
-  end
-
   def sign_in user
     visit '/sign_in'
     fill_in "Username", :with => user[:username]
@@ -96,14 +67,7 @@ module CapybaraStepHelper
   end
 
   def create_room_type room_type
-    room_type.each do |field, value|
-      field = field.to_s.humanize
-      if field == "Currency"
-        select value, :from => field
-      else
-        fill_in field, :with => value
-      end
-    end
+    fill_fields room_type
     click_button "Create Room type"
   end
 
@@ -112,14 +76,7 @@ module CapybaraStepHelper
   end
 
   def create_room room
-    room.each do |field, value|
-      field = field.to_s.humanize
-      if field == "Room type"
-        select value, :from => field
-      else
-        fill_in field, :with => value
-      end
-    end
+    fill_fields room
     click_button "Create Room"
   end
 
@@ -139,17 +96,7 @@ module CapybaraStepHelper
   end
 
   def create_check_in check_in
-    check_in.each do |field, value|
-      field = field.to_s.humanize
-      case field
-      when 'Guest attributes'
-        fill_fields value
-      when 'Room'
-        select value, :from => field
-      else
-        fill_in field, :with => value
-      end
-    end
+    fill_fields check_in
     click_button "Create Check in"
   end
 
@@ -161,15 +108,7 @@ module CapybaraStepHelper
   end
 
   def create_reservation reservation
-    reservation.each do |field, value|
-      field = field.to_s.humanize
-      case field
-      when 'Guest attributes'
-        fill_fields value
-      else
-        fill_in field, :with => value
-      end
-    end
+    fill_fields reservation
     click_button "Create Reservation"
   end
 
@@ -179,17 +118,7 @@ module CapybaraStepHelper
   end
 
   def create_check_out check_out
-    check_out.each do |field, value|
-      field = field.to_s.humanize
-      case field
-      when 'Additional charges attributes'
-        fill_fields value
-      when 'Settlement type'
-        select value, :from => field
-      else
-        fill_in field, :with => value
-      end
-    end
+    fill_fields check_out
     click_button "Create Check out"
   end
 
@@ -197,6 +126,31 @@ module CapybaraStepHelper
   def room_type_attributes
     room_type = RoomType.make!
     {:name => room_type.name, :price => room_type.price, :currency => room_type.currency, :image => room_type.image, :description => room_type.description, :hotel_id => hotel.id }
+  end
+
+  def fill_date date
+    year, month, day = DateTime.parse(date).strftime("%Y %B %d").split(" ")
+    select year, :from => 'user_dob_1i'
+    select month, :from => 'user_dob_2i'
+    select day, :from => 'user_dob_3i'
+  end
+
+  def fill_fields attrs
+    attrs.each do |field, value|
+      field = field.to_s.humanize
+      case field
+      when "Country", "Currency", "Room type", "Settlement type", "Gender"
+        select value, :from => field
+      when "Dob"
+        fill_date value
+      when "Roles"
+        value.each { |v| select v, :from => field }
+      when /attributes$/
+        fill_fields value
+      else
+        fill_in field, :with => value
+      end
+    end
   end
 end
 
