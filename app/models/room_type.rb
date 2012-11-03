@@ -7,6 +7,11 @@ class RoomType < ActiveRecord::Base
   has_many :rooms
   has_many :furnishings
 
+  scope :owned_by, lambda { |owner|
+    joins( :hotel => :owner ).
+      where( "users.id = ?", owner.id )
+  }
+
   def price_attributes=(value)
     self.price = Money.parse("#{value[:currency]}#{value[:dollars]}")
   end
