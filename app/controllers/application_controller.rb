@@ -38,24 +38,27 @@ class ApplicationController < ActionController::Base
 
   def create_response(success, object, message, action)
     respond_to do |format|
-      if success
-        notice = t("record.#{message}", :record => t("model.#{object.class.name.downcase}"))
-        format.html do
-          flash[:notice] = notice
-          redirect_to action: :index
-        end
-        format.json { render json: { result: object, notice: notice, status: :success } }
-      else
-        format.html do
-          flash[:alert] = object.errors.full_messages.join("<br/>").html_safe
-          if message == "deleted"
-            redirect_to action: :index
-          else
-            render action: action
-          end
-        end
-        format.json { render json: object.errors, status: :unprocessable_entity }
-      end
+      format.html { create_html_response }
+      format.json { create_json_response }
+    end
+  end
+
+  private
+  def create_html_response(success, object, message, action)
+    if success
+      redirect_to( { action: :index }, notice: t("record.#{message}", :record => t("model.#{object.class.name.downcase}")) )
+    elsif message == "deleted"
+      redirect_to( { action: :index }, alert: object.errors.full_messages.join("<br/>").html_safe )
+    else
+      render action: action
+    end
+  end
+
+  def create_json_response(success, object, message, action)
+    if success
+      format.json { render json: { result: object, notice: t("record.#{message}", :record => t("model.#{object.class.name.downcase}")), status: :success } }
+    else
+      format.json { render json: object.errors, status: :unprocessable_entity }
     end
   end
 end
