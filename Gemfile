@@ -15,6 +15,7 @@ gem 'devise',           '>= 2.0.0'
 gem 'devise_invitable', '~> 1.0.0'
 
 gem 'formtastic'
+gem 'country_select'
 gem 'nested_form'
 
 gem 'devise',           '>= 2.0.0'

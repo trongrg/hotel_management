@@ -11,6 +11,11 @@ Feature: sign up
     Then I should see a successful sign up message
     And I should be a hotel owner
 
+  Scenario: User signs up without address
+    When I sign up without an address
+    Then I should see a successful sign up message
+    And I should be a hotel owner
+
   Scenario: User signs up with invalid email
     When I sign up with an invalid email
     Then I should see an invalid user's email message

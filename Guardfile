@@ -15,6 +15,8 @@ group 'drb' do
     watch(%r{^config/initializers/.+\.rb$})
     watch('Gemfile')
     watch('Gemfile.lock')
+    watch('app/models/user.rb')
+    watch('app/models/admin_user.rb')
     watch('spec/spec_helper.rb') { :rspec }
     watch(%r{spec/support/}) { :rspec }
     watch(%r{features/support/}) { :cucumber }
@@ -50,14 +52,11 @@ guard 'redis'
 group 'autotest' do
   guard 'cucumber', :cli => '--drb' do
     watch(%r{^features/.+\.feature$})
-    watch(%r{^features/support/.+$})          { 'features' }
-    watch(%r{^features/step_definitions/(.+)_steps\.rb$}) { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'features' }
   end
 
   guard 'rspec', :cli => '--drb' do
     watch(%r{^spec/.+_spec\.rb$})
     watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
-    watch('spec/spec_helper.rb')  { "spec" }
 
     # Rails example
     watch(%r{^app/(.+)\.rb$})                           { |m| "spec/#{m[1]}_spec.rb" }

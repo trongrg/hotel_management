@@ -1,6 +1,6 @@
 %h2
   Edit profile
-= semantic_form_for(resource, :url => user_registration_path, :html => { :method => :put }) do |f|
+= semantic_nested_form_for(resource, :url => user_registration_path, :html => { :method => :put }) do |f|
   = f.inputs do
     = f.input :email
     = f.input :first_name
@@ -8,6 +8,10 @@
     = f.input :gender, :as => :select, :collection => User::GENDERS, :include_blank => false
     = f.input :date_of_birth, :start_year => Time.now.year, :end_year => 100.years.ago.year, :include_blank => false
     = f.input :phone
+  -# NOTE have to put this logic here as it is urly to modify both new and create action of devise controller
+  - resource.build_address unless resource.address
+  = f.semantic_fields_for :address do |builder|
+    = render 'shared/address', :f => builder
   = f.actions do
     = f.action :submit, :label => "Update profile", :as => :button, :button_html => {:class => "btn"}
 = link_to "Change password", edit_profile_password_path

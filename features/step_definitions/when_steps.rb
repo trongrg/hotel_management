@@ -3,26 +3,30 @@ When /^I sign out$/ do
 end
 
 When /^I sign up with valid user data$/ do
-  sign_up valid_user.except(:roles)
+  sign_up valid_user
 end
 
 When /^I sign up with an invalid (.+)$/ do |field|
-  user = valid_user.except(:roles).merge(field.gsub(" ", "_").to_sym => "#*$")
+  user = valid_user.merge(field.gsub(" ", "_").to_sym => "#*$")
   sign_up user
 end
 
 When /^I sign up with a short password$/ do
-  user = valid_user.merge(:password => "1").except(:roles)
+  user = valid_user.merge(:password => "1")
   sign_up user
 end
 
 When /^I sign up without an? (.+)$/ do |field|
-  user = valid_user.merge(field.to_sym => "").except(:roles)
+  if field == "address"
+    user = valid_user.except(:address_attributes)
+  else
+    user = valid_user.merge(field.to_sym => "")
+  end
   sign_up user
 end
 
 When /^I sign up with a mismatched password confirmation$/ do
-  user = valid_user.merge(:password_confirmation => "please123").except(:roles)
+  user = valid_user.merge(:password_confirmation => "please123")
   sign_up user
 end
 
@@ -41,7 +45,7 @@ end
 
 When /^I edit my profile$/ do
   click_link "Profile"
-  fill_in "First name", :with => "newname"
+  fill_fields valid_user.except(:password, :password_confirmation).merge(:first_name => "new_name")
   click_button "Update profile"
 end
 
@@ -85,8 +89,13 @@ When /^I edit my profile with invalid (.+)$/ do |field|
 end
 
 When /^I edit my profile without an? (.+)/ do |field|
+  if field == "address"
+    user = valid_user.except(:password_confirmation, :password).merge(:address_attributes => {:line1 => "", :line2 => "", :city => "", :state => "", :zip => "", :country => nil})
+  else
+    user = valid_user.except(:password_confirmation, :password).merge(field => "")
+  end
   visit "/profile"
-  fill_in field.humanize, :with => ""
+  fill_fields user
   click_button "Update profile"
 end
 
@@ -122,7 +131,7 @@ When /^I send an invitation to "([^"]*)"$/ do |email|
 end
 
 When /^I update my info/ do
-  fill_fields valid_user.except(:email, :roles)
+  fill_fields valid_user.except(:email)
   click_on "Update info"
 end
 

@@ -7,6 +7,7 @@ User.blueprint do
   last_name { Faker::Name.last_name }
   password { "please" }
   password_confirmation { "please" }
+  gender { "Male" }
   phone { Faker::PhoneNumber.phone_number }
   date_of_birth { 20.years.ago }
   roles { :hotel_owner }

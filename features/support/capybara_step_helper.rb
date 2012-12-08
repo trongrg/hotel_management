@@ -2,8 +2,15 @@ module CapybaraStepHelper
   def valid_user
     @user ||= { :first_name => "Trong", :last_name => "Tran", :gender => "Male",
       :email => "trongrg@gmail.com", :password => "please", :password_confirmation => "please",
-      :date_of_birth => "1988/10/15", :roles => [ :hotel_owner ],
-      :phone => "01694622095"
+      :date_of_birth => "1988/10/15",
+      :phone => "01694622095", :address_attributes => {
+        :line1 => "line1",
+        :line2 => "line2",
+        :city => "city",
+        :state => "state",
+        :zip => "12345",
+        :country => "VN"
+      }
     }
   end
 
@@ -121,24 +128,17 @@ module CapybaraStepHelper
     click_button "Create Check out"
   end
 
-  private
-  def room_type_attributes
-    room_type = RoomType.make!
-    {:name => room_type.name, :price => room_type.price, :currency => room_type.currency, :image => room_type.image, :description => room_type.description, :hotel_id => hotel.id }
-  end
-
-  def fill_date date
-    year, month, day = DateTime.parse(date).strftime("%Y %B %d").split(" ")
-    select year, :from => 'user_date_of_birth_1i'
-    select month, :from => 'user_date_of_birth_2i'
-    select day, :from => 'user_date_of_birth_3i'
-  end
-
   def fill_fields attrs
     attrs.each do |field, value|
       field = field.to_s.humanize
       case field
-      when "Country", "Currency", "Room type", "Settlement type", "Gender"
+      when "Country"
+        if value
+          select "Viet Nam", :from => field
+        else
+          select "", :from => field
+        end
+      when "Currency", "Room type", "Settlement type", "Gender"
         select value, :from => field
       when "Date of birth"
         fill_date value
@@ -152,6 +152,19 @@ module CapybaraStepHelper
         fill_in field, :with => value
       end
     end
+  end
+
+  private
+  def room_type_attributes
+    room_type = RoomType.make!
+    {:name => room_type.name, :price => room_type.price, :currency => room_type.currency, :image => room_type.image, :description => room_type.description, :hotel_id => hotel.id }
+  end
+
+  def fill_date date
+    year, month, day = DateTime.parse(date).strftime("%Y %B %d").split(" ")
+    select year, :from => 'user_date_of_birth_1i'
+    select month, :from => 'user_date_of_birth_2i'
+    select day, :from => 'user_date_of_birth_3i'
   end
 end
 

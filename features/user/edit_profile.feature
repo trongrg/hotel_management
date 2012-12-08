@@ -15,6 +15,10 @@ Feature: edit profile
     When I edit my profile without a first name
     Then I should see a missing user's first name message
 
+  Scenario: I edit my profile without an address
+    When I edit my profile without an address
+    Then I should see a successful update your profile message
+
   Scenario: I update my password
     When I change my password to "newpass"
     Then I should see a successful update your password message
