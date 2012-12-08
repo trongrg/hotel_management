@@ -1,0 +1,40 @@
+@import compass
+
+#wrapper
+  min-height: 100%
+  height: auto !important
+  height: 100%
+  margin: 0 auto -50px
+.push
+  height: 50px
+  clear: both
+#footer
+  height: 50px
+  padding: 0
+  color: #CCC
+  font-weight: bold
+  #footer_content
+    margin: auto
+    border-top: 1px solid #ccc
+    padding-top: 10px
+    +clearfix
+    a
+      text-decoration: none
+      color: #777
+      font-family: "Helvetica Neue", Helvetica, san-serif
+      font-size: 12px
+      &:hover
+        text-decoration: underline
+    ul
+      height: 30px
+      line-height: 30px
+    ul.footer_nav
+      float: left
+      li
+        float: left
+        margin-right: 10px
+    ul.social
+      float: right
+      li
+        float: left
+        margin-right: 10px

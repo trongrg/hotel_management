@@ -19,9 +19,11 @@ HotelManagement::Application.routes.draw do
     post '/sign_in' => "users/sessions#create", :as => :user_session
     get '/sign_out' => "users/sessions#destroy", :as => :destroy_user_session
     get '/profile' => "users/registrations#edit", :as => :edit_user_registration
-    put '/profile' => "users/registrations#update", :as => :user_registration
+    put '/sign_up' => "users/registrations#update", :as => :user_registration
     get '/sign_up' => "users/registrations#new", :as => :new_user_registration
     post '/sign_up' => "users/registrations#create", :as => :user_registration
+    get '/profile/password' => "users/password#edit", :as => :edit_profile_password
+    put '/profile/password' => "users/password#update", :as => :profile_password
   end
   # The priority is based upon order of creation:
   # first created -> highest priority.

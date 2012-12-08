@@ -1,0 +1,14 @@
+%h2= t('devise.invitations.edit.header')
+= semantic_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f|
+  = devise_error_messages!
+  = f.inputs do
+    = f.input :invitation_token, :as => :hidden
+    = f.input :email, :input_html => {:disabled => true}
+    = f.input :first_name
+    = f.input :last_name
+    = f.input :phone
+    = f.input :address
+    = f.input :password
+    = f.input :password_confirmation
+  = f.actions do
+    = f.action :submit, :label => t('devise.invitations.edit.submit_button'), :as => :button, :button_html => {:class => "btn"}

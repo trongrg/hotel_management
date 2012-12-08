@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails'
-gem 'pg'
 
 gem "activeadmin"
 gem 'meta_search'
@@ -45,6 +44,7 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'mysql2'
   gem 'debugger'
   gem 'rspec-rails'
   gem "capybara"
@@ -90,4 +90,8 @@ group :development do
     gem 'win32console'
     gem 'rb-notifu'
   end
+end
+
+group :production do
+  gem 'pg'
 end

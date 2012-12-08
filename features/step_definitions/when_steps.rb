@@ -1,0 +1,140 @@
+When /^I sign out$/ do
+  visit '/sign_out'
+end
+
+When /^I sign up with valid user data$/ do
+  sign_up valid_user.except(:roles)
+end
+
+When /^I sign up with an invalid (.+)$/ do |field|
+  user = valid_user.except(:roles).merge(field.gsub(" ", "_").to_sym => "#*$")
+  sign_up user
+end
+
+When /^I sign up with a short password$/ do
+  user = valid_user.merge(:password => "1").except(:roles)
+  sign_up user
+end
+
+When /^I sign up without an? (.+)$/ do |field|
+  user = valid_user.merge(field.to_sym => "").except(:roles)
+  sign_up user
+end
+
+When /^I sign up with a mismatched password confirmation$/ do
+  user = valid_user.merge(:password_confirmation => "please123").except(:roles)
+  sign_up user
+end
+
+When /^I sign in with a wrong password$/ do
+  user = valid_user.merge(:password => "wrongpass")
+  sign_in user
+end
+
+When /^I sign in with valid credentials$/ do
+  sign_in valid_user
+end
+
+When /^I sign in with password "([^"]+)"$/ do |password|
+  sign_in valid_user.merge(:password => password)
+end
+
+When /^I edit my profile$/ do
+  click_link "Profile"
+  fill_in "First name", :with => "newname"
+  click_button "Update profile"
+end
+
+When /^I change my password to "([^"]+)"$/ do |new_password|
+  visit "/profile"
+  click_link "Change password"
+  fill_in "Current password", :with => "please"
+  fill_in "user_password", :with => new_password
+  fill_in "user_password_confirmation", :with => new_password
+  click_button "Change password"
+end
+
+When /^I set my password to "([^"]+)"$/ do |new_password|
+  fill_in "user_password", :with => new_password
+  fill_in "user_password_confirmation", :with => new_password
+  click_button "Change password"
+end
+
+When /^I update my password with mismatched password and confirmation$/ do
+  visit "/profile"
+  click_link "Change password"
+  fill_in "Current password", :with => "please"
+  fill_in "user_password", :with => "newpass"
+  fill_in "user_password_confirmation", :with => "notmatch"
+  click_button "Change password"
+end
+
+When /^I update my password with invalid current password$/ do
+  visit "/profile"
+  click_link "Change password"
+  fill_in "Current password", :with => "invalidpass"
+  fill_in "user_password", :with => "newpass"
+  fill_in "user_password_confirmation", :with => "newpass"
+  click_button "Change password"
+end
+
+When /^I edit my profile with invalid (.+)$/ do |field|
+  visit "/profile"
+  fill_in field.humanize, :with => "#%"
+  click_button "Update profile"
+end
+
+When /^I edit my profile without an? (.+)/ do |field|
+  visit "/profile"
+  fill_in field.humanize, :with => ""
+  click_button "Update profile"
+end
+
+When /^I edit the (.+) without an? (.+)$/ do |model, field|
+  case field.downcase
+  when "room type"
+    select "", :from => field.humanize
+  else
+    fill_in field.humanize, :with => ""
+  end
+  click_button "Update #{model.humanize}"
+end
+
+#When /^I edit the hotel with valid info$/ do
+  #fill_in "Name", :with => "New Name"
+  #click_button "Update Hotel"
+#end
+
+When /^I click and drag the google map marker to the right$/ do
+  lat = page.evaluate_script("GoogleMap.marker.getPosition().lat()")
+  lng = page.evaluate_script("GoogleMap.marker.getPosition().lng()") + 0.01
+  page.execute_script("GoogleMap.marker.setPosition(new google.maps.LatLng(#{lat}, #{lng}))")
+  page.execute_script("google.maps.event.trigger(GoogleMap.marker, 'mouseup')")
+end
+
+When /^I fill in the hotel address$/ do
+  fill_fields(:address_1 => "702 Nguyen Van Linh Street", :address_2 => "District 7", :city => "Ho Chi Minh City", :country => "Viet Nam")
+end
+
+When /^I send an invitation to "([^"]*)"$/ do |email|
+  fill_fields({:email => email})
+  click_on "Send an invitation"
+end
+
+When /^I update my info/ do
+  fill_fields valid_user.except(:email, :roles)
+  click_on "Update info"
+end
+
+When /^I reset my password$/ do
+  visit "/sign_in"
+  click_link "Forgot your password?"
+  fill_in "Email", :with => User.last.email
+  click_button "Send me reset password instructions"
+end
+
+When /^I follow my reset password link$/ do
+  token = User.last.reset_password_token
+  visit "/users/password/edit?reset_password_token=#{token}"
+end
+
