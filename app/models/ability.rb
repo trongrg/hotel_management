@@ -11,7 +11,8 @@ class Ability
   def authorize(user)
     if user.role? :hotel_owner
       owner_authorization(user)
-    elsif user.role? :staff
+    end
+    if user.role? :staff
       staff_authorization(user)
     end
   end
