@@ -6,6 +6,23 @@ HotelManagement::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   match "/resque/trongtran", :to => Resque::Server, :anchor => false
+
+  devise_for :users,
+    :skip => [:sessions, :registrations],
+    :controllers => {
+      :sessions => 'users/sessions',
+      :registrations => 'users/registrations'
+    }
+
+  devise_scope :user do
+    get '/sign_in' => "users/sessions#new", :as => :new_user_session
+    post '/sign_in' => "users/sessions#create", :as => :user_session
+    get '/sign_out' => "users/sessions#destroy", :as => :destroy_user_session
+    get '/profile' => "users/registrations#edit", :as => :edit_user_registration
+    put '/profile' => "users/registrations#update", :as => :user_registration
+    get '/sign_up' => "users/registrations#new", :as => :new_user_registration
+    post '/sign_up' => "users/registrations#create", :as => :user_registration
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
