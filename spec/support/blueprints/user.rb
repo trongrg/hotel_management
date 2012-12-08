@@ -9,4 +9,5 @@ User.blueprint do
   password_confirmation { "please" }
   phone { Faker::PhoneNumber.phone_number }
   date_of_birth { 20.years.ago }
+  roles { :hotel_owner }
 end

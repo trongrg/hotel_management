@@ -10,5 +10,6 @@
     = f.input :gender, :as => :select, :collection => User::GENDERS, :include_blank => false
     = f.input :date_of_birth, :start_year => Time.now.year, :end_year => 100.years.ago.year, :include_blank => false
     = f.input :phone
+    = f.input :roles_mask, :as => :hidden, :input_html => {:value => User.mask_for(:hotel_owner)}
   = f.actions do
     = f.action :submit, :label => "Sign up", :as => :button, :button_html => {:class => "btn"}

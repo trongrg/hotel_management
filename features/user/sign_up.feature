@@ -1,4 +1,4 @@
-Feature: anonymous user sign up
+Feature: sign up
   In order to become a hotel owner,
   As an anonymous user,
   I should be able to register
@@ -9,6 +9,7 @@ Feature: anonymous user sign up
   Scenario: User signs up with valid data
     When I sign up with valid user data
     Then I should see a successful sign up message
+    And I should be a hotel owner
 
   Scenario: User signs up with invalid email
     When I sign up with an invalid email

@@ -2,14 +2,14 @@ source 'https://rubygems.org'
 
 gem 'rails'
 
-gem "activeadmin"
+gem 'activeadmin'
 gem 'meta_search'
 
-gem "delayed_job_active_record"
-gem "delayed_job_admin"
+gem 'delayed_job_active_record'
+gem 'delayed_job_admin'
 
-gem "redis"
-gem "resque", :require => "resque/server"
+gem 'redis'
+gem 'resque', :require => 'resque/server'
 
 gem 'devise',           '>= 2.0.0'
 gem 'devise_invitable', '~> 1.0.0'
@@ -26,12 +26,13 @@ gem 'coffee-filter'
 gem 'jquery-rails'
 gem 'client_side_validations'
 
-gem "carmen"
-gem "cancan"
+gem 'carmen'
+gem 'cancan'
+gem 'role_model'
 
 gem 'money'
 gem 'money-rails'
-gem "google_currency", :git => 'git://github.com/RubyMoney/google_currency.git'
+gem 'google_currency', :git => 'git://github.com/RubyMoney/google_currency.git'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -45,9 +46,8 @@ end
 
 group :development, :test do
   gem 'mysql2'
-  gem 'debugger'
   gem 'rspec-rails'
-  gem "capybara"
+  gem 'capybara'
 end
 
 group :test do
@@ -64,18 +64,19 @@ end
 
 group :development do
   gem 'pry-rails'
+  gem 'pry-nav'
   gem 'awesome_print'
   gem 'haml-rails'
   gem 'spork', :git => 'git://github.com/sporkrb/spork.git'
-  gem "guard-livereload"
-  gem "yajl-ruby"
-  gem "rack-livereload"
+  gem 'guard-livereload'
+  gem 'yajl-ruby'
+  gem 'rack-livereload'
   gem 'guard-spork'
-  gem "guard-bundler"
-  gem "guard-cucumber"
-  gem "guard-redis"
-  gem "guard-resque"
-  gem "guard-rspec"
+  gem 'guard-bundler'
+  gem 'guard-cucumber'
+  gem 'guard-redis'
+  gem 'guard-resque'
+  gem 'guard-rspec'
   require 'rbconfig'
   HOST_OS = RbConfig::CONFIG['host_os']
   case HOST_OS

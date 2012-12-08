@@ -139,3 +139,7 @@ Then /^I should receive a reset password instruction email$/ do
   email.to[0].should == User.last.email
   email.subject.should == 'Reset password instructions'
 end
+
+Then /^I should be a (.+)$/ do |role|
+  User.last.should have_role role.gsub(' ', '_').underscore
+end
