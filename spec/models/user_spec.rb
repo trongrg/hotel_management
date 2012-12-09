@@ -32,6 +32,7 @@ describe User do
     end
     context "address is null" do
       it "does nothing" do
+        allow_message_expectations_on_nil
         subject.address.should_not_receive(:destroy)
         subject.send(:remove_emtpy_address)
       end

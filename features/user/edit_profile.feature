@@ -19,6 +19,14 @@ Feature: edit profile
     When I edit my profile without an address
     Then I should see a successful update your profile message
 
+    @javascript
+  Scenario: I edit my profile and remove my address
+    When I go to the profile page
+    And I remove my address
+    Then I should see a successful update your profile message
+    When I go to the profile page
+    Then I should see an empty address
+
   Scenario: I update my password
     When I change my password to "newpass"
     Then I should see a successful update your password message

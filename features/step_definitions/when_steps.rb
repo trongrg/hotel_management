@@ -147,3 +147,7 @@ When /^I follow my reset password link$/ do
   visit "/users/password/edit?reset_password_token=#{token}"
 end
 
+When /^I remove my address$/ do
+  page.execute_script("$('#remove_address_link').click()")
+  click_button "Update profile"
+end

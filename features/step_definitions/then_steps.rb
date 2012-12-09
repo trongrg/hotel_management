@@ -143,3 +143,9 @@ end
 Then /^I should be a (.+)$/ do |role|
   User.last.should have_role role.gsub(' ', '_').underscore
 end
+
+Then /^I should see an empty address$/ do
+  ["line1", "line2", "city", "state", "zip", "country"].each do |attr|
+    page.find("#user_address_attributes_#{attr}").value.should be_blank
+  end
+end
