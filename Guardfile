@@ -10,16 +10,15 @@ end
 group 'drb' do
   guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'cucumber' }, :rspec_env => { 'RAILS_ENV' => 'test' } do
     watch('config/application.rb')
+    watch('config/boot.rb')
     watch('config/environment.rb')
-    watch(%r{^config/environments/.+\.rb$})
+    watch(%r{^config/environments/test\.rb$})
+    watch(%r{^config/environments/cucumber\.rb$})
     watch(%r{^config/initializers/.+\.rb$})
     watch('Gemfile')
     watch('Gemfile.lock')
-    watch('app/models/user.rb')
-    watch('app/models/admin_user.rb')
+    watch('app/controllers/application_controller.rb')
     watch('spec/spec_helper.rb') { :rspec }
-    watch(%r{spec/support/}) { :rspec }
-    watch(%r{features/support/}) { :cucumber }
     watch('feature/support/env.rb') { :cucumber }
   end
 end

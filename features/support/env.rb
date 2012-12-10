@@ -11,7 +11,6 @@ Spork.prefork do
   end
 
   require "rails/application"
-  Spork.trap_method(Rails::Application, :reload_routes!)
   Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
 
   # Prevent main application to eager_load in the prefork block (do not load files in autoload_paths)
@@ -45,13 +44,10 @@ Spork.prefork do
   After('~@javascript', '~@selenium', '~@no-txn')do
     DatabaseCleaner.clean
   end
-
-  ActiveRecord::Base.connection.disconnect!
 end
 
 Spork.each_run do
-  ActiveRecord::Base.establish_connection
-  require 'machinist/active_record'
+  require 'cucumber/rails/world'
   Dir[Rails.root.join("spec/support/blueprints/**/*.rb")].each { |f| load f }
   I18n.backend.reload!
   DatabaseCleaner.clean_with :truncation
