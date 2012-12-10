@@ -5,7 +5,6 @@ describe Location do
   it { should belong_to :locatable }
   it { should validate_presence_of :latitude }
   it { should validate_presence_of :longitude }
-  it { should validate_presence_of :locatable }
 
   describe "#all_blank?" do
     context "all attributes are blank" do
