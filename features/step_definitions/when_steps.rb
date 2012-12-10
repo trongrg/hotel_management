@@ -7,7 +7,7 @@ When /^I sign up with valid user data$/ do
 end
 
 When /^I sign up with an invalid (.+)$/ do |field|
-  user = valid_user.merge(field.gsub(" ", "_").to_sym => "#*$")
+  user = valid_user.merge(field.gsub(" ", "_") => "#*$")
   sign_up user
 end
 
@@ -20,7 +20,7 @@ When /^I sign up without an? (.+)$/ do |field|
   if field == "address"
     user = valid_user.except(:address_attributes)
   else
-    user = valid_user.merge(field.to_sym => "")
+    user = valid_user.merge(field => "")
   end
   sign_up user
 end
@@ -46,7 +46,7 @@ end
 When /^I edit my profile$/ do
   click_link "Profile"
   fill_fields valid_user.except(:password, :password_confirmation).merge(:first_name => "new_name")
-  click_button "Update profile"
+  click_button "Update Profile"
 end
 
 When /^I change my password to "([^"]+)"$/ do |new_password|
@@ -85,7 +85,7 @@ end
 When /^I edit my profile with invalid (.+)$/ do |field|
   visit "/profile"
   fill_in field.humanize, :with => "#%"
-  click_button "Update profile"
+  click_button "Update Profile"
 end
 
 When /^I edit my profile without an? (.+)/ do |field|
@@ -96,13 +96,16 @@ When /^I edit my profile without an? (.+)/ do |field|
   end
   visit "/profile"
   fill_fields user
-  click_button "Update profile"
+  click_button "Update Profile"
 end
 
 When /^I edit the (.+) without an? (.+)$/ do |model, field|
   case field.downcase
   when "room type"
     select "", :from => field.humanize
+  when "location"
+    fill_in "Latitude", :with => ""
+    fill_in "Longitude", :with => ""
   else
     fill_in field.humanize, :with => ""
   end
@@ -149,5 +152,43 @@ end
 
 When /^I remove my address$/ do
   page.execute_script("$('#remove_address_link').click()")
-  click_button "Update profile"
+  click_button "Update Profile"
 end
+
+When /^I create a new (#{model_names.join("|")})$/ do |model|
+  model.gsub!(" ", "_")
+  send("create_#{model}", send("valid_#{model}"))
+end
+
+When /^I create a new (#{model_names.join("|")}) without an? (.+)$/ do |model, field|
+  model.gsub!(" ", "_")
+  send("create_#{model}", send("valid_#{model}").merge(field.gsub(' ', '_') => ""))
+end
+
+When /^I create a new (#{model_names.join('|')}) with an invalid (.+)$/ do |model, field|
+  send("create_#{model}", send("valid_#{model}").merge(field => "*#&"))
+end
+
+When /^I follow "([^"]*)" link of (.+) "([^"]*)"$/ do |link, model, name|
+  object = model.gsub(' ', '_').camelize.constantize.send(find_method_for(model), name)
+  within "##{model.gsub(' ', '_')}_#{object.id}" do
+    click_link link
+  end
+end
+
+When /^I edit the (#{model_names.join('|')}) with valid info$/ do |model|
+  fill_fields send("valid_#{model.gsub(' ', '_')}")
+  click_button "Update #{model.humanize}"
+end
+
+When /^I edit the (#{model_names.join('|')}) with invalid (.+)$/ do |model, field|
+  fill_in field.humanize, :with => "*&#"
+  click_button "Update #{model.humanize}"
+end
+
+When /^I edit the user with new password$/ do
+  fill_in "Password", :with => "newpass"
+  fill_in "Password confirmation", :with => "newpass"
+  click_button "Update User"
+end
+

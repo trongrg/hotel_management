@@ -11,6 +11,7 @@ describe User do
   it { should ensure_inclusion_of(:gender).in_array(["Male", "Female"])}
   it { should validate_presence_of :roles }
   it { should have_one :address }
+  it { should have_and_belong_to_many :hotels }
 
   describe "#full_name" do
     it "returns the full_name of user" do

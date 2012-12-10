@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails'
 
+gem 'inherited_resources'
 gem 'activeadmin'
 gem 'meta_search'
 
@@ -34,6 +35,8 @@ gem 'role_model'
 gem 'money'
 gem 'money-rails'
 gem 'google_currency', :git => 'git://github.com/RubyMoney/google_currency.git'
+
+gem 'settingslogic'
 
 # Gems used only for assets and not required
 # in production environments by default.

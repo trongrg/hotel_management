@@ -15,6 +15,6 @@
   -# NOTE have to put this logic here as it is urly to modify both new and create action of devise controller
   - resource.build_address unless resource.address
   = f.semantic_fields_for :address do |builder|
-    = render 'shared/address', :f => builder
+    = render 'shared/address_fields', :f => builder
   = f.actions do
     = f.action :submit, :label => "Sign up", :as => :button, :button_html => {:class => "btn"}

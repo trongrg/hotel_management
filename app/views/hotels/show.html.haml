@@ -1,0 +1,18 @@
+%h2= "Hotel #{@hotel.name}"
+%fieldset.inputs
+  %legend Details
+  %ul
+    %li
+      %label Name
+      %label.value= @hotel.name
+    %li
+      %label Phone
+      %label.value= @hotel.phone
+= render 'shared/address', :address => @hotel.address
+= render 'shared/location', :location => @hotel.location
+
+= link_to 'Edit', edit_hotel_path(@hotel)
+\|
+= link_to 'Delete', hotel_path(@hotel), :data => { :confirm => "Are you sure?" }, :method => :delete
+\|
+= link_to 'Back', hotels_path

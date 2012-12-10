@@ -23,7 +23,7 @@ module CapybaraStepHelper
   def create_user user
     visit '/users/new'
     fill_fields user
-    click_button "Create User"
+    click_button "Create user"
   end
 
   def sign_in user
@@ -36,12 +36,18 @@ module CapybaraStepHelper
   def valid_hotel
     {
       :name => "Hotel Name",
-      :lat => 10,
-      :lng => 10,
-      :phone_number => '123456',
+      :phone => '123456',
       :address_attributes => {
-        :address_1 => "702 Nguyen Van Linh", :address_2 => "District 7",
-        :city => 'District 1', :state => "Ho Chi Minh City", :country => "Viet Nam", :zip_code => "12345"
+        :line1 => "702 Nguyen Van Linh",
+        :line2 => "District 7",
+        :city => 'District 1',
+        :state => "Ho Chi Minh City",
+        :zip => "12345",
+        :country => "Viet Nam",
+      },
+      :location_attributes => {
+        :latitude => 123,
+        :longitude => 123
       }
     }
   end
@@ -54,7 +60,7 @@ module CapybaraStepHelper
   def find_method_for model
     case model
     when 'user'
-      'find_by_username'
+      'find_by_email'
     when 'hotel'
       'find_by_name'
     when 'room_type', 'room type'

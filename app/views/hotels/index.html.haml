@@ -1,0 +1,45 @@
+- content_for :head do
+  = stylesheet_link_tag 'hotels'
+  = javascript_include_tag 'hotel'
+  = javascript_include_tag "#{Settings.google_map.server}/maps/api/js?key=AIzaSyBrp5OKFAdzY1xre8m-Fbq3VuoswPv2Y7s&sensor=false"
+
+#hotels
+  .content
+    %h1 My Hotels
+
+    .hotels_list
+      .tabular_data
+        .thead
+          %h3.left= current_user.full_name
+          = link_to "Create Hotel", "#", :class => "right button", :id => 'create_hotel_btn'
+
+        %ul.tbody
+          - @hotels.each do |hotel|
+            %li.clearfix{ :id => "hotel_#{hotel.id}" }
+              .title= link_to hotel.name, hotel
+              %ul.actions
+                %li= link_to "Overview", "#"
+                %li= link_to "Manage", "#"
+                %li= link_to "Edit", edit_hotel_path(hotel), :class => "edit_link"
+                %li= link_to "Staff", "#"
+                %li= link_to "Delete", hotel, :data => { :confirm => "You are about to permanently delete hotel \"#{hotel.name}\", are you sure you want to do that?" }, :method => :delete, :class => "delete_link"
+              %ul.status
+                %li 1 staff
+                %li=# "#{hotel.room_types.count} room types"
+                %li=# "#{hotel.rooms.count} rooms"
+
+        %ul.template
+          %li.clearfix
+            .title= link_to "Hotel_name", "#"
+            %ul.actions
+              %li= link_to "Overview", "#"
+              %li= link_to "Manage", "#"
+              %li= link_to "Edit", "#", :class => "edit_link"
+              %li= link_to "Staff", "#"
+              %li= link_to "Delete", "#", :data => { :confirm => "You are about to permanently delete hotel \"{hotel_name}\", are you sure you want to do that?" }, :method => :delete, :class => "delete_link"
+            %ul.status
+              %li 0 staff
+              %li 0 room types
+              %li 0 rooms
+      %br
+      = paginate @hotels

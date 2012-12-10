@@ -1,8 +1,21 @@
-= f.inputs "Address" do
-  = f.input :line1
-  = f.input :line2
-  = f.input :city
-  = f.input :state
-  = f.input :zip
-  = f.input :country, :as => :country, :include_blank => true
-  = f.link_to_remove "Remove address", :id => "remove_address_link"
+%fieldset.inputs
+  %legend Address
+  %ul
+    %li
+      %label Line1
+      %label.value= address.line1
+    %li
+      %label Line2
+      %label.value= address.line2
+    %li
+      %label City
+      %label.value= address.city
+    %li
+      %label State
+      %label.value= address.state
+    %li
+      %label Zip
+      %label.value= address.zip
+    %li
+      %label Country
+      %label.value= address.country

@@ -1,0 +1,10 @@
+= semantic_nested_form_for @hotel do |f|
+  = f.inputs "Details" do
+    = f.input :name
+    = f.input :phone
+  = f.semantic_fields_for :address do |builder|
+    = render 'shared/address_fields', :f => builder
+  = f.semantic_fields_for :location do |builder|
+    = render 'shared/location_fields', :f => builder
+  = f.actions do
+    = f.action :submit, :as => :button, :button_html => {:class => "btn"}

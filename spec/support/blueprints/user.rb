@@ -12,3 +12,6 @@ User.blueprint do
   date_of_birth { 20.years.ago }
   roles { :hotel_owner }
 end
+
+User.blueprint(:hotel_owner) do
+end

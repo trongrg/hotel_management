@@ -3,6 +3,8 @@ defaults: &defaults
     saweet: nested settings
   neat_setting: 24
   awesome_setting: <%= "Did you know 5 + 5 = 10?" %>
+  google_map:
+    server: http://maps.googleapis.com
 
 development:
   <<: *defaults
@@ -12,4 +14,7 @@ test:
   <<: *defaults
 
 production:
+  <<: *defaults
+
+cucumber:
   <<: *defaults

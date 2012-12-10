@@ -9,7 +9,7 @@ class Users::PasswordController < ApplicationController
 
     if @user.update_with_password(params[:user])
       sign_in(@user, :bypass => true)
-      redirect_to after_sign_in_path_for(@user), :notice => t('record.updated', :record => t('model.password'))
+      redirect_to after_sign_in_path_for(@user), :notice => t('flash.password.updated')
     else
       render :edit
     end

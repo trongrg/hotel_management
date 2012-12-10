@@ -1,0 +1,9 @@
+= f.inputs "Address" do
+  = f.input :line1
+  = f.input :line2
+  = f.input :city
+  = f.input :state
+  = f.input :zip
+  = f.input :country, :as => :country, :include_blank => true
+  - if defined?(allow_destroy) && allow_destroy
+    = f.link_to_remove "Remove address", :id => "remove_address_link"

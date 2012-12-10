@@ -25,6 +25,9 @@ HotelManagement::Application.routes.draw do
     get '/profile/password' => "users/password#edit", :as => :edit_profile_password
     put '/profile/password' => "users/password#update", :as => :profile_password
   end
+
+  resources :hotels
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -24,12 +24,12 @@ Given /^I am signed in as a (.+) with (.+)$/ do |role, fields|
     attrs[key.to_sym] = value.gsub("\"", "")
   end
   user = User.make!(role.gsub(' ', '_').to_sym, attrs)
-  sign_in(:username => user.username, :password => attrs[:password] || "please")
+  sign_in(:email => user.email, :password => attrs[:password] || "please")
 end
 
-Given /^user "([^"]+)" owns (\d+) hotels?$/ do |username, number|
+Given /^user "([^"]+)" owns (\d+) hotels?$/ do |email, number|
   number.to_i.times do
-    Hotel.make!(:owner => User.find_by_username(username))
+    Hotel.make!(:owners => [User.find_by_email(email)])
   end
 end
 
@@ -65,7 +65,7 @@ Given /^hotel "([^"]*)" has (\d+) staff members$/ do |hotel_name, number|
   hotel.save
 end
 
-Given /^user "([^"]*)" is working on hotel "([^"]*)"$/ do |username, hotel_name|
+Given /^user "([^"]*)" is working on hotel "([^"]*)"$/ do |email, hotel_name|
   hotel = Hotel.find_by_name(hotel_name) || Hotel.make!(:name => hotel_name)
-  hotel.update_attributes(:staff_members => [User.find_by_username(username)])
+  hotel.update_attributes(:staff_members => [User.find_by_email(email)])
 end

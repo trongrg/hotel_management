@@ -22,7 +22,7 @@ module HotelManagement
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    # config.autoload_paths += %W(#{config.root}/extras)
+    config.autoload_paths += %W(#{config.root}/lib)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -68,5 +68,8 @@ module HotelManagement
     config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
     config.generators.stylesheet_engine = :sass
+
+    # handle exception with routes
+    config.exceptions_app = self.routes
   end
 end
