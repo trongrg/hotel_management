@@ -23,27 +23,7 @@ Spork.prefork do
   Rails.application.railties.all { |r| r.eager_load! }
 
   require 'cucumber/rails'
-  require 'cucumber/rails/world'
-  require 'capybara-webkit'
   Rails.env = 'cucumber'
-
-  Before('@javascript', '@selenium', '@no-txn') do
-    DatabaseCleaner.strategy = :truncation
-  end
-
-  After('@javascript', '@selenium', '@no-txn') do
-    DatabaseCleaner.clean_with :truncation
-  end
-
-  Before('~@javascript', '~@selenium', '~@no-txn')do
-    require 'compass'
-    DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.start
-  end
-
-  After('~@javascript', '~@selenium', '~@no-txn')do
-    DatabaseCleaner.clean
-  end
 end
 
 Spork.each_run do
