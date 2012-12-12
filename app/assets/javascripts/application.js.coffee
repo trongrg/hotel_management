@@ -3,6 +3,8 @@
 = require jquery_ujs
 = require jquery-ui
 = require bootstrap
+= require rails.validations
+= require rails.validations.formtastic
 = require_tree ./lib
 = require_tree ./application
 = require jquery_nested_form

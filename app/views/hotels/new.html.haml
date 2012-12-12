@@ -1,5 +1,6 @@
-%h1 New hotel
+.modal-header
+  %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+  %h3 New hotel
 
-= render "form"
-
-= link_to 'Back', hotels_path
+.modal-body
+  = render "form"

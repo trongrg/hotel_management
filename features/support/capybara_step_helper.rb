@@ -9,7 +9,7 @@ module CapybaraStepHelper
         :city => "city",
         :state => "state",
         :zip => "12345",
-        :country => "VN"
+        :country => "Viet Nam"
       }
     }
   end
@@ -140,12 +140,12 @@ module CapybaraStepHelper
       case field
       when "Country"
         if value
-          select "Viet Nam", :from => field
+          select_value value, :from => field
         else
-          select "", :from => field
+          select_value "", :from => field
         end
       when "Currency", "Room type", "Settlement type", "Gender"
-        select value, :from => field
+        select_value value, :from => field
       when "Date of birth"
         fill_date value
       when /attributes$/
@@ -168,9 +168,20 @@ module CapybaraStepHelper
 
   def fill_date date
     year, month, day = DateTime.parse(date).strftime("%Y %B %d").split(" ")
-    select year, :from => 'user_date_of_birth_1i'
-    select month, :from => 'user_date_of_birth_2i'
-    select day, :from => 'user_date_of_birth_3i'
+    select_value year, :from => 'user_date_of_birth_1i'
+    select_value month, :from => 'user_date_of_birth_2i'
+    select_value day, :from => 'user_date_of_birth_3i'
+  end
+
+  def select_value(value, options)
+    return unless options.has_key?(:from)
+    if Capybara.current_driver == :selenium
+      field = find(:select, options[:from])
+      option = field.find(:option, value)[:value]
+      page.execute_script(%{$("##{field[:id]}").val("#{option}")})
+    else
+      find(:select, options[:from]).find(:option, value).select_option
+    end
   end
 end
 

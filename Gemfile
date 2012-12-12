@@ -27,6 +27,7 @@ gem 'kaminari'
 gem 'coffee-filter'
 gem 'jquery-rails'
 gem 'client_side_validations'
+gem 'client_side_validations-formtastic'
 
 gem 'carmen'
 gem 'cancan'
@@ -46,6 +47,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'compass-rails'
   gem 'bootstrap-sass', '~> 2.2.1.1'
+  gem 'sassy-buttons'
 end
 
 group :development, :test do

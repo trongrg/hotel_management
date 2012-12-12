@@ -5,6 +5,7 @@ defaults: &defaults
   awesome_setting: <%= "Did you know 5 + 5 = 10?" %>
   google_map:
     server: http://maps.googleapis.com
+    api_key: AIzaSyBrp5OKFAdzY1xre8m-Fbq3VuoswPv2Y7s
 
 development:
   <<: *defaults

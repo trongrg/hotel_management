@@ -1,0 +1,92 @@
+form.formtastic.hotel
+  .input .label
+    padding-left: 1em
+  #google_map
+    +clearfix
+    float: left
+    #map_canvas
+      width: 300px
+      height: 300px
+      float: left
+    .map_actions
+      width: 100px !important
+      height: 300px
+      float: left
+      padding: 120px 10px
+      a
+        display: block
+        +sassy-button('shiny', 5px, 75%, #434342, #787877, #fff, "inset")
+        padding: 10px
+        margin-bottom: 20px
+
+#hotels
+  width: 100%
+  h1
+    font-size: 30px
+    height: 60px
+    line-height: 60px
+  .tabular_data
+    .thead
+      height: 30px
+      line-height: 30px
+      +background-image(linear-gradient(#DFE1E2, #EFEFEF))
+      +box-shadow(0 1px 2px rgba(0,0,0,0.37))
+      border-bottom: 1px solid #EDEDED
+      font-weight: bold
+      text-transform: uppercase
+      color: #5E6469
+      +border-top-radius(5px)
+      +text-shadow(white 0 1px 0)
+      padding: 5px 15px
+      z-index: 10
+      position: relative
+      h3
+        font-size: 24px
+        margin: 0
+      .button
+        +sassy-button('simple', 5px, 70%, #ccc, #aaa, #fff, "inset")
+        border: 1px solid #888
+        +box-shadow(0 0 3px #888)
+        text-decoration: none
+        padding: 0 10px
+    ul.tbody
+      margin: 0
+      >li
+        padding: 15px 15px
+        font-size: 12px
+        color: #666
+        background-color: #F2F2F2
+        border-top: 1px solid white
+        border-bottom: 1px solid #E3E3E3
+        border-left: 1px solid #DDD
+        border-right: 1px solid #DDD
+        .title
+          float: left
+          font-size: 14px
+          font-weight: bold
+          text-indent: 18px
+          text-transform: uppercase
+        ul.actions
+          display: none
+          float: right
+          font-weight: bold
+          margin-right: 60px
+          li
+            float: left
+            margin-right: 10px
+        ul.status
+          display: block
+          float: right
+          margin-right: 30px
+          li
+            float: left
+            margin-right: 30px
+
+        &:hover
+          background: white
+          ul.actions
+            display: block
+          ul.status
+            display: none
+        &:last-child
+          +border-bottom-radius(10px)

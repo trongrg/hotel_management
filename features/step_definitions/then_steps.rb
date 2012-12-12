@@ -78,7 +78,7 @@ Then /^I should see the google map marker points to my hotel's location$/ do
 end
 
 Then /^I should (not )?see (a|the) create (#{model_names.join("|")}) popup dialog$/ do |negate, a_the, model_name|
-  form = "#facebox form#new_#{model_name}"
+  form = "#modal .modal-body form#new_#{model_name}"
   if negate
     begin
       page.should have_no_css form

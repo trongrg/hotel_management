@@ -1,4 +1,4 @@
-= semantic_nested_form_for @hotel do |f|
+= semantic_nested_form_for @hotel, :validate => true do |f|
   = f.inputs "Details" do
     = f.input :name
     = f.input :phone
