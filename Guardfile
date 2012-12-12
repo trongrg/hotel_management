@@ -19,7 +19,7 @@ group 'drb' do
     watch('Gemfile.lock')
     watch('app/controllers/application_controller.rb')
     watch('spec/spec_helper.rb') { :rspec }
-    watch('feature/support/env.rb') { :cucumber }
+    watch('features/support/env.rb') { :cucumber }
   end
 end
 
