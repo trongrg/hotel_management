@@ -23,8 +23,8 @@ Given /^I am signed in as a (.+) with (.+)$/ do |role, fields|
     key, value = field.split(": ")
     attrs[key.to_sym] = value.gsub("\"", "")
   end
-  user = User.make!(role.gsub(' ', '_').to_sym, attrs)
-  sign_in(:email => user.email, :password => attrs[:password] || "please")
+  email = User.make!(role.gsub(' ', '_').to_sym, attrs).email
+  sign_in(:email => email, :password => attrs[:password] || "please")
 end
 
 Given /^user "([^"]+)" owns (\d+) hotels?$/ do |email, number|

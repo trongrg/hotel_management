@@ -1,3 +1,7 @@
+- content_for :head do
+  = javascript_include_tag "#{Settings.google_map.server}/maps/api/js?key=#{Settings.google_map.api_key}&sensor=false"
+  = javascript_include_tag 'hotels'
+
 .modal-header
   %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
   %h3 New hotel

@@ -13,12 +13,6 @@ Feature: hotel owner create hotel asynchronously from hotels list page
     Then I should see a create hotel popup dialog
     When I create a new hotel without a name
     Then I should see a missing hotel's name message
-    When I create a new hotel without a latitude
-    Then I should see a missing hotel's location attributes latitude message
-    When I create a new hotel without a longitude
-    Then I should see a missing hotel's location attributes longitude message
-    When I create a new hotel without a phone
-    Then I should see a missing hotel's phone message
     # When I create a new hotel with an invalid phone
     # Then I should see a invalid hotel's phone message
 

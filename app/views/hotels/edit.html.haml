@@ -1,3 +1,7 @@
+- content_for :head do
+  = javascript_include_tag "#{Settings.google_map.server}/maps/api/js?key=#{Settings.google_map.api_key}&sensor=false"
+  = javascript_include_tag 'hotels'
+
 %h1 Editing hotel
 
 = render 'form'

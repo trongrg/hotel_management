@@ -178,7 +178,7 @@ module CapybaraStepHelper
     if Capybara.current_driver == :selenium
       field = find(:select, options[:from])
       option = field.find(:option, value)[:value]
-      page.execute_script(%{$("##{field[:id]}").val("#{option}")})
+      page.execute_script(%{$("##{field[:id]}").val("#{option}").trigger('liszt:updated')})
     else
       find(:select, options[:from]).find(:option, value).select_option
     end
