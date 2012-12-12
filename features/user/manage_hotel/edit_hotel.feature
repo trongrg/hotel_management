@@ -4,8 +4,8 @@ Feature: user edits hotel
   I should be able to edit my hotel
 
   Background:
-    Given I am signed in as a hotel owner with email: "trongrg@gmail.com"
-    And user "trongrg@gmail.com" has a hotel with name: "Thien An"
+    Given I am signed in as a hotel owner
+    And I have a hotel with name: "Thien An"
 
   Scenario: Go to edit page from hotels page
     When I go to the hotels page

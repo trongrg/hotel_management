@@ -4,7 +4,7 @@ Feature: user creates hotel
   I should be able to create a new hotel
 
   Background:
-    Given I am signed in as a hotel owner with email: "trongrg@gmail.com"
+    Given I am signed in as a hotel owner
 
   Scenario: create hotel with valid info
     When I go to the new hotel page

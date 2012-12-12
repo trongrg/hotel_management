@@ -5,7 +5,7 @@ Feature: hotel owner create hotel asynchronously from hotels list page
   I should be able to create hotel from an ajax from on hotels list page
 
   Background:
-    Given I am signed in as a hotel owner with email: "trongrg@gmail.com"
+    Given I am signed in as a hotel owner
     Given I am on the hotels page
 
   Scenario: create hotel with invalid info

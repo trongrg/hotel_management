@@ -13,8 +13,8 @@ Feature: user get hotel's location from its address
     And the "Longitude" field should have value
 
   Scenario: get hotel's location from its address when edit hotel
-    Given I am signed in as a hotel owner with email: "trongrg@gmail.com"
-    And user "trongrg@gmail.com" has a hotel with name: "Thien An"
+    Given I am signed in as a hotel owner
+    And I have a hotel with name: "Thien An"
     When I go to the edit hotel page of hotel "Thien An"
     And I fill in the hotel address
     And I follow "Locate Hotel"

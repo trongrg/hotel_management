@@ -5,9 +5,8 @@ Feature: user get hotel's address and lat lng from google map marker
   I should be able to get my hotel's address from the marker of embedded google map
 
   Background:
-    Given I am signed in as a hotel owner with email: "trongrg@gmail.com"
+    Given I am signed in as a hotel owner
 
-    @wip
   Scenario: get hotel's address when create hotel
     When I go to the new hotel page
     And I follow "Get Address"
@@ -19,7 +18,7 @@ Feature: user get hotel's address and lat lng from google map marker
     And the "State" field should have value
 
   Scenario: get hotel's address when edit hotel
-    And user "trongrg@gmail.com" has a hotel with name: "Thien An"
+    And I have a hotel with name: "Thien An"
     When I go to the edit hotel page of hotel "Thien An"
     And I follow "Get Address"
     Then the "Latitude" field should have value

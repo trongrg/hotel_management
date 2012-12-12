@@ -16,31 +16,23 @@ Given /^I do not exist as a user$/ do
   visit '/sign_out'
 end
 
-Given /^I am signed in as a (.+) with (.+)$/ do |role, fields|
-  fields = fields.split(", ")
-  attrs = {}
-  fields.each do |field|
-    key, value = field.split(": ")
-    attrs[key.to_sym] = value.gsub("\"", "")
-  end
-  email = User.make!(role.gsub(' ', '_').to_sym, attrs).email
-  sign_in(:email => email, :password => attrs[:password] || "please")
+Given /^I am signed in as a (.+)$/ do |role|
+  User.make!(role.gsub(' ', '_').to_sym, valid_user)
+  sign_in(valid_user)
 end
 
-Given /^user "([^"]+)" owns (\d+) hotels?$/ do |email, number|
+Given /^I have (\d+) hotels?$/ do |number|
   number.to_i.times do
-    Hotel.make!(:owners => [User.find_by_email(email)])
+    Hotel.make!(:owners => [User.find_by_email(valid_user[:email])])
   end
 end
 
-#Given /^(#{model_names.join('|')}) "([^"]+)" has a (#{model_names.join('|')}) with (.+): "([^"]+)"$/ do |parent, parent_name, child, attr, value|
-  #parent.gsub!(' ', '_')
-  #child.gsub!(' ', '_')
-  #parent_object = parent.camelize.constantize.send(find_method_for(parent), parent_name)
-  #child_attrs = {:"#{attr}" => value}
-  #parent_object.send("#{child.pluralize}").send("<<", [child.camelize.constantize.make(child_attrs)])
-  #parent_object.save
-#end
+Given /^I have a hotel with (.+)$/ do |attrs|
+  user = User.find_by_email(valid_user[:email])
+  hotel_attrs = Hash[attrs.split(", ").map { |attr_value| attr, value = attr_value.split(": "); [attr, value.gsub("\"", "")] }]
+  user.hotels << Hotel.make(hotel_attrs)
+  user.save
+end
 
 Given /^(#{model_names.join('|')}) "([^"]+)" has a (#{model_names.join('|')}) with (.+)"$/ do |parent, parent_name, child, attrs|
   parent.gsub!(' ', '_')

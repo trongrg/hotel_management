@@ -4,15 +4,15 @@ Feature: user view hotel list
   I should be able to view the hotel list
 
   Background:
-    Given I am signed in as a hotel owner with email: "trongrg@gmail.com"
+    Given I am signed in as a hotel owner
 
   Scenario: list hotel without pagination
-    And user "trongrg@gmail.com" owns 3 hotels
+    And I have 3 hotels
     When I go to the hotels page
     Then I should see 3 hotels
 
   Scenario: list hotel with pagination
-    And user "trongrg@gmail.com" owns 30 hotels
+    And I have 30 hotels
     When I go to the hotels page
     Then I should see 25 hotels
     And I should see "Next" link
@@ -20,7 +20,7 @@ Feature: user view hotel list
     When I follow "Next"
     Then I should see 5 hotels
 
-  @javascript @wip
+  @javascript
   Scenario: see 'Create Hotel' link
     When I go to the hotels page
     Then I should see "Create Hotel" link
