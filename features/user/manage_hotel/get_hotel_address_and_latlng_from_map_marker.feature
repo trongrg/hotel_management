@@ -9,10 +9,10 @@ Feature: user get hotel's address and lat lng from google map marker
 
   Scenario: get hotel's address when create hotel
     When I go to the new hotel page
+    And I fill in "Latitude" with "10.7811"
+    And I fill in "Longitude" with "106.6984"
     And I follow "Get Address"
-    Then the "Latitude" field should have value
-    And the "Longitude" field should have value
-    And the "Line1" field should have value
+    Then the "Line1" field should have value
     And the "Line2" field should have value
     And the "City" field should have value
     And the "State" field should have value

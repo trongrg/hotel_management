@@ -9,4 +9,8 @@ class Address < ActiveRecord::Base
       self.send(attr).blank?
     end
   end
+
+  def to_s
+    [line1, line2, city, state, zip, country].reject{ |e| e.blank? }.join(", ")
+  end
 end

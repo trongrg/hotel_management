@@ -39,3 +39,7 @@ end
 When /^I sign in as "([^"]*)\/([^"]*)"$/ do |username, password|
   sign_in({:username => username, :password => password})
 end
+
+When /^I fill in "(.*?)" with "(.*?)"$/ do |field, value|
+  page.fill_in field, :with => value
+end
