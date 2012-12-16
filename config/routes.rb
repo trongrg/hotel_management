@@ -1,4 +1,8 @@
 HotelManagement::Application.routes.draw do
+
+  post "geocoder/get_location", :as => :get_location
+  post "geocoder/get_address", :as => :get_address
+
   root :to => "home#index"
 
   ActiveAdmin.routes(self)

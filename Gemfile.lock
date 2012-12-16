@@ -152,6 +152,7 @@ GEM
     formtastic (2.2.1)
       actionpack (>= 3.0)
     fssm (0.2.9)
+    geocoder (1.1.5)
     gherkin (2.11.5)
       json (>= 1.4.6)
     guard (1.5.4)
@@ -382,6 +383,7 @@ DEPENDENCIES
   devise_invitable (~> 1.0.0)
   faker
   formtastic
+  geocoder
   google_currency!
   guard-bundler
   guard-cucumber
