@@ -9,4 +9,8 @@ class Location < ActiveRecord::Base
       self.send(attr).blank?
     end
   end
+
+  def to_s
+    [latitude, longitude].join(", ")
+  end
 end
