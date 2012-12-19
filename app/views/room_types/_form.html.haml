@@ -5,7 +5,7 @@
   = f.semantic_fields_for :price do |f|
     = f.inputs "Price" do
       = f.input :dollars, :as => :number
-      = f.input :currency, :as => :select, :collection => ["VND", "USD"]
+      = f.input :currency, :as => :currency
 
   = f.actions do
     = f.action :submit, :as => :button, :button_html => {:class => "btn"}
