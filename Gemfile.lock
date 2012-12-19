@@ -403,7 +403,6 @@ DEPENDENCIES
   kaminari
   machinist
   meta_search
-  money
   money-rails
   mysql2
   nested_form

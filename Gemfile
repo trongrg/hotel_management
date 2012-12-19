@@ -19,9 +19,6 @@ gem 'formtastic'
 gem 'country_select'
 gem 'nested_form'
 
-gem 'devise',           '>= 2.0.0'
-gem 'devise_invitable', '~> 1.0.0'
-
 gem 'kaminari'
 
 gem 'coffee-filter'
@@ -33,7 +30,6 @@ gem 'carmen'
 gem 'cancan'
 gem 'role_model'
 
-gem 'money'
 gem 'money-rails'
 gem 'google_currency', :git => 'git://github.com/RubyMoney/google_currency.git'
 

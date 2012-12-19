@@ -1,0 +1,18 @@
+%h2 Room type
+
+%fieldset
+  %legend Details
+  %ul
+    %li
+      %label Name
+      %label.value= @room_type.name
+    %li
+      %label Description
+      %label.value= @room_type.description
+    %li
+      %label Price
+      %label.value= @room_type.price.format
+
+= link_to 'Edit', edit_hotel_room_type_path(@hotel, @room_type)
+\|
+= link_to 'Back', hotel_room_types_path(@hotel)

@@ -9,6 +9,8 @@ class Hotel < ActiveRecord::Base
   has_one :address, :as => :addressable
   accepts_nested_attributes_for :address
 
+  has_many :room_types
+
   after_initialize :initialize_address
   after_initialize :initialize_location
 

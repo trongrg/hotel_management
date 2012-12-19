@@ -10,5 +10,7 @@ class Ability
     can :manage, Hotel do |hotel|
       hotel.belongs_to?(@user)
     end
+
+    can :manage, RoomType, :hotel_id => @user.hotels.map(&:id)
   end
 end

@@ -75,7 +75,7 @@ module CapybaraStepHelper
   end
 
   def valid_room_type
-    { :name => "Deluxe", :price => 199, :currency => "USD" }
+    { :name => "Deluxe", :price_attributes => {:dollars => 19.9, :currency => "USD"} }
   end
 
   def create_room_type room_type
