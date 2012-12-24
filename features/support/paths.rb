@@ -8,6 +8,8 @@ module NavigationHelpers
     when /^the profile page$/
       "/profile"
     when /^the (.+) page of (.+)$/
+      path = $1.split(" ").push("path").join("_").to_sym
+      models = $2.split(", ")
       path_of(path, models)
     when /^the (.+) page with invitation token of user "(.+)"$/
       path_components = $1.split(" ").push("path")
@@ -28,11 +30,10 @@ module NavigationHelpers
   end
 
   def path_of(path, models)
-    path = path.split(" ").push("path").join("_").to_sym
-    objects = models.split(", ").map do |object|
+    objects = models.map do |object|
       model, object_name = object.split("\"").map { |e| e.gsub("\"", "").strip }
       begin
-        model.parameterize.underscore.titleize.constantize.send(find_method_for(model), object_name)
+        model.parameterize.underscore.camelize.constantize.send(find_method_for(model), object_name)
       rescue NameError
         { model.to_sym => object_name }
       end
