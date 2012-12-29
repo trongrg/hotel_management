@@ -23,7 +23,7 @@ end
 
 Given /^I have (\d+) hotels?$/ do |number|
   number.to_i.times do
-    Hotel.make!(:owners => [User.find_by_email(valid_user[:email])])
+    Hotel.make!(:owner => User.find_by_email(valid_user[:email]))
   end
 end
 

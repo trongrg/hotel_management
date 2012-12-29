@@ -6,5 +6,5 @@ Hotel.blueprint do
   phone { Faker::PhoneNumber.phone_number }
   address { Address.make }
   location { Location.make }
-  owners { [ User.make ] }
+  owner { User.make }
 end

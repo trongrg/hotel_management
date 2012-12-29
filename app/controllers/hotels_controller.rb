@@ -9,7 +9,7 @@ class HotelsController < InheritedResources::Base
 
   def create
     @hotel = Hotel.new(params[:hotel])
-    @hotel.owners << current_user
+    @hotel.owner = current_user
     create!
   end
 

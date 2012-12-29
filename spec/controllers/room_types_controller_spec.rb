@@ -5,7 +5,7 @@ describe RoomTypesController do
     context "who owns the hotel" do
       before do
         @owner = User.make!(:hotel_owner)
-        @hotel = Hotel.make!(:owners => [@owner])
+        @hotel = Hotel.make!(:owner => @owner)
         sign_in @owner
       end
 

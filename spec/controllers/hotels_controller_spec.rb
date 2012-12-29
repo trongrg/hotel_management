@@ -4,7 +4,7 @@ describe HotelsController do
   context "with signed in hotel owner" do
     let(:owner) { User.make!(:hotel_owner) }
     before do
-      @hotel = Hotel.make!(:owners => [owner])
+      @hotel = Hotel.make!(:owner => owner)
       sign_in owner
     end
 
@@ -129,7 +129,7 @@ describe HotelsController do
 
         describe "with invalid params" do
           it "assigns the hotel as @hotel" do
-            hotel = Hotel.make!(:owners => [owner])
+            hotel = Hotel.make!(:owner => owner)
             # Trigger the behavior that occurs when invalid params are submitted
             errors = Hotel.create.errors
             Hotel.any_instance.stub(:errors).and_return(errors)

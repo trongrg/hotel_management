@@ -4,9 +4,7 @@ ActiveAdmin.register Hotel do
     column :id
     column :name
     column :phone
-    column :owners do |hotel|
-      hotel.owners.map { |owner| link_to owner.full_name, admin_user_path(owner) }.join(", ").html_safe
-    end
+    column :owner
     column :created_at
     column :address
     column :location
@@ -15,7 +13,7 @@ ActiveAdmin.register Hotel do
 
   filter :name
   filter :phone
-  # filter :owners
+  filter :owner
   filter :created_at
 
   show do |hotel|
@@ -23,9 +21,7 @@ ActiveAdmin.register Hotel do
       row :id
       row :name
       row :phone
-      row :owners do
-        hotel.owners.map { |owner| link_to owner.full_name, admin_user_path(owner) }.join(", ").html_safe
-      end
+      row :owner
       row :address
       row :location
       row :room_types do
@@ -40,7 +36,7 @@ ActiveAdmin.register Hotel do
     f.inputs "Details" do
       f.input :name
       f.input :phone
-      f.input :owners
+      f.input :owner
     end
     f.inputs :name => "Address", :for => :address do |a|
       a.input :line1
