@@ -59,7 +59,6 @@ end
 group :test do
   gem 'cucumber-rails', :require => false
   gem 'capybara'
-  gem 'capybara-webkit', :git => 'https://github.com/thoughtbot/capybara-webkit.git'
   gem 'database_cleaner'
   gem 'machinist'
   gem 'faker'
