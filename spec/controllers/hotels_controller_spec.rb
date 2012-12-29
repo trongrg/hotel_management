@@ -123,7 +123,7 @@ describe HotelsController do
 
           it "redirects to the created hotel page" do
             put :update, {:id => @hotel.to_param, :hotel => valid_attributes}
-            response.should redirect_to(@hotel)
+            response.should redirect_to(@hotel.reload)
           end
         end
 

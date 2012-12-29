@@ -3,6 +3,9 @@ class Hotel < ActiveRecord::Base
 
   belongs_to :owner, :class_name => "User", :foreign_key => :user_id
 
+  include FriendlyId
+  friendly_id :name, :use => :scoped, :scope => :owner
+
   has_one :location, :as => :locatable
   accepts_nested_attributes_for :location
 

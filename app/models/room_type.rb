@@ -1,4 +1,7 @@
 class RoomType < ActiveRecord::Base
+  include FriendlyId
+  friendly_id :name, :use => :scoped, :scope => :hotel
+
   attr_accessible :name, :description, :price_cents, :currency, :price_attributes, :hotel, :hotel_id
   monetize :price_cents, :as => :price
 

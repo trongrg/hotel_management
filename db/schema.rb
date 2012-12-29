@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121219014620) do
+ActiveRecord::Schema.define(:version => 20121229112748) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -66,7 +66,12 @@ ActiveRecord::Schema.define(:version => 20121219014620) do
     t.string   "phone"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+    t.string   "slug"
   end
+
+  add_index "hotels", ["slug"], :name => "index_hotels_on_slug"
+  add_index "hotels", ["user_id"], :name => "index_hotels_on_user_id"
 
   create_table "hotels_users", :force => true do |t|
     t.integer  "user_id"
@@ -92,7 +97,10 @@ ActiveRecord::Schema.define(:version => 20121219014620) do
     t.integer  "hotel_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "slug"
   end
+
+  add_index "room_types", ["slug"], :name => "index_room_types_on_slug"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
