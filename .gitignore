@@ -16,3 +16,4 @@
 config/database.yml
 .rvmrc
 chromedriver.log
+rerun.txt
