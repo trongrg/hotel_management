@@ -58,7 +58,7 @@ module CapybaraStepHelper
   end
 
   def find_method_for model
-    case model
+    case model.strip
     when 'user'
       'find_by_email'
     when 'room_type', 'room type', 'room', 'furnishing', 'hotel'
