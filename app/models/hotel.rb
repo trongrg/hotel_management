@@ -1,10 +1,10 @@
 class Hotel < ActiveRecord::Base
+  include FriendlyId
+  friendly_id :name, :use => :scoped, :scope => :owner
+
   attr_accessible :name, :phone, :address_attributes, :location_attributes
 
   belongs_to :owner, :class_name => "User", :foreign_key => :user_id
-
-  include FriendlyId
-  friendly_id :name, :use => :scoped, :scope => :owner
 
   has_one :location, :as => :locatable
   accepts_nested_attributes_for :location
@@ -13,6 +13,7 @@ class Hotel < ActiveRecord::Base
   accepts_nested_attributes_for :address
 
   has_many :room_types
+  has_many :rooms, :through => :room_types
 
   after_initialize :initialize_address
   after_initialize :initialize_location

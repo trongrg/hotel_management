@@ -12,7 +12,7 @@
 
   %tbody
     - @room_types.each do |room_type|
-      %tr{:id => "room_type_#{room_type.id}"}
+      %tr.room_type{:id => "room_type_#{room_type.id}"}
         %td= room_type.name
         %td= room_type.description
         %td= room_type.price.format

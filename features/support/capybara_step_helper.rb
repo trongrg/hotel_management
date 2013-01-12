@@ -61,13 +61,7 @@ module CapybaraStepHelper
     case model
     when 'user'
       'find_by_email'
-    when 'hotel'
-      'find_by_name'
-    when 'room_type', 'room type'
-      'find_by_name'
-    when 'room'
-      'find_by_number'
-    when 'furnishing'
+    when 'room_type', 'room type', 'room', 'furnishing', 'hotel'
       'find_by_name'
     else
       'find'
@@ -84,7 +78,7 @@ module CapybaraStepHelper
   end
 
   def valid_room
-    {:number => "101", :room_type => valid_room_type[:name]}
+    {:name => "101", :room_type => valid_room_type[:name]}
   end
 
   def create_room room

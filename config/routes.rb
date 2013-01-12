@@ -32,6 +32,7 @@ HotelManagement::Application.routes.draw do
 
   resources :hotels do
     resources :room_types
+    resources :rooms
   end
 
   # The priority is based upon order of creation:

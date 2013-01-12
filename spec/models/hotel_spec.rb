@@ -6,6 +6,7 @@ describe Hotel do
   it { should have_one :address }
   it { should have_one :location }
   it { should have_many :room_types }
+  it { should have_many :rooms }
   it { should validate_presence_of :name }
   it { should validate_presence_of :phone }
   it { should validate_presence_of :address }

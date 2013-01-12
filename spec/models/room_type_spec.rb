@@ -7,7 +7,7 @@ describe RoomType do
   it { should validate_presence_of :currency }
 
   it { should belong_to :hotel }
-  # it { should have_many :rooms }
+  it { should have_many :rooms }
   # it { should have_many :furnishings }
 
   describe "#initialize_price" do

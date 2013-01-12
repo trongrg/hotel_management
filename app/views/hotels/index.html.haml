@@ -14,7 +14,7 @@
 
         %ul.tbody
           - @hotels.each do |hotel|
-            %li.clearfix{ :id => "hotel_#{hotel.id}" }
+            %li.hotel.clearfix{ :id => "hotel_#{hotel.id}" }
               .title= link_to hotel.name, hotel
               %ul.actions
                 %li= link_to "Overview", "#"

@@ -89,7 +89,7 @@ group :development do
   case HOST_OS
   when /darwin/i
     gem 'rb-fsevent'
-    gem 'ruby_gntp'
+    gem 'terminal-notifier-guard'
   when /linux/i
     gem 'libnotify'
     gem 'rb-inotify'

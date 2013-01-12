@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121229112748) do
+ActiveRecord::Schema.define(:version => 20130112083507) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -101,6 +101,15 @@ ActiveRecord::Schema.define(:version => 20121229112748) do
   end
 
   add_index "room_types", ["slug"], :name => "index_room_types_on_slug"
+
+  create_table "rooms", :force => true do |t|
+    t.string   "name"
+    t.integer  "room_type_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "rooms", ["room_type_id"], :name => "index_rooms_on_room_type_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

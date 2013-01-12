@@ -8,7 +8,7 @@ class RoomType < ActiveRecord::Base
   validates :name, :price_cents, :currency, :presence => true
 
   belongs_to :hotel
-  # has_many :rooms
+  has_many :rooms
   # has_many :furnishings
   after_initialize :initialize_price
 

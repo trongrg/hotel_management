@@ -192,3 +192,6 @@ When /^I edit the user with new password$/ do
   click_button "Update User"
 end
 
+When /^I create a new room with room type "([^"]*)"$/ do |room_type|
+  create_room valid_room.merge(:room_type => room_type)
+end

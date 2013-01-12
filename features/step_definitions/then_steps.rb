@@ -55,15 +55,7 @@ Then /^I should see a successful ([^\s]+) (#{model_names.join("|")}|your passwor
 end
 
 Then /^I should see (\d+) (#{model_names.map(&:pluralize).join('|')})$/ do |number, model|
-  if model == 'hotels'
-    within "#hotels .tabular_data" do
-      page.all("ul.tbody>li").count.should == number.to_i
-    end
-  else
-    within "table##{model.pluralize.gsub(' ', '_')} tbody" do
-      page.all("tr").count.should == number.to_i
-    end
-  end
+  page.all("##{model.pluralize.parameterize.underscore} .#{model.singularize.parameterize.underscore}").count.should == number.to_i
 end
 
 Then /^the "([^"]*)" field should have value$/ do |field|

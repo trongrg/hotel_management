@@ -1,0 +1,22 @@
+%h1 Listing rooms
+
+%table#rooms
+  %tr
+    %th Name
+    %th Room type
+    %th
+    %th
+    %th
+
+  - @rooms.each do |room|
+    %tr.room{:id => "room_#{room.id}"}
+      %td= room.name
+      %td= room.room_type
+      %td= link_to 'Show', [@hotel, room]
+      %td= link_to 'Edit', edit_hotel_room_path(@hotel, room)
+      %td= link_to 'Delete', [@hotel, room], method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+= paginate @rooms
+
+= link_to 'New Room', new_hotel_room_path(@hotel)
