@@ -24,6 +24,9 @@ ActiveAdmin.register RoomType do
       row :name
       row :description
       row :hotel
+      row :rooms do
+        room_type.rooms.map { |room| link_to room.name, [:admin, room] }.join(", ").html_safe
+      end
       row :price do
         room_type.price.format
       end

@@ -25,7 +25,7 @@ ActiveAdmin.register Hotel do
       row :address
       row :location
       row :room_types do
-        hotel.room_types.map { |room_type| link_to room_type.name, hotel_room_type_path(hotel, room_type) }.join(", ").html_safe
+        hotel.room_types.map { |room_type| link_to room_type.name, [:admin, room_type] }.join(", ").html_safe
       end
       row :created_at
       row :updated_at
