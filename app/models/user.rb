@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :address, :reject_if => :all_blank, :allow_destroy => true
 
   has_many :hotels
+  has_many :room_types, :through => :hotels
 
   before_validation :remove_emtpy_address, :on => :update
 

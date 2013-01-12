@@ -12,6 +12,7 @@ describe User do
   it { should validate_presence_of :roles }
   it { should have_one :address }
   it { should have_many :hotels }
+  it { should have_many :room_types }
 
   describe "#full_name" do
     it "returns the full_name of user" do
