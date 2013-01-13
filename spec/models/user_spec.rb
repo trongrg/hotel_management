@@ -13,6 +13,7 @@ describe User do
   it { should have_one :address }
   it { should have_many :hotels }
   it { should have_many :room_types }
+  it { should have_and_belong_to_many :working_hotels }
 
   describe "#full_name" do
     it "returns the full_name of user" do

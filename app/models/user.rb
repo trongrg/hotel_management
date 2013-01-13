@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
 
   has_many :hotels
   has_many :room_types, :through => :hotels
+  has_and_belongs_to_many :working_hotels, :class_name => "Hotel"
 
   before_validation :remove_emtpy_address, :on => :update
 

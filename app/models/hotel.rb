@@ -14,6 +14,7 @@ class Hotel < ActiveRecord::Base
 
   has_many :room_types
   has_many :rooms, :through => :room_types
+  has_and_belongs_to_many :staff_members, :class_name => "User"
 
   after_initialize :initialize_address
   after_initialize :initialize_location

@@ -15,3 +15,7 @@ end
 
 User.blueprint(:hotel_owner) do
 end
+
+User.blueprint(:staff_member) do
+  roles { :staff_member }
+end
