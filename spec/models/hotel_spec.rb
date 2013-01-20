@@ -8,6 +8,7 @@ describe Hotel do
   it { should have_many :room_types }
   it { should have_many :rooms }
   it { should have_and_belong_to_many :staff_members }
+  it { should have_many :reservations }
   it { should validate_presence_of :name }
   it { should validate_presence_of :phone }
   it { should validate_presence_of :address }

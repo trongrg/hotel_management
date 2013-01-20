@@ -11,7 +11,7 @@
 ###
 
 $(document).ready ->
-  $('input.date_picker').datepicker({autoclose: true})
+  $('input.date_picker').datepicker({autoclose: true, format: 'dd-mm-yyyy'})
   $('select').chosen({search_contains: true, allow_single_deselect: true})
   $('input[title]').tooltip
     html: true

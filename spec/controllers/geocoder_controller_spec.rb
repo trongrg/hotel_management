@@ -13,7 +13,7 @@ describe GeocoderController do
       it_should_behave_like "unauthenticated"
     end
   end
-  context "with authenticated user" do
+  context "authenticated user" do
     let(:user) { User.make! }
     before { sign_in user }
 
@@ -39,7 +39,7 @@ describe GeocoderController do
           get 'get_location', :format => :json
         end
 
-        it "return 404" do
+        it "returns status 404" do
           response.status.should == 404
         end
 
@@ -50,7 +50,7 @@ describe GeocoderController do
     end
 
     describe "GET 'get_address'" do
-      context "location found" do
+      context "address found" do
         before do
           address = mock("Address")
           address.stub(:address_components).and_return "address_components"
@@ -67,13 +67,13 @@ describe GeocoderController do
         end
       end
 
-      context "location not found" do
+      context "address not found" do
         before do
           Geocoder.should_receive(:search).and_return []
           get 'get_address', :format => :json
         end
 
-        it "returns 404" do
+        it "returns status 404" do
           response.status.should == 404
         end
 

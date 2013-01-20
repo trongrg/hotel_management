@@ -7,11 +7,15 @@ class Ability
   end
 
   def hotel_owner
-    can :manage, Hotel do |hotel|
-      hotel.belongs_to?(@user)
-    end
+    can :create, :all
+    can :manage, Hotel, :user_id => @user.id
+    can :manage, [RoomType, Reservation], :hotel_id => @user.hotel_ids
+    can :manage, Room, :room_type_id => @user.room_type_ids
+  end
 
-    can :manage, RoomType, :hotel_id => @user.hotel_ids.concat([nil])
-    can :manage, Room, :room_type_id => @user.room_type_ids.concat([nil])
+  def staff_member
+    can :read, Hotel, :id => @user.working_hotel_ids
+    can :create, Reservation
+    can :manage, Reservation, :hotel_id => @user.working_hotel_ids
   end
 end

@@ -10,7 +10,7 @@ Feature: hotel owner create hotel room
   Scenario: create room with existing room type
     And hotel "Thien An" has a room type with name: "Deluxe"
     When I go to the new hotel room page of hotel "Thien An"
-    And I create a new room with room type "Deluxe"
+    And I create a new room with room type: "Deluxe"
     Then I should see a successful create room message
 
   Scenario: create room without a name

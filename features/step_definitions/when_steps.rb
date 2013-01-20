@@ -192,6 +192,8 @@ When /^I edit the user with new password$/ do
   click_button "Update User"
 end
 
-When /^I create a new room with room type "([^"]*)"$/ do |room_type|
-  create_room valid_room.merge(:room_type => room_type)
+When /^I create a new (#{model_names.join('|')}) with (.+)$/ do |model, attrs|
+  attrs = Hash[attrs.split(", ").map { |attr_value| attr, value = attr_value.split(": "); [attr, value.gsub("\"", "")] }]
+  fill_fields(send("valid_#{model}").merge(attrs))
+  click_button "Create #{model.humanize}"
 end

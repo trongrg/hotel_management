@@ -1,0 +1,36 @@
+%p#notice= notice
+
+%p
+  %b Rooms:
+  = @reservation.rooms
+%p
+  %b Guest:
+  = @reservation.guest
+%p
+  %b Status:
+  = @reservation.status
+%p
+  %b Prepaid cents:
+  = @reservation.prepaid_cents
+%p
+  %b Currency:
+  = @reservation.currency
+%p
+  %b Check in date:
+  = @reservation.check_in_date
+%p
+  %b Check out date:
+  = @reservation.check_out_date
+%p
+  %b Adults:
+  = @reservation.adults
+%p
+  %b Children:
+  = @reservation.children
+%p
+  %b Special request:
+  = @reservation.special_request
+
+= link_to 'Edit', edit_hotel_reservation_path(@hotel, @reservation)
+\|
+= link_to 'Back', hotel_reservations_path(@hotel)

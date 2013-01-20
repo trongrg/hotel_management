@@ -57,7 +57,9 @@ Given /^hotel "([^"]*)" has (\d+) staff members$/ do |hotel_name, number|
   hotel.save
 end
 
-Given /^user "([^"]*)" is working on hotel "([^"]*)"$/ do |email, hotel_name|
+Given /^I am working on hotel "([^"]*)"$/ do |hotel_name|
+  user = User.find_by_email(valid_user[:email])
   hotel = Hotel.find_by_name(hotel_name) || Hotel.make!(:name => hotel_name)
-  hotel.update_attributes(:staff_members => [User.find_by_email(email)])
+  hotel.staff_members << user
+  hotel.save
 end

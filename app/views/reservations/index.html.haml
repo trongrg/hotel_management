@@ -1,0 +1,38 @@
+%h1 Listing reservations
+
+= link_to 'New Reservation', new_hotel_reservation_path(@hotel)
+%table#reservations
+  %tr
+    %th Rooms
+    %th Guest
+    %th Status
+    %th Prepaid cents
+    %th Currency
+    %th Check in date
+    %th Check out date
+    %th Adults
+    %th Children
+    %th Special request
+    %th
+    %th
+    %th
+
+  - @reservations.each do |reservation|
+    %tr.reservation{:id => "reservation_#{reservation.id}"}
+      %td= reservation.rooms
+      %td= reservation.guest
+      %td= reservation.status
+      %td= reservation.prepaid_cents
+      %td= reservation.currency
+      %td= reservation.check_in_date
+      %td= reservation.check_out_date
+      %td= reservation.adults
+      %td= reservation.children
+      %td= reservation.special_request
+      %td= link_to 'Show', [@hotel, reservation]
+      %td= link_to 'Edit', edit_hotel_reservation_path(@hotel, reservation)
+      %td= link_to 'Delete', [@hotel, reservation], method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= paginate @reservations

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RoomsController do
   let(:user) { User.make!(:hotel_owner) }
-  let(:hotel) { Hotel.make! }
+  let(:hotel) { Hotel.make!(:owner => user) }
   let(:room_type) { RoomType.make!(:hotel => hotel)}
   let!(:room) { Room.make!(:room_type => room_type) }
   let(:valid_attributes) { { "name" => "MyString", :room_type_id => room_type.id } }
@@ -177,7 +177,7 @@ describe RoomsController do
           let(:room) { Room.make! }
           it "cannot find the room" do
             expect {
-              get :show, {:id => room.to_param, :hotel_id => hotel}
+              put :update, {:id => room.to_param, :hotel_id => hotel}
             }.to raise_error(ActiveRecord::RecordNotFound)
           end
         end
@@ -201,7 +201,7 @@ describe RoomsController do
           let(:room) { Room.make! }
           it "cannot find the room" do
             expect {
-              get :update, {:id => room.to_param, :hotel_id => hotel, :room_type => {} }
+              delete :destroy, {:id => room.to_param, :hotel_id => hotel, :room_type => {} }
             }.to raise_error(ActiveRecord::RecordNotFound)
           end
         end

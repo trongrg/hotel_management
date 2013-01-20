@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130113023725) do
+ActiveRecord::Schema.define(:version => 20130113155156) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -99,6 +99,32 @@ ActiveRecord::Schema.define(:version => 20130113023725) do
     t.datetime "updated_at",                                     :null => false
   end
 
+  create_table "reservations", :force => true do |t|
+    t.integer  "hotel_id"
+    t.integer  "guest_id"
+    t.string   "status"
+    t.string   "prepaid_cents"
+    t.string   "currency"
+    t.date     "check_in_date"
+    t.date     "check_out_date"
+    t.integer  "adults"
+    t.integer  "children"
+    t.text     "special_request"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "reservations", ["guest_id"], :name => "index_reservations_on_guest_id"
+  add_index "reservations", ["hotel_id"], :name => "index_reservations_on_hotel_id"
+
+  create_table "reservations_rooms", :force => true do |t|
+    t.integer "reservation_id"
+    t.integer "room_id"
+  end
+
+  add_index "reservations_rooms", ["reservation_id"], :name => "index_reservations_rooms_on_reservation_id"
+  add_index "reservations_rooms", ["room_id"], :name => "index_reservations_rooms_on_room_id"
+
   create_table "room_types", :force => true do |t|
     t.string   "name"
     t.text     "description"
@@ -140,9 +166,11 @@ ActiveRecord::Schema.define(:version => 20130113023725) do
     t.string   "gender"
     t.string   "phone"
     t.integer  "roles_mask"
+    t.integer  "working_hotel_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["working_hotel_id"], :name => "index_users_on_working_hotel_id"
 
 end

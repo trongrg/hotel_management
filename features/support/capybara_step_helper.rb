@@ -107,9 +107,17 @@ module CapybaraStepHelper
   end
 
   def valid_reservation
-    {:guest_attributes =>
-     {:first_name => 'Trong', :last_name => 'Tran', :passport => '250737373', :phone_number => '0987654321', :gender => "Male" },
-       :check_in_date => DateTime.now.to_date, :check_out_date => 1.day.from_now.to_date
+    {
+      :guest_attributes =>
+      {
+        :first_name => 'Trong',
+        :last_name => 'Tran',
+        :passport => '250737373',
+        :phone => '0987654321',
+        :gender => "Male"
+      },
+      :check_in_date => DateTime.now.to_date,
+      :check_out_date => 1.day.from_now.to_date
     }
   end
 
@@ -130,26 +138,19 @@ module CapybaraStepHelper
 
   def fill_fields attrs
     attrs.each do |field, value|
-      field = field.to_s.humanize
-      case field
-      when "Country"
-        if value
-          select_value value, :from => field
-        else
-          select_value "", :from => field
-        end
-      when "Currency", "Room type", "Settlement type", "Gender"
-        select_value value, :from => field
+      case field.to_s.humanize
+      when /attributes/
+        fill_fields value
+      when "Currency", "Rooms", "Gender", "Room type", "Country"
+        within(".#{field.to_s.gsub(" ", "_")}") { select_value value.to_s, :from => field.to_s.humanize }
       when "Date of birth"
         fill_date value
-      when /attributes$/
-        fill_fields value
       when "Password"
         fill_in "user_password", :with => value
       when "Password confirmation"
         fill_in "user_password_confirmation", :with => value
       else
-        fill_in field, :with => value
+        within(".#{field.to_s.gsub(" ", "_")}") { find(:fillable_field, field.to_s.humanize).set(value) }
       end
     end
   end

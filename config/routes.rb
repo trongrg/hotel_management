@@ -1,5 +1,4 @@
 HotelManagement::Application.routes.draw do
-
   post 'geocoder/get_location', :as => :get_location
   post 'geocoder/get_address', :as => :get_address
 
@@ -33,6 +32,7 @@ HotelManagement::Application.routes.draw do
   resources :hotels do
     resources :room_types
     resources :rooms
+    resources :reservations
   end
 
   # The priority is based upon order of creation:
