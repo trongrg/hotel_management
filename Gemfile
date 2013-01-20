@@ -12,8 +12,8 @@ gem 'delayed_job_admin'
 gem 'redis'
 gem 'resque', :require => 'resque/server'
 
-gem 'devise',           '>= 2.0.0'
-gem 'devise_invitable', '~> 1.0.0'
+gem 'devise'
+gem 'devise_invitable'
 
 gem 'formtastic'
 gem 'country_select'
@@ -42,11 +42,11 @@ gem 'friendly_id'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
   gem 'compass-rails'
-  gem 'bootstrap-sass', '~> 2.2.1.1'
+  gem 'bootstrap-sass'
   gem 'sassy-buttons'
 end
 
