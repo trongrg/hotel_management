@@ -7,9 +7,17 @@ $ = jQuery
 
 $.fn.extend({
   chosen: (options) ->
+    ua = navigator.userAgent.toLowerCase();
+
+    match = /(msie) ([\w.]+)/.exec( ua ) || [];
+
+    browser =
+      name: match[ 1 ] || ""
+      version: match[ 2 ] || "0"
+
     # Do no harm and return as soon as possible for unsupported browsers, namely IE6 and IE7
     # Continue on if running IE document type but in compatibility mode
-    return this if $.browser.msie and ($.browser.version is "6.0" or  ($.browser.version is "7.0" and document.documentMode is 7 ))
+    return this if browser.name is "msie" and (browser.version is "6.0" or  (browser.version is "7.0" and document.documentMode is 7 ))
     this.each((input_field) ->
       $this = $ this
       $this.data('chosen', new Chosen(this, options)) unless $this.hasClass "chzn-done"
@@ -30,11 +38,16 @@ class Chosen extends AbstractChosen
     @container_id = if @form_field.id.length then @form_field.id.replace(/[^\w]/g, '_') else this.generate_field_id()
     @container_id += "_chzn"
 
+    container_classes = ["chzn-container"]
+    container_classes.push "chzn-container-" + (if @is_multiple then "multi" else "single")
+    container_classes.push @form_field.className if @inherit_select_classes && @form_field.className
+    container_classes.push "chzn-rtl" if @is_rtl
+
     @f_width = @form_field_jq.outerWidth()
 
-    container_props = 
+    container_props =
       id: @container_id
-      class: "chzn-container#{ if @is_rtl then ' chzn-rtl' else '' }"
+      class: container_classes.join ' '
       style: 'width: ' + (@f_width) + 'px;' #use parens around @f_width so coffeescript doesn't think + ' px' is a function parameter
       title: @form_field.title
 
@@ -47,7 +60,6 @@ class Chosen extends AbstractChosen
 
     @form_field_jq.hide().after container_div
     @container = ($ '#' + @container_id)
-    @container.addClass( "chzn-container-" + (if @is_multiple then "multi" else "single") )
     @dropdown = @container.find('div.chzn-drop').first()
 
     dd_top = @container.height()
@@ -115,7 +127,7 @@ class Chosen extends AbstractChosen
     if !@is_disabled
       target_closelink =  if evt? then ($ evt.target).hasClass "search-choice-close" else false
       if evt and evt.type is "mousedown" and not @results_showing
-        evt.stopPropagation()
+        evt.preventDefault()
       if not @pending_destroy_click and not target_closelink
         if not @active_field
           @search_field.val "" if @is_multiple
@@ -318,6 +330,8 @@ class Chosen extends AbstractChosen
 
       link.parents('li').first().remove()
 
+      this.search_field_scale()
+
   results_reset: ->
     @form_field.options[0].selected = true
     @selected_item.find("span").text @default_text
@@ -418,7 +432,7 @@ class Chosen extends AbstractChosen
           if regex.test option.html
             found = true
             results += 1
-          else if option.html.indexOf(" ") >= 0 or option.html.indexOf("[") == 0
+          else if @enable_split_word_search and (option.html.indexOf(" ") >= 0 or option.html.indexOf("[") == 0)
             #TODO: replace this substitution of /\[\]/ with a list of characters to skip.
             parts = option.html.replace(/\[|\]/g, "").split(" ")
             if parts.length
