@@ -1,9 +1,15 @@
 module CapybaraStepHelper
   def valid_user
-    @user ||= { :first_name => "Trong", :last_name => "Tran", :gender => "Male",
-      :email => "trongrg@gmail.com", :password => "please", :password_confirmation => "please",
+    @user ||= {
+      :first_name => "Trong",
+      :last_name => "Tran",
+      :gender => "Male",
+      :email => "trongrg@gmail.com",
+      :password => "please",
+      :password_confirmation => "please",
       :date_of_birth => "1988/10/15",
-      :phone => "01694622095", :address_attributes => {
+      :phone => "01694622095",
+      :address_attributes => {
         :line1 => "line1",
         :line2 => "line2",
         :city => "city",
@@ -18,12 +24,6 @@ module CapybaraStepHelper
     visit '/sign_up'
     fill_fields user
     click_button "Sign up"
-  end
-
-  def create_user user
-    visit '/users/new'
-    fill_fields user
-    click_button "Create user"
   end
 
   def sign_in user
@@ -52,11 +52,6 @@ module CapybaraStepHelper
     }
   end
 
-  def create_hotel hotel
-    fill_fields hotel
-    click_button "Create Hotel"
-  end
-
   def find_method_for model
     case model.strip
     when 'user'
@@ -69,47 +64,45 @@ module CapybaraStepHelper
   end
 
   def valid_room_type
-    { :name => "Deluxe", :price_attributes => {:dollars => 19.9, :currency => "USD"} }
-  end
-
-  def create_room_type room_type
-    fill_fields room_type
-    click_button "Create Room type"
-  end
-
-  def valid_room
-    {:name => "101", :room_type => valid_room_type[:name]}
-  end
-
-  def create_room room
-    fill_fields room
-    click_button "Create Room"
-  end
-
-  def valid_furnishing
-    { :name => "Bed", :price => 100, :description => "giuong" }
-  end
-
-  def create_furnishing furnishing
-    fill_fields furnishing
-    click_button "Create Furnishing"
-  end
-
-  def valid_check_in
-    {:guest_attributes =>
-     {:first_name => 'Trong', :last_name => 'Tran', :passport => '250737373', :phone_number => '0987654321', :gender => "Male" }
+    {
+      :name => "Deluxe",
+      :price_attributes => {
+        :dollars => 19.9,
+        :currency => "USD"
+      }
     }
   end
 
-  def create_check_in check_in
-    fill_fields check_in
-    click_button "Create Check in"
+  def valid_room
+    {
+      :name => "101",
+      :room_type => valid_room_type[:name]
+    }
+  end
+
+  def valid_furnishing
+    {
+      :name => "Bed",
+      :price => 100,
+      :description => "giuong"
+    }
+  end
+
+  def valid_check_in
+    {
+      :guest_attributes => {
+        :first_name => 'Trong',
+        :last_name => 'Tran',
+        :passport => '250737373',
+        :phone_number => '0987654321',
+        :gender => "Male"
+      }
+    }
   end
 
   def valid_reservation
     {
-      :guest_attributes =>
-      {
+      :guest_attributes => {
         :first_name => 'Trong',
         :last_name => 'Tran',
         :passport => '250737373',
@@ -121,46 +114,35 @@ module CapybaraStepHelper
     }
   end
 
-  def create_reservation reservation
-    fill_fields reservation
-    click_button "Create Reservation"
-  end
-
   def valid_check_out
-    {:additional_charges_attributes => {:additional_charges => 0, :currency => "USD"},
-     :settlement_type => "Cash"}
-  end
-
-  def create_check_out check_out
-    fill_fields check_out
-    click_button "Create Check out"
+    {
+      :additional_charges_attributes => {
+        :additional_charges => 0,
+        :currency => "USD"
+      },
+      :settlement_type => "Cash"
+    }
   end
 
   def fill_fields attrs
     attrs.each do |field, value|
-      case field.to_s.humanize
+      field = field.to_s.gsub(' ', '_')
+      case field
       when /attributes/
         fill_fields value
-      when "Currency", "Rooms", "Gender", "Room type", "Country"
-        within(".#{field.to_s.gsub(" ", "_")}") { select_value value.to_s, :from => field.to_s.humanize }
-      when "Date of birth"
+      when "password_confirmation", "password"
+        fill_in "user_#{field}", :with => value
+      when "currency", "rooms", "gender", "room_type", "country"
+        within(".#{field}") { select_value value.to_s, :from => field.humanize }
+      when "date_of_birth"
         fill_date value
-      when "Password"
-        fill_in "user_password", :with => value
-      when "Password confirmation"
-        fill_in "user_password_confirmation", :with => value
       else
-        within(".#{field.to_s.gsub(" ", "_")}") { find(:fillable_field, field.to_s.humanize).set(value) }
+        within(".#{field}") { fill_in field.humanize, :with => value }
       end
     end
   end
 
   private
-  def room_type_attributes
-    room_type = RoomType.make!
-    {:name => room_type.name, :price => room_type.price, :currency => room_type.currency, :image => room_type.image, :description => room_type.description, :hotel_id => hotel.id }
-  end
-
   def fill_date date
     year, month, day = DateTime.parse(date).strftime("%Y %B %d").split(" ")
     select_value year, :from => 'user_date_of_birth_1i'
@@ -175,7 +157,7 @@ module CapybaraStepHelper
       option = field.find(:option, value)[:value]
       page.execute_script(%{$("##{field[:id]}").val("#{option}").trigger('liszt:updated')})
     else
-      find(:select, options[:from]).find(:option, value).select_option
+      select value, options
     end
   end
 end

@@ -157,16 +157,19 @@ end
 
 When /^I create a new (#{model_names.join("|")})$/ do |model|
   model.gsub!(" ", "_")
-  send("create_#{model}", send("valid_#{model}"))
+  fill_fields(send("valid_#{model}"))
+  click_button "Create #{model.humanize}"
 end
 
 When /^I create a new (#{model_names.join("|")}) without an? (.+)$/ do |model, field|
   model.gsub!(" ", "_")
-  send("create_#{model}", send("valid_#{model}").merge(field.gsub(' ', '_') => ""))
+  fill_fields(send("valid_#{model}").merge(field.gsub(' ', '_') => ""))
+  click_button "Create #{model.humanize}"
 end
 
 When /^I create a new (#{model_names.join('|')}) with an invalid (.+)$/ do |model, field|
-  send("create_#{model}", send("valid_#{model}").merge(field => "*#&"))
+  fill_fields(send("valid_#{model}").merge(field => "*#&"))
+  click_button "Create #{model.humanize}"
 end
 
 When /^I follow "([^"]*)" link of (.+) "([^"]*)"$/ do |link, model, name|
