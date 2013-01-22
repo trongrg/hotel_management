@@ -23,7 +23,6 @@ class Reservation < ActiveRecord::Base
   end
 
   def prepaid_attributes=(attributes)
-    return unless attributes.has_key?(:currency) && attributes.has_key?(:dollars)
     self.prepaid = Money.parse("#{attributes[:currency]}#{attributes[:dollars]}")
   end
 

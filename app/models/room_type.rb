@@ -18,7 +18,6 @@ class RoomType < ActiveRecord::Base
   # }
 
   def price_attributes=(attributes)
-    return unless attributes.has_key?(:currency) && attributes.has_key?(:dollars)
     self.price = Money.parse("#{attributes[:currency]}#{attributes[:dollars]}")
   end
 
