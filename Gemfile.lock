@@ -76,6 +76,9 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 1.0.0)
+    capybara-webkit (0.14.1)
+      capybara (~> 2.0, >= 2.0.2)
+      json
     carmen (0.2.13)
     childprocess (0.3.6)
       ffi (~> 1.0, >= 1.0.6)
@@ -365,6 +368,7 @@ DEPENDENCIES
   bootstrap-sass
   cancan
   capybara
+  capybara-webkit
   carmen
   client_side_validations
   client_side_validations-formtastic

@@ -73,9 +73,9 @@ Then /^I should (not )?see (a|the) create (#{model_names.join("|")}) popup dialo
   form = "#modal .modal-body form#new_#{model_name}"
   if negate
     begin
-      page.find(form).should_not be_visible
-    rescue
       page.should have_no_css form
+    rescue
+      page.find(form).should_not be_visible
     end
   else
     page.find(form).should be_visible

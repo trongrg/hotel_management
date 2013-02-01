@@ -53,12 +53,12 @@ end
 group :development, :test do
   gem 'mysql2'
   gem 'rspec-rails'
-  gem 'capybara'
 end
 
 group :test do
   gem 'cucumber-rails', :require => false
   gem 'capybara'
+  gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'machinist'
   gem 'faker'
