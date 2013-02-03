@@ -31,27 +31,27 @@ describe ReservationsController do
     end
 
     describe "GET show" do
-      let(:action) { get :show, {:hotel_id => hotel.to_param, :id => room} }
+      let(:action) { get :show, {:hotel_id => hotel.to_param, :id => reservation} }
       it_should_behave_like "unauthenticated"
     end
 
     describe "GET edit" do
-      let(:action) { get :edit, {:hotel_id => hotel.to_param, :id => room} }
+      let(:action) { get :edit, {:hotel_id => hotel.to_param, :id => reservation} }
       it_should_behave_like "unauthenticated"
     end
 
     describe "POST create" do
-      let(:action) { post :create, {:hotel_id => hotel, :room => valid_attributes} }
+      let(:action) { post :create, {:hotel_id => hotel, :reservation => valid_attributes} }
       it_should_behave_like "unauthenticated"
     end
 
     describe "PUT update" do
-      let(:action) { put :update, {:hotel_id => hotel.to_param, :room => valid_attributes, :id => room} }
+      let(:action) { put :update, {:hotel_id => hotel.to_param, :reservation => valid_attributes, :id => room} }
       it_should_behave_like "unauthenticated"
     end
 
     describe "DELETE destroy" do
-      let(:action) { delete :destroy, {:hotel_id => hotel.to_param, :id => room} }
+      let(:action) { delete :destroy, {:hotel_id => hotel.to_param, :id => reservation} }
       it_should_behave_like "unauthenticated"
     end
   end
