@@ -9,9 +9,4 @@ class ReservationsController < InheritedResources::Base
   def collection
     @reservations = @hotel.reservations.page(params[:page])
   end
-
-  private
-  def authorize_hotel
-    authorize!(:read, @hotel)
-  end
 end

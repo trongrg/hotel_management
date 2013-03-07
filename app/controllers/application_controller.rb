@@ -11,4 +11,9 @@ class ApplicationController < ActionController::Base
     flash[:alert] = exception.message
     redirect_to root_path
   end
+
+  protected
+  def authorize_hotel
+    authorize!(:read, @hotel)
+  end
 end
