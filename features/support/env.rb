@@ -24,6 +24,7 @@ Spork.prefork do
 
   require 'cucumber/rails'
   Rails.env = 'cucumber'
+  require 'haml-rails'
 end
 
 Spork.each_run do
