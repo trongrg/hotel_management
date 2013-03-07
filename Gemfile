@@ -21,7 +21,6 @@ gem 'nested_form'
 
 gem 'kaminari'
 
-gem 'coffee-filter'
 gem 'jquery-rails'
 gem 'client_side_validations'
 gem 'client_side_validations-formtastic'
@@ -39,6 +38,8 @@ gem 'geocoder'
 
 gem 'friendly_id'
 
+gem 'squeel'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -52,7 +53,8 @@ end
 
 group :development, :test do
   gem 'mysql2'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 2.0'
+  gem 'haml-rails'
 end
 
 group :test do
@@ -72,8 +74,8 @@ end
 group :development do
   gem 'pry-rails'
   gem 'pry-nav'
+  gem 'pry', :git => 'git://github.com/pry/pry.git'
   gem 'awesome_print'
-  gem 'haml-rails'
   gem 'spork', :git => 'git://github.com/sporkrb/spork.git'
   gem 'guard-livereload'
   gem 'yajl-ruby'
