@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130113155156) do
+ActiveRecord::Schema.define(:version => 20130223114833) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -60,6 +60,30 @@ ActiveRecord::Schema.define(:version => 20130113155156) do
 
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
+
+  create_table "check_ins", :force => true do |t|
+    t.string   "status"
+    t.integer  "guest_id"
+    t.integer  "hotel_id"
+    t.integer  "adults"
+    t.integer  "children"
+    t.integer  "special_request"
+    t.integer  "prepaid_cents"
+    t.string   "currency"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "check_ins", ["guest_id"], :name => "index_check_ins_on_guest_id"
+  add_index "check_ins", ["hotel_id"], :name => "index_check_ins_on_hotel_id"
+
+  create_table "check_ins_rooms", :id => false, :force => true do |t|
+    t.integer "check_in_id"
+    t.integer "room_id"
+  end
+
+  add_index "check_ins_rooms", ["check_in_id", "room_id"], :name => "index_check_ins_rooms_on_check_in_id_and_room_id"
+  add_index "check_ins_rooms", ["room_id", "check_in_id"], :name => "index_check_ins_rooms_on_room_id_and_check_in_id"
 
   create_table "guests", :force => true do |t|
     t.string   "first_name"
@@ -141,8 +165,9 @@ ActiveRecord::Schema.define(:version => 20130113155156) do
   create_table "rooms", :force => true do |t|
     t.string   "name"
     t.integer  "room_type_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "available",    :default => true, :null => false
   end
 
   add_index "rooms", ["room_type_id"], :name => "index_rooms_on_room_type_id"

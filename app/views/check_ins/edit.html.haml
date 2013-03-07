@@ -1,0 +1,7 @@
+%h1 Editing check_in
+
+= render 'form'
+
+= link_to 'Show', hotel_check_in_path(@hotel, @check_in)
+\|
+= link_to 'Back', hotel_check_ins_path(@hotel)

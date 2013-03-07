@@ -9,7 +9,7 @@ module NavigationHelpers
       "/profile"
     when /^the (.+) page of (.+)$/
       path = to_path($1)
-      models = $2.scan(/([^",]+)"([^",]+)"/).flatten
+      models = $2.scan(/([^",]+)"([^",]+)"/).flatten.map(&:strip)
       models = Hash[*models]
       path_of(path, models)
     when /^the (.+) page with invitation token of user "(.+)"$/

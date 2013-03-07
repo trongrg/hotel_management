@@ -94,9 +94,10 @@ module CapybaraStepHelper
         :first_name => 'Trong',
         :last_name => 'Tran',
         :passport => '250737373',
-        :phone_number => '0987654321',
+        :phone => '0987654321',
         :gender => "Male"
-      }
+      },
+      :room_ids => [Room.first.name]
     }
   end
 
@@ -136,6 +137,8 @@ module CapybaraStepHelper
         within(".#{field}") { select_value value.to_s, :from => field.humanize }
       when "date_of_birth"
         fill_date value
+      when "room_ids"
+        value.each {|v| check v}
       else
         within(".#{field}") { fill_in field.humanize, :with => value }
       end

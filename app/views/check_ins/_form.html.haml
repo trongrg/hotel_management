@@ -1,12 +1,10 @@
-= semantic_form_for [@hotel, @reservation] do |f|
+= semantic_form_for [@hotel, @check_in] do |f|
   = f.inputs do
     = render '/shared/guest_fields', :f => f
-    = f.input :rooms, :as => :select, :collection => @hotel.rooms
     = f.input :adults
     = f.input :children
-    = f.input :check_in_date, :as => :datepicker
-    = f.input :check_out_date, :as => :datepicker
-    = f.input :special_request, :as => :text
+    = f.input :rooms, :collection => @hotel.rooms.available, :as => :check_boxes
+    = f.input :special_request
     = f.semantic_fields_for :prepaid do |f|
       = f.input :dollars, :label => "Prepaid"
       = f.input :currency, :as => :select, :collection => @currencies

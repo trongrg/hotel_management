@@ -43,3 +43,7 @@ end
 When /^I fill in "(.*?)" with "(.*?)"$/ do |field, value|
   page.fill_in field, :with => value
 end
+
+When /^I debug$/ do
+  binding.pry
+end

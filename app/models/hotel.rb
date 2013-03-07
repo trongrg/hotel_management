@@ -11,6 +11,7 @@ class Hotel < ActiveRecord::Base
   has_many :room_types
   has_many :rooms, :through => :room_types
   has_many :reservations
+  has_many :check_ins
   has_and_belongs_to_many :staff_members, :class_name => "User"
 
   # callbacks

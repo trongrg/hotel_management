@@ -6,6 +6,7 @@ describe ReservationsController do
   let(:room_type) { RoomType.make!(:hotel => hotel) }
   let(:room) { Room.make!(:room_type => room_type) }
   let!(:reservation) { Reservation.make!(:rooms => [room], :hotel => hotel) }
+  let(:action) { }
   let(:valid_attributes) do
     {
       :guest_attributes =>
@@ -21,7 +22,6 @@ describe ReservationsController do
       :room_ids => [room.id]
     }
   end
-  let(:action) { }
 
   context "unauthenticated user" do
     before { action }
@@ -114,48 +114,36 @@ describe ReservationsController do
       end
 
       describe "POST create" do
-        context "with permission" do
-          describe "and valid params" do
-            it "creates a new Reservation" do
-              expect {
-                post :create, {:reservation => valid_attributes, :hotel_id => hotel.to_param}
-              }.to change(Reservation, :count).by(1)
-            end
-
-            it "assigns a newly created reservation as @reservation" do
+        describe "and valid params" do
+          it "creates a new Reservation" do
+            expect {
               post :create, {:reservation => valid_attributes, :hotel_id => hotel.to_param}
-              assigns(:reservation).should be_a(Reservation)
-              assigns(:reservation).should be_persisted
-            end
-
-            it "redirects to the created reservation" do
-              post :create, {:reservation => valid_attributes, :hotel_id => hotel.to_param}
-              response.should redirect_to([hotel, Reservation.last])
-            end
+            }.to change(Reservation, :count).by(1)
           end
 
-          describe "and invalid params" do
-            let!(:errors) { Reservation.create.errors }
-            before { Reservation.any_instance.stub(:errors).and_return errors }
+          it "assigns a newly created reservation as @reservation" do
+            post :create, {:reservation => valid_attributes, :hotel_id => hotel.to_param}
+            assigns(:reservation).should be_a(Reservation)
+            assigns(:reservation).should be_persisted
+          end
 
-            it "assigns a newly created but unsaved reservation as @reservation" do
-              post :create, {:reservation => { "check_in_date" => "invalid value" }, :hotel_id => hotel.to_param}
-              assigns(:reservation).should be_a_new(Reservation)
-            end
-
-            it "re-renders the 'new' template" do
-              post :create, {:reservation => { "check_in_date" => "invalid value" }, :hotel_id => hotel.to_param}
-              response.should render_template("new")
-            end
+          it "redirects to the created reservation" do
+            post :create, {:reservation => valid_attributes, :hotel_id => hotel.to_param}
+            response.should redirect_to([hotel, Reservation.last])
           end
         end
 
-        context 'without permission' do
-          let(:reservation) { Reservation.make! }
-          it "cannot find the reservation" do
-            expect {
-              get :edit, {:id => reservation.to_param, :hotel_id => hotel.to_param}
-            }.to raise_error(ActiveRecord::RecordNotFound)
+        describe "and invalid params" do
+          let!(:errors) { Reservation.create.errors }
+          let(:action) { post :create, {:reservation => { "check_in_date" => "invalid value" }, :hotel_id => hotel.to_param} }
+          before { Reservation.any_instance.stub(:errors).and_return errors }
+
+          it "assigns a newly created but unsaved reservation as @reservation" do
+            assigns(:reservation).should be_a_new(Reservation)
+          end
+
+          it "re-renders the 'new' template" do
+            response.should render_template("new")
           end
         end
       end
@@ -180,15 +168,14 @@ describe ReservationsController do
 
           describe "with invalid params" do
             let!(:errors) { Reservation.create.errors }
+            let(:action) { put :update, {:id => reservation.to_param, :hotel_id => hotel.to_param, :reservation => { "check_in_date" => "invalid value" }} }
             before { Reservation.any_instance.stub(:errors).and_return errors }
 
             it "assigns the reservation as @reservation" do
-              put :update, {:id => reservation.to_param, :hotel_id => hotel.to_param, :reservation => { "check_in_date" => "invalid value" }}
               assigns(:reservation).should eq(reservation)
             end
 
             it "re-renders the 'edit' template" do
-              put :update, {:id => reservation.to_param, :hotel_id => hotel.to_param, :reservation => { "check_in_date" => "invalid value" }}
               response.should render_template("edit")
             end
           end

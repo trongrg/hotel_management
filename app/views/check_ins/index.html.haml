@@ -1,0 +1,32 @@
+%h1 Listing check_ins
+
+= link_to 'New Check in', new_hotel_check_in_path(@hotel)
+%table#check_ins
+  %tr
+    %th Status
+    %th Guest
+    %th Adults
+    %th Children
+    %th Special request
+    %th Prepaid cents
+    %th Currency
+    %th
+    %th
+    %th
+
+  - @check_ins.each do |check_in|
+    %tr.check_in{:id => "check_in_#{check_in.id}"}
+      %td= check_in.status
+      %td= check_in.guest.full_name
+      %td= check_in.adults
+      %td= check_in.children
+      %td= check_in.special_request
+      %td= check_in.prepaid_cents
+      %td= check_in.currency
+      %td= link_to 'Show', [@hotel, check_in]
+      %td= link_to 'Edit', edit_hotel_check_in_path(@hotel, check_in)
+      %td= link_to 'Delete', [@hotel, check_in], method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= paginate @check_ins

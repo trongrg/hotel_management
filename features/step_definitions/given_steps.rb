@@ -43,7 +43,8 @@ Given /^(#{model_names.join('|')}) "([^"]+)" has a (#{model_names.join('|')}) wi
   parent_object.save
 end
 
-Given /^(#{model_names.join('|')}) "([^"]*)" has (\d+) (#{model_names.map(&:pluralize).join('|')})$/ do |parent, parent_name, number, children|
+Given /^(#{model_names.join('|')}) "([^"]*)" has (a|\d+) (#{model_names.map(&:pluralize).join('|')})$/ do |parent, parent_name, number, children|
+  number = 1 if number == 'a'
   parent.gsub!(' ', '_')
   children.gsub!(' ', '_')
   parent_object = parent.camelize.constantize.send(find_method_for(parent), parent_name)

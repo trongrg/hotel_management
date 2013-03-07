@@ -9,6 +9,10 @@ en:
           attributes:
             phone_number:
               phone_number: "is invalid"
+        check_in:
+          attributes:
+            base:
+              not_available: "Cannot check in to occupied rooms"
   flash:
     actions:
       create:

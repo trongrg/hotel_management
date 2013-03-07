@@ -31,8 +31,3 @@ Feature: user edits hotel
     When I go to the edit hotel page of hotel "Thien An"
     And I edit the hotel without a location
     Then I should see a missing hotel's location attributes latitude message
-
-  @javascript @wip
-  Scenario: See my hotel location on embedded google map
-    When I go to the edit hotel page of hotel "Thien An"
-    Then I should see the google map marker points to my hotel's location

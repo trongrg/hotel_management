@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Status:
+  = @check_in.status
+%p
+  %b Guest:
+  = @check_in.guest
+%p
+  %b Adults:
+  = @check_in.adults
+%p
+  %b Children:
+  = @check_in.children
+%p
+  %b Special request:
+  = @check_in.special_request
+%p
+  %b Prepaid cents:
+  = @check_in.prepaid_cents
+%p
+  %b Currency:
+  = @check_in.currency
+
+= link_to 'Edit', edit_hotel_check_in_path(@hotel, @check_in)
+\|
+= link_to 'Back', hotel_check_ins_path(@hotel)
