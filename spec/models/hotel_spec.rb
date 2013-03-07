@@ -16,8 +16,9 @@ describe Hotel do
     it { should have_one :location }
     it { should have_many :room_types }
     it { should have_many :rooms }
-    it { should have_and_belong_to_many :staff_members }
     it { should have_many :reservations }
+    it { should have_many :check_ins }
+    it { should have_and_belong_to_many :staff_members }
   end
 
   describe "validations" do
