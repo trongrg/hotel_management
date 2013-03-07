@@ -54,7 +54,6 @@ group 'autotest' do
   end
 
   guard 'rspec', :cli => '--drb -f d' do
-    watch('db/schema.rb') { 'spec' }
     watch(%r{^spec/.+_spec\.rb$})
     watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
 
