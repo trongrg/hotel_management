@@ -155,12 +155,12 @@ module CapybaraStepHelper
 
   def select_value(value, options)
     return unless options.has_key?(:from)
-    if Capybara.current_driver == :selenium
+    if Capybara.current_driver == :rack_test
+      select value, options
+    else
       field = find(:select, options[:from])
       option = field.find(:option, value)[:value]
       page.execute_script(%{$("##{field[:id]}").val("#{option}").trigger('liszt:updated')})
-    else
-      select value, options
     end
   end
 end

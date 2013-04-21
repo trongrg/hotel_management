@@ -10,39 +10,30 @@ http_interactions:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - "*/*"
+      - '*/*'
       User-Agent:
       - Ruby
   response:
     status:
       code: 200
-      message: !binary |-
-        T0s=
+      message: OK
     headers:
-      !binary "Q29udGVudC1UeXBl":
-      - !binary |-
-        YXBwbGljYXRpb24vanNvbjsgY2hhcnNldD1VVEYtOA==
-      !binary "RGF0ZQ==":
-      - !binary |-
-        U3VuLCAxNiBEZWMgMjAxMiAxNDo1MjoyMyBHTVQ=
-      !binary "RXhwaXJlcw==":
-      - !binary |-
-        TW9uLCAxNyBEZWMgMjAxMiAxNDo1MjoyMyBHTVQ=
-      !binary "Q2FjaGUtQ29udHJvbA==":
-      - !binary |-
-        cHVibGljLCBtYXgtYWdlPTg2NDAw
-      !binary "U2VydmVy":
-      - !binary |-
-        bWFmZQ==
-      !binary "WC1Yc3MtUHJvdGVjdGlvbg==":
-      - !binary |-
-        MTsgbW9kZT1ibG9jaw==
-      !binary "WC1GcmFtZS1PcHRpb25z":
-      - !binary |-
-        U0FNRU9SSUdJTg==
-      !binary "VHJhbnNmZXItRW5jb2Rpbmc=":
-      - !binary |-
-        Y2h1bmtlZA==
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Sun, 16 Dec 2012 14:52:23 GMT
+      Expires:
+      - Mon, 17 Dec 2012 14:52:23 GMT
+      Cache-Control:
+      - public, max-age=86400
+      Server:
+      - mafe
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      Transfer-Encoding:
+      - chunked
     body:
       encoding: ASCII-8BIT
       string: !binary |-
@@ -308,7 +299,7 @@ http_interactions:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - "*/*"
+      - '*/*'
       User-Agent:
       - Ruby
   response:
@@ -400,42 +391,32 @@ http_interactions:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - "*/*"
+      - '*/*'
       User-Agent:
       - Ruby
   response:
     status:
       code: 200
-      message: !binary |-
-        T0s=
+      message: OK
     headers:
-      !binary "Q29udGVudC1UeXBl":
-      - !binary |-
-        YXBwbGljYXRpb24vanNvbjsgY2hhcnNldD1VVEYtOA==
-      !binary "RGF0ZQ==":
-      - !binary |-
-        U2F0LCAxMiBKYW4gMjAxMyAxNToxOTo1NyBHTVQ=
-      !binary "RXhwaXJlcw==":
-      - !binary |-
-        U3VuLCAxMyBKYW4gMjAxMyAxNToxOTo1NyBHTVQ=
-      !binary "Q2FjaGUtQ29udHJvbA==":
-      - !binary |-
-        cHVibGljLCBtYXgtYWdlPTg2NDAw
-      !binary "QWNjZXNzLUNvbnRyb2wtQWxsb3ctT3JpZ2lu":
-      - !binary |-
-        Kg==
-      !binary "U2VydmVy":
-      - !binary |-
-        bWFmZQ==
-      !binary "WC1Yc3MtUHJvdGVjdGlvbg==":
-      - !binary |-
-        MTsgbW9kZT1ibG9jaw==
-      !binary "WC1GcmFtZS1PcHRpb25z":
-      - !binary |-
-        U0FNRU9SSUdJTg==
-      !binary "VHJhbnNmZXItRW5jb2Rpbmc=":
-      - !binary |-
-        Y2h1bmtlZA==
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Sat, 12 Jan 2013 15:19:57 GMT
+      Expires:
+      - Sun, 13 Jan 2013 15:19:57 GMT
+      Cache-Control:
+      - public, max-age=86400
+      Access-Control-Allow-Origin:
+      - '*'
+      Server:
+      - mafe
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      Transfer-Encoding:
+      - chunked
     body:
       encoding: ASCII-8BIT
       string: !binary |-
@@ -701,42 +682,32 @@ http_interactions:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - "*/*"
+      - '*/*'
       User-Agent:
       - Ruby
   response:
     status:
       code: 200
-      message: !binary |-
-        T0s=
+      message: OK
     headers:
-      !binary "Q29udGVudC1UeXBl":
-      - !binary |-
-        YXBwbGljYXRpb24vanNvbjsgY2hhcnNldD1VVEYtOA==
-      !binary "RGF0ZQ==":
-      - !binary |-
-        VGh1LCAxNyBKYW4gMjAxMyAwNTozMjo1NSBHTVQ=
-      !binary "RXhwaXJlcw==":
-      - !binary |-
-        RnJpLCAxOCBKYW4gMjAxMyAwNTozMjo1NSBHTVQ=
-      !binary "Q2FjaGUtQ29udHJvbA==":
-      - !binary |-
-        cHVibGljLCBtYXgtYWdlPTg2NDAw
-      !binary "QWNjZXNzLUNvbnRyb2wtQWxsb3ctT3JpZ2lu":
-      - !binary |-
-        Kg==
-      !binary "U2VydmVy":
-      - !binary |-
-        bWFmZQ==
-      !binary "WC1Yc3MtUHJvdGVjdGlvbg==":
-      - !binary |-
-        MTsgbW9kZT1ibG9jaw==
-      !binary "WC1GcmFtZS1PcHRpb25z":
-      - !binary |-
-        U0FNRU9SSUdJTg==
-      !binary "VHJhbnNmZXItRW5jb2Rpbmc=":
-      - !binary |-
-        Y2h1bmtlZA==
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Thu, 17 Jan 2013 05:32:55 GMT
+      Expires:
+      - Fri, 18 Jan 2013 05:32:55 GMT
+      Cache-Control:
+      - public, max-age=86400
+      Access-Control-Allow-Origin:
+      - '*'
+      Server:
+      - mafe
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      Transfer-Encoding:
+      - chunked
     body:
       encoding: ASCII-8BIT
       string: !binary |-
@@ -1070,42 +1041,32 @@ http_interactions:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - "*/*"
+      - '*/*'
       User-Agent:
       - Ruby
   response:
     status:
       code: 200
-      message: !binary |-
-        T0s=
+      message: OK
     headers:
-      !binary "Q29udGVudC1UeXBl":
-      - !binary |-
-        YXBwbGljYXRpb24vanNvbjsgY2hhcnNldD1VVEYtOA==
-      !binary "RGF0ZQ==":
-      - !binary |-
-        TW9uLCAyOCBKYW4gMjAxMyAwOTo1MjoyNCBHTVQ=
-      !binary "RXhwaXJlcw==":
-      - !binary |-
-        VHVlLCAyOSBKYW4gMjAxMyAwOTo1MjoyNCBHTVQ=
-      !binary "Q2FjaGUtQ29udHJvbA==":
-      - !binary |-
-        cHVibGljLCBtYXgtYWdlPTg2NDAw
-      !binary "QWNjZXNzLUNvbnRyb2wtQWxsb3ctT3JpZ2lu":
-      - !binary |-
-        Kg==
-      !binary "U2VydmVy":
-      - !binary |-
-        bWFmZQ==
-      !binary "WC1Yc3MtUHJvdGVjdGlvbg==":
-      - !binary |-
-        MTsgbW9kZT1ibG9jaw==
-      !binary "WC1GcmFtZS1PcHRpb25z":
-      - !binary |-
-        U0FNRU9SSUdJTg==
-      !binary "VHJhbnNmZXItRW5jb2Rpbmc=":
-      - !binary |-
-        Y2h1bmtlZA==
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Mon, 28 Jan 2013 09:52:24 GMT
+      Expires:
+      - Tue, 29 Jan 2013 09:52:24 GMT
+      Cache-Control:
+      - public, max-age=86400
+      Access-Control-Allow-Origin:
+      - '*'
+      Server:
+      - mafe
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      Transfer-Encoding:
+      - chunked
     body:
       encoding: ASCII-8BIT
       string: !binary |-
@@ -1429,4 +1390,130 @@ http_interactions:
         LAogICAic3RhdHVzIiA6ICJPSyIKfQo=
     http_version: 
   recorded_at: Mon, 28 Jan 2013 09:52:24 GMT
+- request:
+    method: get
+    uri: http://maps.googleapis.com/maps/api/geocode/json?address=702%20Nguyen%20Van%20Linh%20Street,%20District%207,%20Ho%20Chi%20Minh%20City,%20,%20Viet%20Nam&language=en&sensor=false
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Sun, 21 Apr 2013 05:20:25 GMT
+      Expires:
+      - Mon, 22 Apr 2013 05:20:25 GMT
+      Cache-Control:
+      - public, max-age=86400
+      Access-Control-Allow-Origin:
+      - '*'
+      Server:
+      - mafe
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      Via:
+      - proxy-s01-1
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - Keep-Alive
+      Age:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        ewogICAicmVzdWx0cyIgOiBbCiAgICAgIHsKICAgICAgICAgImFkZHJlc3Nf
+        Y29tcG9uZW50cyIgOiBbCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAg
+        ImxvbmdfbmFtZSIgOiAiSG8gQ2hpIE1pbmggQ2l0eSIsCiAgICAgICAgICAg
+        ICAgICJzaG9ydF9uYW1lIiA6ICJIbyBDaGkgTWluaCBDaXR5IiwKICAgICAg
+        ICAgICAgICAgInR5cGVzIiA6IFsgImxvY2FsaXR5IiwgInBvbGl0aWNhbCIg
+        XQogICAgICAgICAgICB9LAogICAgICAgICAgICB7CiAgICAgICAgICAgICAg
+        ICJsb25nX25hbWUiIDogIkhvIENoaSBNaW5oIENpdHkiLAogICAgICAgICAg
+        ICAgICAic2hvcnRfbmFtZSIgOiAiSG8gQ2hpIE1pbmggQ2l0eSIsCiAgICAg
+        ICAgICAgICAgICJ0eXBlcyIgOiBbICJhZG1pbmlzdHJhdGl2ZV9hcmVhX2xl
+        dmVsXzEiLCAicG9saXRpY2FsIiBdCiAgICAgICAgICAgIH0sCiAgICAgICAg
+        ICAgIHsKICAgICAgICAgICAgICAgImxvbmdfbmFtZSIgOiAiVmlldG5hbSIs
+        CiAgICAgICAgICAgICAgICJzaG9ydF9uYW1lIiA6ICJWTiIsCiAgICAgICAg
+        ICAgICAgICJ0eXBlcyIgOiBbICJjb3VudHJ5IiwgInBvbGl0aWNhbCIgXQog
+        ICAgICAgICAgICB9CiAgICAgICAgIF0sCiAgICAgICAgICJmb3JtYXR0ZWRf
+        YWRkcmVzcyIgOiAiSG8gQ2hpIE1pbmggQ2l0eSwgVmlldG5hbSIsCiAgICAg
+        ICAgICJnZW9tZXRyeSIgOiB7CiAgICAgICAgICAgICJib3VuZHMiIDogewog
+        ICAgICAgICAgICAgICAibm9ydGhlYXN0IiA6IHsKICAgICAgICAgICAgICAg
+        ICAgImxhdCIgOiAxMS4xNjAyMTM2MCwKICAgICAgICAgICAgICAgICAgImxu
+        ZyIgOiAxMDcuMDI0ODQ2ODAKICAgICAgICAgICAgICAgfSwKICAgICAgICAg
+        ICAgICAgInNvdXRod2VzdCIgOiB7CiAgICAgICAgICAgICAgICAgICJsYXQi
+        IDogMTAuMzc2Njg4NTAsCiAgICAgICAgICAgICAgICAgICJsbmciIDogMTA2
+        LjM2Mzg3ODQwCiAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfSwKICAg
+        ICAgICAgICAgImxvY2F0aW9uIiA6IHsKICAgICAgICAgICAgICAgImxhdCIg
+        OiAxMC44MjMwOTg5MCwKICAgICAgICAgICAgICAgImxuZyIgOiAxMDYuNjI5
+        NjYzODAKICAgICAgICAgICAgfSwKICAgICAgICAgICAgImxvY2F0aW9uX3R5
+        cGUiIDogIkFQUFJPWElNQVRFIiwKICAgICAgICAgICAgInZpZXdwb3J0IiA6
+        IHsKICAgICAgICAgICAgICAgIm5vcnRoZWFzdCIgOiB7CiAgICAgICAgICAg
+        ICAgICAgICJsYXQiIDogMTEuMTYwMjEzNjAsCiAgICAgICAgICAgICAgICAg
+        ICJsbmciIDogMTA3LjAyNDg0NjgwCiAgICAgICAgICAgICAgIH0sCiAgICAg
+        ICAgICAgICAgICJzb3V0aHdlc3QiIDogewogICAgICAgICAgICAgICAgICAi
+        bGF0IiA6IDEwLjM3NjY4ODUwLAogICAgICAgICAgICAgICAgICAibG5nIiA6
+        IDEwNi4zNjM4Nzg0MAogICAgICAgICAgICAgICB9CiAgICAgICAgICAgIH0K
+        ICAgICAgICAgfSwKICAgICAgICAgInR5cGVzIiA6IFsgImxvY2FsaXR5Iiwg
+        InBvbGl0aWNhbCIgXQogICAgICB9LAogICAgICB7CiAgICAgICAgICJhZGRy
+        ZXNzX2NvbXBvbmVudHMiIDogWwogICAgICAgICAgICB7CiAgICAgICAgICAg
+        ICAgICJsb25nX25hbWUiIDogIlRhbiBTb24gTmhhdCBJbnRlcm5hdGlvbmFs
+        IEFpcnBvcnQiLAogICAgICAgICAgICAgICAic2hvcnRfbmFtZSIgOiAiVGFu
+        IFNvbiBOaGF0IEludGVybmF0aW9uYWwgQWlycG9ydCIsCiAgICAgICAgICAg
+        ICAgICJ0eXBlcyIgOiBbICJlc3RhYmxpc2htZW50IiBdCiAgICAgICAgICAg
+        IH0sCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAgImxvbmdfbmFtZSIg
+        OiAicGjGsOG7nW5nIDQiLAogICAgICAgICAgICAgICAic2hvcnRfbmFtZSIg
+        OiAicGjGsOG7nW5nIDQiLAogICAgICAgICAgICAgICAidHlwZXMiIDogWyAi
+        c3VibG9jYWxpdHkiLCAicG9saXRpY2FsIiBdCiAgICAgICAgICAgIH0sCiAg
+        ICAgICAgICAgIHsKICAgICAgICAgICAgICAgImxvbmdfbmFtZSIgOiAiVGFu
+        IEJpbmggRGlzdHJpY3QiLAogICAgICAgICAgICAgICAic2hvcnRfbmFtZSIg
+        OiAiVGFuIEJpbmggRGlzdHJpY3QiLAogICAgICAgICAgICAgICAidHlwZXMi
+        IDogWyAiYWRtaW5pc3RyYXRpdmVfYXJlYV9sZXZlbF8yIiwgInBvbGl0aWNh
+        bCIgXQogICAgICAgICAgICB9LAogICAgICAgICAgICB7CiAgICAgICAgICAg
+        ICAgICJsb25nX25hbWUiIDogIkhvIENoaSBNaW5oIENpdHkiLAogICAgICAg
+        ICAgICAgICAic2hvcnRfbmFtZSIgOiAiSG8gQ2hpIE1pbmggQ2l0eSIsCiAg
+        ICAgICAgICAgICAgICJ0eXBlcyIgOiBbICJhZG1pbmlzdHJhdGl2ZV9hcmVh
+        X2xldmVsXzEiLCAicG9saXRpY2FsIiBdCiAgICAgICAgICAgIH0sCiAgICAg
+        ICAgICAgIHsKICAgICAgICAgICAgICAgImxvbmdfbmFtZSIgOiAiVmlldG5h
+        bSIsCiAgICAgICAgICAgICAgICJzaG9ydF9uYW1lIiA6ICJWTiIsCiAgICAg
+        ICAgICAgICAgICJ0eXBlcyIgOiBbICJjb3VudHJ5IiwgInBvbGl0aWNhbCIg
+        XQogICAgICAgICAgICB9CiAgICAgICAgIF0sCiAgICAgICAgICJmb3JtYXR0
+        ZWRfYWRkcmVzcyIgOiAiVGFuIFNvbiBOaGF0IEludGVybmF0aW9uYWwgQWly
+        cG9ydCwgcGjGsOG7nW5nIDQsIFRhbiBCaW5oIERpc3RyaWN0LCBIbyBDaGkg
+        TWluaCBDaXR5LCBWaWV0bmFtIiwKICAgICAgICAgImdlb21ldHJ5IiA6IHsK
+        ICAgICAgICAgICAgImJvdW5kcyIgOiB7CiAgICAgICAgICAgICAgICJub3J0
+        aGVhc3QiIDogewogICAgICAgICAgICAgICAgICAibGF0IiA6IDEwLjgzNjY4
+        MTYwLAogICAgICAgICAgICAgICAgICAibG5nIiA6IDEwNi42Nzg1NzUxMAog
+        ICAgICAgICAgICAgICB9LAogICAgICAgICAgICAgICAic291dGh3ZXN0IiA6
+        IHsKICAgICAgICAgICAgICAgICAgImxhdCIgOiAxMC44MDQ2NzM5MCwKICAg
+        ICAgICAgICAgICAgICAgImxuZyIgOiAxMDYuNjMzMDY4NDAKICAgICAgICAg
+        ICAgICAgfQogICAgICAgICAgICB9LAogICAgICAgICAgICAibG9jYXRpb24i
+        IDogewogICAgICAgICAgICAgICAibGF0IiA6IDEwLjgyMDU1NjAsCiAgICAg
+        ICAgICAgICAgICJsbmciIDogMTA2LjY2MDgzMzAKICAgICAgICAgICAgfSwK
+        ICAgICAgICAgICAgImxvY2F0aW9uX3R5cGUiIDogIkFQUFJPWElNQVRFIiwK
+        ICAgICAgICAgICAgInZpZXdwb3J0IiA6IHsKICAgICAgICAgICAgICAgIm5v
+        cnRoZWFzdCIgOiB7CiAgICAgICAgICAgICAgICAgICJsYXQiIDogMTAuODM2
+        NjgxNjAsCiAgICAgICAgICAgICAgICAgICJsbmciIDogMTA2LjY3ODU3NTEw
+        CiAgICAgICAgICAgICAgIH0sCiAgICAgICAgICAgICAgICJzb3V0aHdlc3Qi
+        IDogewogICAgICAgICAgICAgICAgICAibGF0IiA6IDEwLjgwNDY3MzkwLAog
+        ICAgICAgICAgICAgICAgICAibG5nIiA6IDEwNi42MzMwNjg0MAogICAgICAg
+        ICAgICAgICB9CiAgICAgICAgICAgIH0KICAgICAgICAgfSwKICAgICAgICAg
+        InR5cGVzIiA6IFsgImFpcnBvcnQiLCAidHJhbnNpdF9zdGF0aW9uIiwgImVz
+        dGFibGlzaG1lbnQiIF0KICAgICAgfQogICBdLAogICAic3RhdHVzIiA6ICJP
+        SyIKfQo=
+    http_version: 
+  recorded_at: Sun, 21 Apr 2013 05:20:25 GMT
 recorded_with: VCR 2.4.0

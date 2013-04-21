@@ -143,17 +143,19 @@ describe HotelsController do
     describe "PUT update" do
       context "of his/her hotel" do
         context "with valid params" do
-          let(:action) { put :update, {:id => hotel.to_param, :hotel => valid_attributes} }
+          let(:action) {  }
           it "updates the requested hotel" do
             Hotel.any_instance.should_receive(:update_attributes).with({'these' => 'params'}).and_return(true)
-            put :update, :id => @hotel.to_param, :hotel => {'these' => 'params'}
+            put :update, :id => hotel.to_param, :hotel => {'these' => 'params'}
           end
 
           it "assigns the requested hotel as @hotel" do
+            put :update, {:id => hotel.to_param, :hotel => valid_attributes }
             assigns(:hotel).should == hotel
           end
 
           it "redirects to the created hotel page" do
+            put :update, {:id => hotel.to_param, :hotel => valid_attributes }
             response.should redirect_to(hotel.reload)
           end
         end

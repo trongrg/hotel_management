@@ -151,17 +151,19 @@ describe ReservationsController do
       describe "PUT update" do
         context "with permission" do
           describe "with valid params" do
-            let(:action) { put :update, {:id => reservation.to_param, :hotel_id => hotel.to_param, :reservation => { "check_in_date" => 1.day.from_now }} }
+            let(:action) { }
             it "updates the requested reservation" do
               Reservation.any_instance.should_receive(:update_attributes).with({ "check_in_date" => "" })
               put :update, {:id => reservation.to_param, :hotel_id => hotel.to_param, :reservation => { "check_in_date" => "" }}
             end
 
             it "assigns the requested reservation as @reservation" do
+              put :update, {:id => reservation.to_param, :hotel_id => hotel.to_param, :reservation => { "check_in_date" => 1.day.from_now }}
               assigns(:reservation).should eq(reservation)
             end
 
             it "redirects to the reservation" do
+              put :update, {:id => reservation.to_param, :hotel_id => hotel.to_param, :reservation => { "check_in_date" => 1.day.from_now }}
               response.should redirect_to([hotel, reservation])
             end
           end

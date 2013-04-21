@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails'
+gem 'rails', '~> 3.2.13'
 
 gem 'inherited_resources'
 gem 'activeadmin'
@@ -51,16 +51,19 @@ group :assets do
   gem 'sassy-buttons'
 end
 
-group :development, :test do
+group :development, :test, :cucumber do
   gem 'mysql2'
   gem 'rspec-rails', '~> 2.0'
   gem 'haml-rails'
+  gem 'pry-rails'
+  gem 'pry-nav'
+  gem 'pry', :git => 'git://github.com/pry/pry.git'
 end
 
 group :test do
   gem 'cucumber-rails', :require => false
   gem 'capybara'
-  gem 'capybara-webkit'
+  gem 'capybara-webkit', :github => 'thoughtbot/capybara-webkit', branch: 'master'
   gem 'database_cleaner'
   gem 'machinist'
   gem 'faker'
@@ -72,9 +75,6 @@ group :test do
 end
 
 group :development do
-  gem 'pry-rails'
-  gem 'pry-nav'
-  gem 'pry', :git => 'git://github.com/pry/pry.git'
   gem 'awesome_print'
   gem 'spork', :git => 'git://github.com/sporkrb/spork.git'
   gem 'guard-livereload'

@@ -107,12 +107,12 @@ ActiveRecord::Schema.define(:version => 20130223114833) do
   add_index "hotels", ["slug"], :name => "index_hotels_on_slug"
   add_index "hotels", ["user_id"], :name => "index_hotels_on_user_id"
 
-  create_table "hotels_users", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "hotel_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table "hotels_users", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "hotel_id"
   end
+
+  add_index "hotels_users", ["user_id", "hotel_id"], :name => "index_hotels_users_on_user_id_and_hotel_id"
 
   create_table "locations", :force => true do |t|
     t.decimal  "latitude",       :precision => 20, :scale => 16
@@ -191,11 +191,9 @@ ActiveRecord::Schema.define(:version => 20130223114833) do
     t.string   "gender"
     t.string   "phone"
     t.integer  "roles_mask"
-    t.integer  "working_hotel_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-  add_index "users", ["working_hotel_id"], :name => "index_users_on_working_hotel_id"
 
 end

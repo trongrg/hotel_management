@@ -145,17 +145,19 @@ describe RoomsController do
       describe "PUT update" do
         context "with permission" do
           context "and valid params" do
-            let(:action) { put :update, {:id => room.to_param, :hotel_id => hotel.to_param, :room => { "name" => "new name" }} }
+            let(:action) { }
             it "updates the requested room" do
               Room.any_instance.should_receive(:update_attributes).with({ "name" => "MyString" })
-              put :update, {:id => room.to_param, :room => { "name" => "MyString" }}
+              put :update, {:id => room.to_param, :hotel_id => hotel.to_param, :room => { "name" => "MyString" }}
             end
 
             it "assigns the requested room as @room" do
+              put :update, {:id => room.to_param, :hotel_id => hotel.to_param, :room => { "name" => "new name" }}
               assigns(:room).should == room
             end
 
             it "redirects to the room" do
+              put :update, {:id => room.to_param, :hotel_id => hotel.to_param, :room => { "name" => "new name" }}
               response.should redirect_to([hotel, room])
             end
           end
